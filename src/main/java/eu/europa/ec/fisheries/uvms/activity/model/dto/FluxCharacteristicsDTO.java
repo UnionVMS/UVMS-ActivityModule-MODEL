@@ -13,18 +13,26 @@
 
 package eu.europa.ec.fisheries.uvms.activity.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 
 /**
  * Created by sanera on 04/08/2016.
  */
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class FluxCharacteristicsDTO {
+
+    @JsonProperty("valueDateTime")
     private Date valueDateTime;
 
+    @JsonProperty("valueDateTime")
     public Date getValueDateTime() {
         return valueDateTime;
     }
 
+    @JsonProperty("valueDateTime")
     public void setValueDateTime(Date valueDateTime) {
         this.valueDateTime = valueDateTime;
     }
