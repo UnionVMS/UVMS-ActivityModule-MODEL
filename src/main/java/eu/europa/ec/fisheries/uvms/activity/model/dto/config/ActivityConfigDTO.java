@@ -13,8 +13,25 @@
 
 package eu.europa.ec.fisheries.uvms.activity.model.dto.config;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Created by padhyad on 8/23/2016.
  */
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class ActivityConfigDTO {
+
+    @JsonProperty("faReportConfig")
+    private FaReportConfigDTO faReportConfig;
+
+    @JsonProperty("faReportConfig")
+    public FaReportConfigDTO getFaReportConfig() {
+        return faReportConfig;
+    }
+
+    @JsonProperty("faReportConfig")
+    public void setFaReportConfig(FaReportConfigDTO faReportConfig) {
+        this.faReportConfig = faReportConfig;
+    }
 }
