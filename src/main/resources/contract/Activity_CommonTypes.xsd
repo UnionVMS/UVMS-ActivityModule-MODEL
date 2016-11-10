@@ -27,6 +27,7 @@
             <xs:enumeration value="VIEW_FA_REPORT_DETAILS"/>
             <xs:enumeration value="MANAGE_ADMIN_CONFIGURATIONS"/>
             <xs:enumeration value="CODE_LISTS_ENABLE_DISABLE_SCHEDULED_UPDATE"/>
+            <xs:enumeration value="MDR_SEARCH_CODE_LIST_ITEMS"/>
         </xs:restriction>
     </xs:simpleType>
 
