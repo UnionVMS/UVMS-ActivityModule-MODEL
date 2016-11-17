@@ -70,6 +70,17 @@
 		</xs:complexType>
 	</xs:element>
 
+	<xs:element name="GetFishingTripResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ActivityModuleRequest">
+					<xs:sequence>
+						<xs:element name="fishingTripId" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
 
 	<xsd:simpleType name="PluginType">
 		<xsd:restriction base="xsd:string">
