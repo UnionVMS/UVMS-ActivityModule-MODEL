@@ -18,6 +18,7 @@
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="GET_FLUX_FA_REPORT" />
 			<xs:enumeration value="GET_FLUX_MDR_ENTITY" />
+			<xs:enumeration value="GET_FISHING_TRIPS" />
 		</xs:restriction>
 	</xs:simpleType>
 
@@ -51,6 +52,18 @@
 				<xs:extension base="ActivityModuleRequest">
 					<xs:sequence>
 						<xs:element name="request" type="xs:string" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetFishingTripRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ActivityModuleRequest">
+					<xs:sequence>
+						<xs:element name="filters" type="FilterType" minOccurs="0" maxOccurs="unbounded"/>
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
