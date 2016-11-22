@@ -11,7 +11,7 @@ details. You should have received a copy of the GNU General Public License along
 package eu.europa.ec.fisheries.uvms.activity.model.mapper;
 
 
-import eu.europa.ec.fisheries.uvms.activity.model.exception.ModelMarshallException;
+import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMarshallException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,9 +42,9 @@ public class JAXBMarshaller {
      * @param data
      * @return
      * @throws
-     * eu.europa.ec.fisheries.uvms.movement.model.exception.ModelMarshallException
+     * eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMarshallException
      */
-    public static <T> String marshallJaxBObjectToString(T data) throws ModelMarshallException {
+    public static <T> String marshallJaxBObjectToString(T data) throws ActivityModelMarshallException {
         try {
             JAXBContext jaxbContext = contexts.get(data.getClass().getName());
             if (jaxbContext == null) {
@@ -64,7 +64,7 @@ public class JAXBMarshaller {
             return marshalled;
         } catch (JAXBException ex) {
             LOG.error("[ Error when marshalling object to string ] {} ", ex.getMessage());
-            throw new ModelMarshallException("[ Error when marshalling Object to String ]", ex);
+            throw new ActivityModelMarshallException("[ Error when marshalling Object to String ]", ex);
         }
     }
 
@@ -77,9 +77,9 @@ public class JAXBMarshaller {
      * @param clazz pperException
      * @return
      * @throws
-     * eu.europa.ec.fisheries.uvms.movement.model.exception.ModelMarshallException
+     * eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMarshallException
      */
-    public static <R> R unmarshallTextMessage(TextMessage textMessage, Class clazz) throws ModelMarshallException {
+    public static <R> R unmarshallTextMessage(TextMessage textMessage, Class clazz) throws ActivityModelMarshallException {
         try {
             JAXBContext jc = contexts.get(clazz.getName());
             if (jc == null) {
@@ -98,11 +98,11 @@ public class JAXBMarshaller {
             return object;
         } catch (NullPointerException | JMSException | JAXBException ex) {
             //LOG.error("[ Error when marshalling Text message to object ] {} ", ex.getMessage());
-            throw new ModelMarshallException("[Error when unmarshalling response in ResponseMapper ]", ex);
+            throw new ActivityModelMarshallException("[Error when unmarshalling response in ResponseMapper ]", ex);
         }
     }
 
-    public static <R> R unmarshallTextMessage(String textMessage, Class clazz) throws ModelMarshallException {
+    public static <R> R unmarshallTextMessage(String textMessage, Class clazz) throws ActivityModelMarshallException {
 
         try {
             JAXBContext jc = contexts.get(clazz.getName());
@@ -122,7 +122,7 @@ public class JAXBMarshaller {
             return object;
         } catch (NullPointerException | JAXBException ex) {
             //LOG.error("[ Error when marshalling Text message to object ] {} ", ex.getMessage());
-            throw new ModelMarshallException("[Error when unmarshalling response in ResponseMapper ]", ex);
+            throw new ActivityModelMarshallException("[Error when unmarshalling response in ResponseMapper ]", ex);
         }
     }
 

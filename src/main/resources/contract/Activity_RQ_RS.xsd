@@ -58,19 +58,20 @@
 		</xs:complexType>
 	</xs:element>
 
-	<xs:element name="GetFishingTripRequest">
+	<xs:element name="FishingTripRequest">
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="ActivityModuleRequest">
 					<xs:sequence>
-						<xs:element name="filters" type="FilterType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="listValueFilters" type="ListValueTypeFilter" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="singleValueFilters" type="SingleValueTypeFilter" minOccurs="0" maxOccurs="unbounded"/>
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
 
-	<xs:element name="GetFishingTripResponse">
+	<xs:element name="FishingTripResponse">
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="ActivityModuleRequest">

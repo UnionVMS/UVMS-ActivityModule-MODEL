@@ -10,25 +10,33 @@ details. You should have received a copy of the GNU General Public License along
  */
 package eu.europa.ec.fisheries.uvms.activity.model.mapper;
 
-import eu.europa.ec.fisheries.uvms.activity.model.exception.ModelMarshallException;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityModuleMethod;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.SetFLUXFAReportMessageRequest;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.PluginType;
+import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMarshallException;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.*;
+
+import java.util.List;
 
 /**
  * Created by sanera on 06/06/2016.
  */
-public class ActivityModuleRequestMapper {
+public final class ActivityModuleRequestMapper {
 
-    public ActivityModuleRequestMapper(){
+    private ActivityModuleRequestMapper(){
 
     }
 
-    public static String mapToSetFLUXFAReportMessageRequest(String fluxFAReportMessae, String username, String pluginType) throws ModelMarshallException {
+    public static String mapToSetFLUXFAReportMessageRequest(String fluxFAReportMessage, String username, String pluginType) throws ActivityModelMarshallException {
         SetFLUXFAReportMessageRequest request = new SetFLUXFAReportMessageRequest();
         request.setMethod(ActivityModuleMethod.GET_FLUX_FA_REPORT);
         request.setPluginType(PluginType.fromValue(pluginType));
-        request.setRequest(fluxFAReportMessae);
+        request.setRequest(fluxFAReportMessage);
+        return JAXBMarshaller.marshallJaxBObjectToString(request);
+    }
+
+    public static String mapToActivityGetFishingTripRequest(List<ListValueTypeFilter> listFilter, List<SingleValueTypeFilter> singleFilters) throws ActivityModelMarshallException {
+        FishingTripRequest request = new FishingTripRequest();
+        request.setMethod(ActivityModuleMethod.GET_FISHING_TRIPS);
+        request.setListValueFilters(listFilter);
+        request.setSingleValueFilters(singleFilters);
         return JAXBMarshaller.marshallJaxBObjectToString(request);
     }
 }

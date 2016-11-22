@@ -3,7 +3,7 @@
                xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
                xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc">
 
-    <jaxb:globalBindings>
+    <jaxb:globalBindings choiceContentProperty="true">
 
         <!-- Add java serializable interface to all generated classes -->
         <jaxb:serializable uid="1"/>
