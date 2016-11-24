@@ -32,11 +32,10 @@ public final class ActivityModuleRequestMapper {
         return JAXBMarshaller.marshallJaxBObjectToString(request);
     }
 
-    public static String mapToActivityGetFishingTripRequest(List<ListValueTypeFilter> listFilter, List<SingleValueTypeFilter> singleFilters) throws ActivityModelMarshallException {
+    public static String mapToActivityGetFishingTripRequest(List<FilterType> listFilter) throws ActivityModelMarshallException {
         FishingTripRequest request = new FishingTripRequest();
         request.setMethod(ActivityModuleMethod.GET_FISHING_TRIPS);
-        request.setListValueFilters(listFilter);
-        request.setSingleValueFilters(singleFilters);
+        request.setFilters(listFilter);
         return JAXBMarshaller.marshallJaxBObjectToString(request);
     }
 }
