@@ -32,7 +32,7 @@ public final class ActivityModuleRequestMapper {
         return JAXBMarshaller.marshallJaxBObjectToString(request);
     }
 
-    public static String mapToActivityGetFishingTripRequest(List<FilterType> listFilter) throws ActivityModelMarshallException {
+    public static String mapToActivityGetFishingTripRequest(List<FAFilterType> listFilter) throws ActivityModelMarshallException {
         FishingTripRequest request = new FishingTripRequest();
         request.setMethod(ActivityModuleMethod.GET_FISHING_TRIPS);
         request.setFilters(listFilter);
