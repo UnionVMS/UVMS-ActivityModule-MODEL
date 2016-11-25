@@ -45,6 +45,7 @@
             <xs:enumeration value="MASTER"/>
             <xs:enumeration value="OCCURRENCE"/>
             <xs:enumeration value="FA_REPORT_ID"/>
+            <xs:enumeration value="AREA_GEOM"/>
         </xs:restriction>
     </xs:simpleType>
 
