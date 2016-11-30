@@ -63,7 +63,8 @@
 			<xs:complexContent>
 				<xs:extension base="ActivityModuleRequest">
 					<xs:sequence>
-						<xs:element name="filters" type="FAFilterType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="listValueFilters" type="ListValueTypeFilter" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="singleValueFilters" type="SingleValueTypeFilter" minOccurs="0" maxOccurs="unbounded"/>
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
