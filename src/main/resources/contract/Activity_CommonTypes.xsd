@@ -20,19 +20,19 @@
 
     <xs:complexType name="ListValueTypeFilter">
         <xs:sequence>
-            <xs:element name="key" type="ListFilterKey" nillable="false" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="key" type="SearchFilter" nillable="false" minOccurs="1" maxOccurs="1"/>
             <xs:element name="value" type="xs:string" nillable="false" minOccurs="1" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
 
     <xs:complexType name="SingleValueTypeFilter">
         <xs:sequence>
-            <xs:element name="key" type="SingleFilterKey" nillable="false" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="key" type="SearchFilter" nillable="false" minOccurs="1" maxOccurs="1"/>
             <xs:element name="value" type="xs:string" nillable="false" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
 
-    <xs:simpleType name="SingleFilterKey">
+    <xs:simpleType name="SearchFilter">
         <xs:restriction base="xs:string">
             <xs:enumeration value="SOURCE" />
             <xs:enumeration value="FROM_ID"/>
@@ -54,14 +54,11 @@
             <xs:enumeration value="OCCURRENCE"/>
             <xs:enumeration value="FA_REPORT_ID"/>
             <xs:enumeration value="AREA_GEOM"/>
-        </xs:restriction>
-    </xs:simpleType>
-
-    <xs:simpleType name="ListFilterKey">
-        <xs:restriction base="xs:string">
             <xs:enumeration value="ACTIVITY_TYPE"/>
         </xs:restriction>
     </xs:simpleType>
+
+
 
 
     <xs:simpleType name="ActivityFeaturesEnum">
