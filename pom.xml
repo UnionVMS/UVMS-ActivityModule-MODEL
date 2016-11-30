@@ -5,7 +5,7 @@
     <artifactId>activity-model</artifactId>
     <name>activity-model</name>
     <packaging>ejb</packaging>
-    <version>0.5.7-SNAPSHOT</version>
+    <version>0.5.8-SNAPSHOT</version>
     <description>This module shall have interfaces, XSD, and DTOs</description>
 
     <properties>
@@ -123,7 +123,8 @@
 	 <connection>scm:git:https://emkoviand@webgate.ec.europa.eu/CITnet/stash/scm/unionvms/uvms-activity-model.git</connection>
 	 <developerConnection>scm:git:https://emkoviand@webgate.ec.europa.eu/CITnet/stash/scm/unionvms/uvms-activity-model.git</developerConnection>
 	 <url>https://emkoviand@webgate.ec.europa.eu/CITnet/stash/scm/unionvms/</url>
-	</scm>
+	  <tag>HEAD</tag>
+  </scm>
 
     <profiles>
 
