@@ -32,6 +32,23 @@
         </xs:sequence>
     </xs:complexType>
 
+    <xs:complexType name="FishingTripIdWithGeometry">
+           <xs:sequence>
+                <xs:element name="tripId" type="xs:string"/>
+                <xs:element name="schemeId" type="xs:string"/>
+                <xs:element name="geometry" type="xs:string"/>
+            </xs:sequence>
+
+    </xs:complexType>
+
+    <xs:complexType name="FishingActivitySummary">
+            <xs:sequence>
+                <xs:element name="activityType" type="xs:string"/>
+                <xs:element name="geometry" type="xs:string"/>
+                <xs:element name="occurrence" type="xs:dateTime"/>
+            </xs:sequence>
+    </xs:complexType>
+
     <xs:simpleType name="SearchFilter">
         <xs:restriction base="xs:string">
             <xs:enumeration value="SOURCE" />
@@ -84,5 +101,7 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
+
 
 </xs:schema>
