@@ -45,7 +45,16 @@
             <xs:sequence>
                 <xs:element name="activityType" type="xs:string"/>
                 <xs:element name="geometry" type="xs:string"/>
-                <xs:element name="occurrence" type="xs:dateTime"/>
+                <xs:element name="acceptedDateTime" type="xs:dateTime"/>
+                <xs:element name="dataSource" type="xs:string"/>
+                <xs:element name="reportType" type="xs:string"/>
+                <xs:element name="purposeCode" type="xs:string"/>
+                <xs:element name="vesselName" type="xs:string"/>
+                <xs:element name="gears" type="xs:string"  minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="species" type="xs:string"  minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="ports" type="xs:string"  minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="areas" type="xs:string"  minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="vesselIdentifiers" type="xs:string"  minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
     </xs:complexType>
 
