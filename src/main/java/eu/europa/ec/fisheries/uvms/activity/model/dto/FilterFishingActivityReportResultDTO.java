@@ -25,8 +25,10 @@ public class FilterFishingActivityReportResultDTO {
     @JsonProperty("resultList")
     private List<FishingActivityReportDTO> resultList;
 
-    @JsonProperty("pagination")
-    private PaginationDTO pagination;
+    private int totalCountOfRecords;
+
+  //  @JsonProperty("pagination")
+    //private PaginationDTO pagination;
 
     @JsonProperty("resultList")
     public List<FishingActivityReportDTO> getResultList() {
@@ -38,7 +40,7 @@ public class FilterFishingActivityReportResultDTO {
         this.resultList = resultList;
     }
 
-    @JsonProperty("pagination")
+ /*   @JsonProperty("pagination")
     public PaginationDTO getPagination() {
         return pagination;
     }
@@ -46,5 +48,13 @@ public class FilterFishingActivityReportResultDTO {
     @JsonProperty("pagination")
     public void setPagination(PaginationDTO pagination) {
         this.pagination = pagination;
+    }*/
+
+    public int getTotalCountOfRecords() {
+        return totalCountOfRecords;
+    }
+
+    public void setTotalCountOfRecords(int totalCountOfRecords) {
+        this.totalCountOfRecords = totalCountOfRecords;
     }
 }

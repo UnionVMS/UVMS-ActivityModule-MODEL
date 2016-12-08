@@ -16,6 +16,77 @@
            id="FISH2015_SPATIAL2015" targetNamespace="http://europa.eu/ec/fisheries/uvms/activity/model/schemas"
            version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
+
+
+    <xs:complexType name="ListValueTypeFilter">
+        <xs:sequence>
+            <xs:element name="key" type="SearchFilter" nillable="false" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="value" type="xs:string" nillable="false" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SingleValueTypeFilter">
+        <xs:sequence>
+            <xs:element name="key" type="SearchFilter" nillable="false" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="value" type="xs:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="FishingTripIdWithGeometry">
+           <xs:sequence>
+                <xs:element name="tripId" type="xs:string"/>
+                <xs:element name="schemeId" type="xs:string"/>
+                <xs:element name="geometry" type="xs:string"/>
+            </xs:sequence>
+
+    </xs:complexType>
+
+    <xs:complexType name="FishingActivitySummary">
+            <xs:sequence>
+                <xs:element name="activityType" type="xs:string"/>
+                <xs:element name="geometry" type="xs:string"/>
+                <xs:element name="acceptedDateTime" type="xs:dateTime"/>
+                <xs:element name="dataSource" type="xs:string"/>
+                <xs:element name="reportType" type="xs:string"/>
+                <xs:element name="purposeCode" type="xs:string"/>
+                <xs:element name="vesselName" type="xs:string"/>
+                <xs:element name="gears" type="xs:string"  minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="species" type="xs:string"  minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="ports" type="xs:string"  minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="areas" type="xs:string"  minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="vesselIdentifiers" type="xs:string"  minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="SearchFilter">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SOURCE" />
+            <xs:enumeration value="FROM_ID"/>
+            <xs:enumeration value="FROM_NAME"/>
+            <xs:enumeration value="PERIOD_START"/>
+            <xs:enumeration value="PERIOD_END"/>
+            <xs:enumeration value="VESSEL_IDENTIFIRE"/>
+            <xs:enumeration value="VESSEL_NAME"/>
+            <xs:enumeration value="PURPOSE"/>
+            <xs:enumeration value="REPORT_TYPE"/>
+            <xs:enumeration value="AREAS"/>
+            <xs:enumeration value="PORT"/>
+            <xs:enumeration value="GEAR"/>
+            <xs:enumeration value="SPECIES"/>
+            <xs:enumeration value="QUNTITY_MIN"/>
+            <xs:enumeration value="QUNTITY_MAX"/>
+            <xs:enumeration value="WEIGHT_MEASURE"/>
+            <xs:enumeration value="MASTER"/>
+            <xs:enumeration value="OCCURRENCE"/>
+            <xs:enumeration value="FA_REPORT_ID"/>
+            <xs:enumeration value="AREA_GEOM"/>
+            <xs:enumeration value="ACTIVITY_TYPE"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+
+
     <xs:simpleType name="ActivityFeaturesEnum">
         <xs:restriction base="xs:string">
             <xs:enumeration value="ACTIVITY_ALLOWED" />
@@ -30,5 +101,16 @@
             <xs:enumeration value="MDR_SEARCH_CODE_LIST_ITEMS"/>
         </xs:restriction>
     </xs:simpleType>
+
+    <xs:element name="ActivityFault">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="code" type="xs:int"/>
+                <xs:element name="fault" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
 
 </xs:schema>
