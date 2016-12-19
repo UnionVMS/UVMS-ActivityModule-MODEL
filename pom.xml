@@ -21,6 +21,8 @@
 		<maven.release.plugin.version>2.5.2</maven.release.plugin.version>
         <maven.scm.provider.version>2.1.1</maven.scm.provider.version>
 		<uvms.commons.version>2.0.12</uvms.commons.version>
+
+        <scm.connection>scm:git:https://github.com/UnionVMS/UVMS-ActivityModule-MODEL.git</scm.connection>
     </properties>
 
     <dependencies>
@@ -108,25 +110,46 @@
 
     <distributionManagement>
         <repository>
-            <id>digit-releases</id>
-            <name>DG DIGIT Repository</name>
-            <url>https://webgate.ec.europa.eu/CITnet/nexus/content/repositories/mare/</url>
+            <id>focus-releases</id>
+            <name>UnionVms Repository</name>
+            <url>http://nexus.focus.fish/nexus/content/repositories/releases/</url>
         </repository>
         <snapshotRepository>
-            <id>digit-snapshots</id>
-            <name>DG DIGIT Snapshot Repository</name>
-            <url>https://webgate.ec.europa.eu/CITnet/nexus/content/repositories/mare-snapshots/</url>
+            <id>focus-snapshots</id>
+            <name>UnionVms Snapshot Repository</name>
+            <url>http://nexus.focus.fish/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 
+
 	<scm>
-	 <connection>scm:git:https://emkoviand@webgate.ec.europa.eu/CITnet/stash/scm/unionvms/uvms-activity-model.git</connection>
-	 <developerConnection>scm:git:https://emkoviand@webgate.ec.europa.eu/CITnet/stash/scm/unionvms/uvms-activity-model.git</developerConnection>
-	 <url>https://emkoviand@webgate.ec.europa.eu/CITnet/stash/scm/unionvms/</url>
+        <connection>${scm.connection}</connection>
 	  <tag>HEAD</tag>
   </scm>
 
+
+
     <profiles>
+
+        <profile>
+            <id>dg-mare</id>
+               <distributionManagement>
+                   <repository>
+                       <id>digit-releases</id>
+                       <name>DG DIGIT Repository</name>
+                       <url>https://webgate.ec.europa.eu/CITnet/nexus/content/repositories/mare/</url>
+                   </repository>
+                   <snapshotRepository>
+                       <id>digit-snapshots</id>
+                       <name>DG DIGIT Snapshot Repository</name>
+                       <url>https://webgate.ec.europa.eu/CITnet/nexus/content/repositories/mare-snapshots/</url>
+                   </snapshotRepository>
+               </distributionManagement>
+
+            <properties>
+                <scm.connection>scm:git:https://emserveje@webgate.ec.europa.eu/CITnet/stash/scm/unionvms/uvms-activity-model.git</scm.connection>
+            </properties>
+        </profile>
 
         <profile>
             <id>generate-from-wsdl</id>
@@ -157,7 +180,11 @@
                             <bindingExcludes>
                                 <include>**/*.xj</include>
                             </bindingExcludes>
-                            <schemaDirectory>${project.basedir}/src/main/resources/contract</schemaDirectory>
+                            <schemaDirectory>src/main/resources</schemaDirectory>
+                            <schemaIncludes>
+                                <include>contract/fa/data/standard/*.xsd</include>
+                                <include>contract/*.xsd</include>
+                            </schemaIncludes>
                             <extension>true</extension>
                             <args>
                                 <arg>-XtoString</arg>
