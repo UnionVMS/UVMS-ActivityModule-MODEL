@@ -62,7 +62,6 @@
         <xs:restriction base="xs:string">
             <xs:enumeration value="SOURCE" />
             <xs:enumeration value="FROM_ID"/>
-            <xs:enumeration value="FROM_NAME"/>
             <xs:enumeration value="PERIOD_START"/>
             <xs:enumeration value="PERIOD_END"/>
             <xs:enumeration value="VESSEL_IDENTIFIRE"/>
