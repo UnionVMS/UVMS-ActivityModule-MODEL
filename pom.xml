@@ -20,7 +20,7 @@
         <logback.core.version>1.1.2</logback.core.version>
 		<maven.release.plugin.version>2.5.2</maven.release.plugin.version>
         <maven.scm.provider.version>2.1.1</maven.scm.provider.version>
-		<uvms.commons.version>2.0.12</uvms.commons.version>
+		<uvms.commons.version>2.0.15</uvms.commons.version>
 
         <scm.connection>scm:git:https://github.com/UnionVMS/UVMS-ActivityModule-MODEL.git</scm.connection>
     </properties>
@@ -72,7 +72,7 @@
 
 		<dependency>
             <groupId>eu.europa.ec.fisheries.uvms</groupId>
-            <artifactId>uvms-commons</artifactId>
+            <artifactId>uvms-commons-wildfly</artifactId>
 			 <version>${uvms.commons.version}</version>
         </dependency>
 			
