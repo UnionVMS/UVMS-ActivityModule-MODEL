@@ -83,8 +83,18 @@
         </xs:restriction>
     </xs:simpleType>
 
-
-
+    <xs:simpleType name="GroupCriteria">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DATE" />
+            <xs:enumeration value="AREA"/>
+            <xs:enumeration value="VESSEL"/>
+            <xs:enumeration value="FLAG_STATE"/>
+            <xs:enumeration value="GEAR_TYPE"/>
+            <xs:enumeration value="SPECIES"/>
+            <xs:enumeration value="PRESENTATION"/>
+            <xs:enumeration value="SIZE_CLASS"/>
+        </xs:restriction>
+    </xs:simpleType>
 
     <xs:simpleType name="ActivityFeaturesEnum">
         <xs:restriction base="xs:string">
