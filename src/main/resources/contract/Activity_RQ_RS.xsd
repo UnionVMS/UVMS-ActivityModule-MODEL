@@ -65,6 +65,7 @@
 					<xs:sequence>
 						<xs:element name="listValueFilters" type="ListValueTypeFilter" minOccurs="0" maxOccurs="unbounded"/>
 						<xs:element name="singleValueFilters" type="SingleValueTypeFilter" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="vesselGroupSearch" type="VesselGroupSearch"/>
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
