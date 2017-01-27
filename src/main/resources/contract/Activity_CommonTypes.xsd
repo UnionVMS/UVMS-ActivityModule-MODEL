@@ -87,14 +87,6 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:complexType name="VesselGroupSearch">
-        <xs:sequence>
-            <xs:element name="name" type="xs:string"/>
-            <xs:element name="guid" type="xs:string"/>
-            <xs:element name="user" type="xs:string"/>
-        </xs:sequence>
-    </xs:complexType>
-
     <xs:simpleType name="ActivityFeaturesEnum">
         <xs:restriction base="xs:string">
             <xs:enumeration value="ACTIVITY_ALLOWED" />
