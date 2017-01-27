@@ -87,11 +87,19 @@
         <xs:restriction base="xs:string">
             <xs:enumeration value="DATE" />
             <xs:enumeration value="AREA"/>
+			<xs:enumeration value="TERRITORY"/>
+			<xs:enumeration value="FAO_AREA"/>
+			<xs:enumeration value="ICES_STAT_RECTANGLE"/>
+			<xs:enumeration value="EFFORT_ZONE"/>
+			<xs:enumeration value="RFMO"/>
+			<xs:enumeration value="GFCM_GSA"/>
+			<xs:enumeration value="GFCM_STAT_RECTANGLE"/>
             <xs:enumeration value="VESSEL"/>
             <xs:enumeration value="FLAG_STATE"/>
             <xs:enumeration value="GEAR_TYPE"/>
-            <xs:enumeration value="SPECIES"/>
-            <xs:enumeration value="PRESENTATION"/>
+			<xs:enumeration value="PRESENTATION"/>
+			<xs:enumeration value="CATCH_TYPE"/>
+            <xs:enumeration value="SPECIES"/>           
             <xs:enumeration value="SIZE_CLASS"/>
         </xs:restriction>
     </xs:simpleType>
