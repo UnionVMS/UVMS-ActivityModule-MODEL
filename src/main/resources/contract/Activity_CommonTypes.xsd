@@ -61,19 +61,23 @@
     <xs:simpleType name="SearchFilter">
         <xs:restriction base="xs:string">
             <xs:enumeration value="SOURCE" />
-            <xs:enumeration value="FROM_ID"/>
+            <xs:enumeration value="FROM"/>
+            <xs:enumeration value="OWNER"/>
             <xs:enumeration value="PERIOD_START"/>
             <xs:enumeration value="PERIOD_END"/>
             <xs:enumeration value="VESSEL_IDENTIFIRE"/>
             <xs:enumeration value="VESSEL_NAME"/>
+            <xs:enumeration value="VESSEL"/>
+            <xs:enumeration value="VESSEL_GROUP"/>
+            <xs:enumeration value="VESSEL_GUIDS"/>
             <xs:enumeration value="PURPOSE"/>
             <xs:enumeration value="REPORT_TYPE"/>
             <xs:enumeration value="AREAS"/>
             <xs:enumeration value="PORT"/>
             <xs:enumeration value="GEAR"/>
             <xs:enumeration value="SPECIES"/>
-            <xs:enumeration value="QUNTITY_MIN"/>
-            <xs:enumeration value="QUNTITY_MAX"/>
+            <xs:enumeration value="QUANTITY_MIN"/>
+            <xs:enumeration value="QUANTITY_MAX"/>
             <xs:enumeration value="WEIGHT_MEASURE"/>
             <xs:enumeration value="MASTER"/>
             <xs:enumeration value="OCCURRENCE"/>
@@ -99,7 +103,7 @@
             <xs:enumeration value="GEAR_TYPE"/>
 			<xs:enumeration value="PRESENTATION"/>
 			<xs:enumeration value="CATCH_TYPE"/>
-            <xs:enumeration value="SPECIES"/>           
+            <xs:enumeration value="SPECIES"/>
             <xs:enumeration value="SIZE_CLASS"/>
         </xs:restriction>
     </xs:simpleType>
