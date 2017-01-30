@@ -5,7 +5,7 @@
     <artifactId>activity-model</artifactId>
     <name>activity-model</name>
     <packaging>ejb</packaging>
-    <version>0.5.10</version>
+    <version>0.5.11-SNAPSHOT</version>
     <description>This module shall have interfaces, XSD, and DTOs</description>
 
     <properties>
@@ -130,7 +130,7 @@
 
 	<scm>
         <connection>${scm.connection}</connection>
-	  <tag>activity-model-0.5.10</tag>
+	  <tag>HEAD</tag>
   </scm>
 
     <profiles>
