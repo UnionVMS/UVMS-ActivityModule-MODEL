@@ -14,6 +14,45 @@ public class FACatchSummaryDTO {
     private String presentation;
     private SummaryTable summaryTable;
 
+    public FACatchSummaryDTO(){
+
+    }
+
+    public FACatchSummaryDTO(Date date, Area area, String flagState, String gearType, String presentation) {
+        this.date = date;
+        this.area = area;
+        this.flagState = flagState;
+        this.gearType = gearType;
+        this.presentation = presentation;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof FACatchSummaryDTO)) return false;
+
+        FACatchSummaryDTO that = (FACatchSummaryDTO) o;
+
+        if (getDate() != null ? !getDate().equals(that.getDate()) : that.getDate() != null) return false;
+        if (getArea() != null ? !getArea().equals(that.getArea()) : that.getArea() != null) return false;
+        if (getFlagState() != null ? !getFlagState().equals(that.getFlagState()) : that.getFlagState() != null)
+            return false;
+        if (getGearType() != null ? !getGearType().equals(that.getGearType()) : that.getGearType() != null)
+            return false;
+        return getPresentation() != null ? getPresentation().equals(that.getPresentation()) : that.getPresentation() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getDate() != null ? getDate().hashCode() : 0;
+        result = 31 * result + (getArea() != null ? getArea().hashCode() : 0);
+        result = 31 * result + (getFlagState() != null ? getFlagState().hashCode() : 0);
+        result = 31 * result + (getGearType() != null ? getGearType().hashCode() : 0);
+        result = 31 * result + (getPresentation() != null ? getPresentation().hashCode() : 0);
+        return result;
+    }
+
     public Date getDate() {
         return date;
     }
@@ -61,4 +100,8 @@ public class FACatchSummaryDTO {
     public void setSummaryTable(SummaryTable summaryTable) {
         this.summaryTable = summaryTable;
     }
+
+
+
+
 }

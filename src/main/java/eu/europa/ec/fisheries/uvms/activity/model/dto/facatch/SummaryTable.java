@@ -1,44 +1,36 @@
 package eu.europa.ec.fisheries.uvms.activity.model.dto.facatch;
 
+import java.util.Map;
+
 /**
  * Created by sanera on 27/01/2017.
  */
 public class SummaryTable {
 
-   private FishClass lsc;
-    private FishClass bms;
-    private FACatchTypeSummary dis;
-    private FACatchTypeSummary dim;
+   private Map<FishSizeClassEnum,Map<String,Long>> summaryFishSize;
+    private Map<FaCatchTypeEnum,Map<String,Long>> summaryFaCatchType;
 
-    public FishClass getLsc() {
-        return lsc;
+    public Map<FishSizeClassEnum, Map<String, Long>> getSummaryFishSize() {
+        return summaryFishSize;
     }
 
-    public void setLsc(FishClass lsc) {
-        this.lsc = lsc;
+    public void setSummaryFishSize(Map<FishSizeClassEnum, Map<String, Long>> summaryFishSize) {
+        this.summaryFishSize = summaryFishSize;
     }
 
-    public FishClass getBms() {
-        return bms;
+    public Map<FaCatchTypeEnum, Map<String, Long>> getSummaryFaCatchType() {
+        return summaryFaCatchType;
     }
 
-    public void setBms(FishClass bms) {
-        this.bms = bms;
+    public void setSummaryFaCatchType(Map<FaCatchTypeEnum, Map<String, Long>> summaryFaCatchType) {
+        this.summaryFaCatchType = summaryFaCatchType;
     }
 
-    public FACatchTypeSummary getDis() {
-        return dis;
-    }
-
-    public void setDis(FACatchTypeSummary dis) {
-        this.dis = dis;
-    }
-
-    public FACatchTypeSummary getDim() {
-        return dim;
-    }
-
-    public void setDim(FACatchTypeSummary dim) {
-        this.dim = dim;
+    @Override
+    public String toString() {
+        return "SummaryTable{" +
+                "summaryFishSize=" + summaryFishSize +
+                ", summaryFaCatchType=" + summaryFaCatchType +
+                '}';
     }
 }

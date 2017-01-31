@@ -13,6 +13,52 @@ public class Area {
     private String gfcmGsa;
     private String gfcmStatRectangle;
 
+    public Area(){
+
+    }
+
+    public Area(String territory, String faoArea, String icesStatRectangle, String effortZone, String rfmo, String gfcmGsa, String gfcmStatRectangle) {
+        this.territory = territory;
+        this.faoArea = faoArea;
+        this.icesStatRectangle = icesStatRectangle;
+        this.effortZone = effortZone;
+        this.rfmo = rfmo;
+        this.gfcmGsa = gfcmGsa;
+        this.gfcmStatRectangle = gfcmStatRectangle;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Area)) return false;
+
+        Area area = (Area) o;
+
+        if (getTerritory() != null ? !getTerritory().equals(area.getTerritory()) : area.getTerritory() != null)
+            return false;
+        if (getFaoArea() != null ? !getFaoArea().equals(area.getFaoArea()) : area.getFaoArea() != null) return false;
+        if (getIcesStatRectangle() != null ? !getIcesStatRectangle().equals(area.getIcesStatRectangle()) : area.getIcesStatRectangle() != null)
+            return false;
+        if (getEffortZone() != null ? !getEffortZone().equals(area.getEffortZone()) : area.getEffortZone() != null)
+            return false;
+        if (getRfmo() != null ? !getRfmo().equals(area.getRfmo()) : area.getRfmo() != null) return false;
+        if (getGfcmGsa() != null ? !getGfcmGsa().equals(area.getGfcmGsa()) : area.getGfcmGsa() != null) return false;
+        return getGfcmStatRectangle() != null ? getGfcmStatRectangle().equals(area.getGfcmStatRectangle()) : area.getGfcmStatRectangle() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getTerritory() != null ? getTerritory().hashCode() : 0;
+        result = 31 * result + (getFaoArea() != null ? getFaoArea().hashCode() : 0);
+        result = 31 * result + (getIcesStatRectangle() != null ? getIcesStatRectangle().hashCode() : 0);
+        result = 31 * result + (getEffortZone() != null ? getEffortZone().hashCode() : 0);
+        result = 31 * result + (getRfmo() != null ? getRfmo().hashCode() : 0);
+        result = 31 * result + (getGfcmGsa() != null ? getGfcmGsa().hashCode() : 0);
+        result = 31 * result + (getGfcmStatRectangle() != null ? getGfcmStatRectangle().hashCode() : 0);
+        return result;
+    }
+
     public String getTerritory() {
         return territory;
     }
