@@ -114,4 +114,17 @@ public class Area {
     public void setGfcmStatRectangle(String gfcmStatRectangle) {
         this.gfcmStatRectangle = gfcmStatRectangle;
     }
+
+    @Override
+    public String toString() {
+        return "Area{" +
+                "territory='" + territory + '\'' +
+                ", faoArea='" + faoArea + '\'' +
+                ", icesStatRectangle='" + icesStatRectangle + '\'' +
+                ", effortZone='" + effortZone + '\'' +
+                ", rfmo='" + rfmo + '\'' +
+                ", gfcmGsa='" + gfcmGsa + '\'' +
+                ", gfcmStatRectangle='" + gfcmStatRectangle + '\'' +
+                '}';
+    }
 }

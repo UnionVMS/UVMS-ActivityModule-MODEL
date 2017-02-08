@@ -102,6 +102,14 @@ public class FACatchSummaryDTO {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "FACatchSummaryDTO{" +
+                "date=" + date +
+                ", area=" + area +
+                ", flagState='" + flagState + '\'' +
+                ", gearType='" + gearType + '\'' +
+                ", presentation='" + presentation + '\'' +
+                '}';
+    }
 }
