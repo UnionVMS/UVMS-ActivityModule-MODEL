@@ -8,6 +8,9 @@ import java.util.Date;
 public class FACatchSummaryDTO {
 
     private Date date;
+    private int day;
+    private String month;
+    private int year;
     private Area area;
     private String flagState;
     private String gearType;
@@ -26,32 +29,7 @@ public class FACatchSummaryDTO {
         this.presentation = presentation;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof FACatchSummaryDTO)) return false;
 
-        FACatchSummaryDTO that = (FACatchSummaryDTO) o;
-
-        if (getDate() != null ? !getDate().equals(that.getDate()) : that.getDate() != null) return false;
-        if (getArea() != null ? !getArea().equals(that.getArea()) : that.getArea() != null) return false;
-        if (getFlagState() != null ? !getFlagState().equals(that.getFlagState()) : that.getFlagState() != null)
-            return false;
-        if (getGearType() != null ? !getGearType().equals(that.getGearType()) : that.getGearType() != null)
-            return false;
-        return getPresentation() != null ? getPresentation().equals(that.getPresentation()) : that.getPresentation() == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getDate() != null ? getDate().hashCode() : 0;
-        result = 31 * result + (getArea() != null ? getArea().hashCode() : 0);
-        result = 31 * result + (getFlagState() != null ? getFlagState().hashCode() : 0);
-        result = 31 * result + (getGearType() != null ? getGearType().hashCode() : 0);
-        result = 31 * result + (getPresentation() != null ? getPresentation().hashCode() : 0);
-        return result;
-    }
 
     public Date getDate() {
         return date;
@@ -102,10 +80,67 @@ public class FACatchSummaryDTO {
     }
 
 
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof FACatchSummaryDTO)) return false;
+
+        FACatchSummaryDTO that = (FACatchSummaryDTO) o;
+
+        if (getDay() != that.getDay()) return false;
+        if (getYear() != that.getYear()) return false;
+        if (getMonth() != null ? !getMonth().equals(that.getMonth()) : that.getMonth() != null) return false;
+        if (getArea() != null ? !getArea().equals(that.getArea()) : that.getArea() != null) return false;
+        if (getFlagState() != null ? !getFlagState().equals(that.getFlagState()) : that.getFlagState() != null)
+            return false;
+        if (getGearType() != null ? !getGearType().equals(that.getGearType()) : that.getGearType() != null)
+            return false;
+        return getPresentation() != null ? getPresentation().equals(that.getPresentation()) : that.getPresentation() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getDay();
+        result = 31 * result + (getMonth() != null ? getMonth().hashCode() : 0);
+        result = 31 * result + getYear();
+        result = 31 * result + (getArea() != null ? getArea().hashCode() : 0);
+        result = 31 * result + (getFlagState() != null ? getFlagState().hashCode() : 0);
+        result = 31 * result + (getGearType() != null ? getGearType().hashCode() : 0);
+        result = 31 * result + (getPresentation() != null ? getPresentation().hashCode() : 0);
+        return result;
+    }
+
     @Override
     public String toString() {
         return "FACatchSummaryDTO{" +
-                "date=" + date +
+                "day=" + day +
+                ", month='" + month + '\'' +
+                ", year=" + year +
                 ", area=" + area +
                 ", flagState='" + flagState + '\'' +
                 ", gearType='" + gearType + '\'' +
