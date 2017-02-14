@@ -31,13 +31,14 @@ public class FishingActivityDTO {
     @JsonProperty("uniqueReportIdList")
     private List<FluxReportIdentifierDTO> uniqueFAReportId;
 
+    @JsonProperty("fishingActivityId")
+    private int fishingActivityId;
+
     @JsonProperty("faReportID")
     private int faReportID;
 
     @JsonProperty("activityType")
     private String activityType;
-
-
 
     @JsonProperty("occurence")
     @JsonSerialize(using = CustomDateSerializer.class)
@@ -146,5 +147,13 @@ public class FishingActivityDTO {
     @JsonProperty("faReportID")
     public void setFaReportID(int faReportID) {
         this.faReportID = faReportID;
+    }
+
+    public int getFishingActivityId() {
+        return fishingActivityId;
+    }
+
+    public void setFishingActivityId(int fishingActivityId) {
+        this.fishingActivityId = fishingActivityId;
     }
 }
