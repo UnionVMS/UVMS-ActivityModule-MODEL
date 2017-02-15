@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by sanera on 27/01/2017.
  */
-public class FACatchSummaryDTO {
+public class FACatchSummaryRecordDTO {
 
     private Date date;
     private int day;
@@ -18,11 +18,11 @@ public class FACatchSummaryDTO {
     private String vesselTransportGuid;
     private SummaryTableDTO summaryTable;
 
-    public FACatchSummaryDTO(){
+    public FACatchSummaryRecordDTO(){
 
     }
 
-    public FACatchSummaryDTO(Date date, Area area, String flagState, String gearType, String presentation) {
+    public FACatchSummaryRecordDTO(Date date, Area area, String flagState, String gearType, String presentation) {
         this.date = date;
         this.area = area;
         this.flagState = flagState;
