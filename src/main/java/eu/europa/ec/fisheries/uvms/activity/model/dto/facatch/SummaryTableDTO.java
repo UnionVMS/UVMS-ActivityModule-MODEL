@@ -1,11 +1,14 @@
 package eu.europa.ec.fisheries.uvms.activity.model.dto.facatch;
 
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.FishSizeClassEnum;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.FaCatchTypeEnum;
+
 import java.util.Map;
 
 /**
  * Created by sanera on 27/01/2017.
  */
-public class SummaryTable {
+public class SummaryTableDTO {
 
    private Map<FishSizeClassEnum,Map<String,Long>> summaryFishSize;
     private Map<FaCatchTypeEnum,Map<String,Long>> summaryFaCatchType;

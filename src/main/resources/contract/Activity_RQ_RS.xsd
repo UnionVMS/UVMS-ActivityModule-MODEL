@@ -105,6 +105,7 @@
 				<xs:extension base="ActivityModuleRequest">
 					<xs:sequence>
 						<xs:element name="summaryRecord" type="FACatchSummaryRecord" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="total" type="SummaryTable"/>
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>

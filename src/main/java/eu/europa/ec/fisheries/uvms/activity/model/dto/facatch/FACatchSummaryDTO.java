@@ -15,7 +15,8 @@ public class FACatchSummaryDTO {
     private String flagState;
     private String gearType;
     private String presentation;
-    private SummaryTable summaryTable;
+    private String vesselTransportGuid;
+    private SummaryTableDTO summaryTable;
 
     public FACatchSummaryDTO(){
 
@@ -30,6 +31,13 @@ public class FACatchSummaryDTO {
     }
 
 
+    public String getVesselTransportGuid() {
+        return vesselTransportGuid;
+    }
+
+    public void setVesselTransportGuid(String vesselTransportGuid) {
+        this.vesselTransportGuid = vesselTransportGuid;
+    }
 
     public Date getDate() {
         return date;
@@ -71,14 +79,13 @@ public class FACatchSummaryDTO {
         this.gearType = gearType;
     }
 
-    public SummaryTable getSummaryTable() {
+    public SummaryTableDTO getSummaryTable() {
         return summaryTable;
     }
 
-    public void setSummaryTable(SummaryTable summaryTable) {
+    public void setSummaryTable(SummaryTableDTO summaryTable) {
         this.summaryTable = summaryTable;
     }
-
 
     public int getDay() {
         return day;
@@ -104,8 +111,8 @@ public class FACatchSummaryDTO {
         this.year = year;
     }
 
-    @Override
-    public boolean equals(Object o) {
+    /*@Override
+   public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof FACatchSummaryDTO)) return false;
 
@@ -119,7 +126,9 @@ public class FACatchSummaryDTO {
             return false;
         if (getGearType() != null ? !getGearType().equals(that.getGearType()) : that.getGearType() != null)
             return false;
-        return getPresentation() != null ? getPresentation().equals(that.getPresentation()) : that.getPresentation() == null;
+        if (getPresentation() != null ? !getPresentation().equals(that.getPresentation()) : that.getPresentation() != null)
+            return false;
+        return getVesselTransportGuid() != null ? getVesselTransportGuid().equals(that.getVesselTransportGuid()) : that.getVesselTransportGuid() == null;
 
     }
 
@@ -132,8 +141,9 @@ public class FACatchSummaryDTO {
         result = 31 * result + (getFlagState() != null ? getFlagState().hashCode() : 0);
         result = 31 * result + (getGearType() != null ? getGearType().hashCode() : 0);
         result = 31 * result + (getPresentation() != null ? getPresentation().hashCode() : 0);
+        result = 31 * result + (getVesselTransportGuid() != null ? getVesselTransportGuid().hashCode() : 0);
         return result;
-    }
+    }*/
 
     @Override
     public String toString() {
@@ -145,6 +155,7 @@ public class FACatchSummaryDTO {
                 ", flagState='" + flagState + '\'' +
                 ", gearType='" + gearType + '\'' +
                 ", presentation='" + presentation + '\'' +
+                ", vesselTransportGuid='" + vesselTransportGuid + '\'' +
                 '}';
     }
 }
