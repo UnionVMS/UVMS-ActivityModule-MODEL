@@ -135,8 +135,7 @@
             <xs:enumeration value="DATE_MONTH" />
             <xs:enumeration value="DATE_YEAR" />
             <xs:enumeration value="VESSEL"/>
-            <xs:enumeration value="AREA"/>
-			<xs:enumeration value="TERRITORY"/>
+            <xs:enumeration value="TERRITORY"/>
 			<xs:enumeration value="FAO_AREA"/>
 			<xs:enumeration value="ICES_STAT_RECTANGLE"/>
 			<xs:enumeration value="EFFORT_ZONE"/>
