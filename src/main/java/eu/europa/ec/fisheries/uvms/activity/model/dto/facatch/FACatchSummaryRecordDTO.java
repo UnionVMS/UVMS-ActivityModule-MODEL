@@ -1,29 +1,48 @@
 package eu.europa.ec.fisheries.uvms.activity.model.dto.facatch;
 
-import java.util.Date;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.GroupCriteriaWithValue;
+
+import java.util.List;
 
 /**
  * Created by sanera on 27/01/2017.
  */
 public class FACatchSummaryRecordDTO {
 
-    private Date date;
-    private int day;
+   // private Date date;
+  /*  private int day;
     private String month;
     private int year;
     private Area area;
     private String flagState;
     private String gearType;
     private String presentation;
-    private String vesselTransportGuid;
+    private String vesselTransportGuid;*/
+    private  List<GroupCriteriaWithValue> groups;
     private SummaryTableDTO summaryTable;
 
     public FACatchSummaryRecordDTO(){
 
     }
 
-    public FACatchSummaryRecordDTO(Date date, Area area, String flagState, String gearType, String presentation) {
-        this.date = date;
+    public List<GroupCriteriaWithValue> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<GroupCriteriaWithValue> groups) {
+        this.groups = groups;
+    }
+
+    public SummaryTableDTO getSummaryTable() {
+        return summaryTable;
+    }
+
+    public void setSummaryTable(SummaryTableDTO summaryTable) {
+        this.summaryTable = summaryTable;
+    }
+
+  /*  public FACatchSummaryRecordDTO(Area area, String flagState, String gearType, String presentation) {
+
         this.area = area;
         this.flagState = flagState;
         this.gearType = gearType;
@@ -39,13 +58,6 @@ public class FACatchSummaryRecordDTO {
         this.vesselTransportGuid = vesselTransportGuid;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
 
     public Area getArea() {
         return area;
@@ -110,7 +122,7 @@ public class FACatchSummaryRecordDTO {
     public void setYear(int year) {
         this.year = year;
     }
-
+*/
     /*@Override
    public boolean equals(Object o) {
         if (this == o) return true;
@@ -145,7 +157,7 @@ public class FACatchSummaryRecordDTO {
         return result;
     }*/
 
-    @Override
+   /* @Override
     public String toString() {
         return "FACatchSummaryDTO{" +
                 "day=" + day +
@@ -157,5 +169,5 @@ public class FACatchSummaryRecordDTO {
                 ", presentation='" + presentation + '\'' +
                 ", vesselTransportGuid='" + vesselTransportGuid + '\'' +
                 '}';
-    }
+    }*/
 }

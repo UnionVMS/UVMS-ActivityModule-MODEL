@@ -10,22 +10,25 @@ import java.util.Map;
  */
 public class SummaryTableDTO {
 
-   private Map<FishSizeClassEnum,Map<String,Long>> summaryFishSize;
-    private Map<FaCatchTypeEnum,Map<String,Long>> summaryFaCatchType;
+  // private Map<FishSizeClassEnum,Map<String,Long>> summaryFishSize;
+   // private Map<FaCatchTypeEnum,Map<String,Long>> summaryFaCatchType;
 
-    public Map<FishSizeClassEnum, Map<String, Long>> getSummaryFishSize() {
+    private Map<FishSizeClassEnum,Object> summaryFishSize;
+     private Map<FaCatchTypeEnum,Object> summaryFaCatchType;
+
+    public Map<FishSizeClassEnum, Object> getSummaryFishSize() {
         return summaryFishSize;
     }
 
-    public void setSummaryFishSize(Map<FishSizeClassEnum, Map<String, Long>> summaryFishSize) {
+    public void setSummaryFishSize(Map<FishSizeClassEnum, Object> summaryFishSize) {
         this.summaryFishSize = summaryFishSize;
     }
 
-    public Map<FaCatchTypeEnum, Map<String, Long>> getSummaryFaCatchType() {
+    public Map<FaCatchTypeEnum, Object> getSummaryFaCatchType() {
         return summaryFaCatchType;
     }
 
-    public void setSummaryFaCatchType(Map<FaCatchTypeEnum, Map<String, Long>> summaryFaCatchType) {
+    public void setSummaryFaCatchType(Map<FaCatchTypeEnum, Object> summaryFaCatchType) {
         this.summaryFaCatchType = summaryFaCatchType;
     }
 
