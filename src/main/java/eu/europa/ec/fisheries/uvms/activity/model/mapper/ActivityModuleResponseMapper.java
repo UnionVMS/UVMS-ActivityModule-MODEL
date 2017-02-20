@@ -17,6 +17,7 @@ import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMapperE
 import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMarshallException;
 import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelValidationException;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityFault;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.FACatchSummaryReportResponse;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.FishingTripResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,9 +25,6 @@ import org.slf4j.LoggerFactory;
 import javax.jms.JMSException;
 import javax.jms.TextMessage;
 
-/**
- * Created by padhyad on 11/22/2016.
- */
 public final class ActivityModuleResponseMapper {
 
     final static Logger LOG = LoggerFactory.getLogger(ActivityModuleResponseMapper.class);
@@ -74,5 +72,11 @@ public final class ActivityModuleResponseMapper {
         validateResponse(response, correlationId);
         FishingTripResponse fishingTripResponse = JAXBMarshaller.unmarshallTextMessage(response, FishingTripResponse.class);
         return fishingTripResponse;
+    }
+
+    public static FACatchSummaryReportResponse mapToFaCatchSummaryResponseFromResponse(TextMessage response, String correlationId) throws ActivityModelMapperException {
+        validateResponse(response, correlationId);
+        FACatchSummaryReportResponse summaryReportResponse = JAXBMarshaller.unmarshallTextMessage(response, FACatchSummaryReportResponse.class);
+        return summaryReportResponse;
     }
 }

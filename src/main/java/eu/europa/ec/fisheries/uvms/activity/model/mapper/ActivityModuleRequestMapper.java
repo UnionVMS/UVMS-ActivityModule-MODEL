@@ -8,11 +8,20 @@ without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
 details. You should have received a copy of the GNU General Public License along with the IFDM Suite. If not, see <http://www.gnu.org/licenses/>.
 
  */
+
+
 package eu.europa.ec.fisheries.uvms.activity.model.mapper;
 
 import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMarshallException;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.*;
 
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityModuleMethod;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.FACatchSummaryReportRequest;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.FishingTripRequest;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.GroupCriteria;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.ListValueTypeFilter;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.PluginType;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.SetFLUXFAReportMessageRequest;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.SingleValueTypeFilter;
 import java.util.List;
 
 /**
@@ -37,6 +46,15 @@ public final class ActivityModuleRequestMapper {
         request.setMethod(ActivityModuleMethod.GET_FISHING_TRIPS);
         request.setListValueFilters(listFilter);
         request.setSingleValueFilters(singleFilters);
+        return JAXBMarshaller.marshallJaxBObjectToString(request);
+    }
+
+    public static String mapToFaCatchSummaryReportRequestRequest(List<ListValueTypeFilter> listFilter, List<SingleValueTypeFilter> singleFilters, List<GroupCriteria> groupCriterias) throws ActivityModelMarshallException {
+        FACatchSummaryReportRequest request = new FACatchSummaryReportRequest();
+        request.setMethod(ActivityModuleMethod.GET_FA_CATCH_SUMMARY_REPORT);
+        request.setListValueFilters(listFilter);
+        request.setSingleValueFilters(singleFilters);
+        request.setGroupCriterias(groupCriterias);
         return JAXBMarshaller.marshallJaxBObjectToString(request);
     }
 }
