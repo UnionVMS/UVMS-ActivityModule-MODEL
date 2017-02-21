@@ -46,7 +46,8 @@ public class FACatchMapper {
         for(SummaryFishSize summaryFishSize:fishSizeSummaries){
             FishSizeClassEnum fishSizeClassEnum=  summaryFishSize.getFishSize();
             if(CollectionUtils.isNotEmpty(summaryFishSize.getSpecies())){
-                summaryFishSizeMap.put(fishSizeClassEnum,summaryFishSize.getSpecies());
+               summaryFishSizeMap.put(fishSizeClassEnum,extractSpeciesMap(summaryFishSize.getSpecies()));
+
             }else if(summaryFishSize.getFishSizeCount() !=null){
                 summaryFishSizeMap.put(fishSizeClassEnum,summaryFishSize.getFishSizeCount());
             }
@@ -60,7 +61,7 @@ public class FACatchMapper {
         for(SummaryFACatchtype summaryFACatchtype:faCatchTypeSummaries){
             FaCatchTypeEnum faCatchTypeEnum =  summaryFACatchtype.getCatchType();
             if(CollectionUtils.isNotEmpty(summaryFACatchtype.getSpecies())){
-                faCatchTypeEnumObjectMap.put(faCatchTypeEnum,summaryFACatchtype.getSpecies());
+                faCatchTypeEnumObjectMap.put(faCatchTypeEnum,extractSpeciesMap(summaryFACatchtype.getSpecies()));
             }else if(summaryFACatchtype.getCatchTypeCount() !=null){
                 faCatchTypeEnumObjectMap.put(faCatchTypeEnum,summaryFACatchtype.getCatchTypeCount());
             }
@@ -70,5 +71,13 @@ public class FACatchMapper {
 
 
         return  summaryTableDTO;
+    }
+
+    private static Map<String, Long> extractSpeciesMap(List<SpeciesCount> speciesCounts) {
+        Map<String,Long> speciesMap=new HashMap<>();
+        for(SpeciesCount speciesCount : speciesCounts){
+            speciesMap.put(speciesCount.getSpaciesName(), speciesCount.getCount());
+        }
+        return speciesMap;
     }
 }
