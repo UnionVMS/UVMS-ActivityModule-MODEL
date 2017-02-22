@@ -50,7 +50,7 @@
         <xs:sequence>
             <xs:element name="fishSize" type="FishSizeClassEnum" nillable="false" minOccurs="1" maxOccurs="1"/>
             <xs:element name="species" type="SpeciesCount" nillable="false" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="fishSizeCount" type="xs:long" nillable="true" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="fishSizeCount" type="xs:double" nillable="true" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -58,14 +58,14 @@
         <xs:sequence>
             <xs:element name="catchType" type="FaCatchTypeEnum" nillable="false" minOccurs="1" maxOccurs="1"/>
             <xs:element name="species" type="SpeciesCount" nillable="false" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="catchTypeCount" type="xs:long" nillable="true" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="catchTypeCount" type="xs:double" nillable="true" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
 
     <xs:complexType name="SpeciesCount">
         <xs:sequence>
             <xs:element name="spaciesName" type="xs:string" nillable="false" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="count" type="xs:long" nillable="false" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="count" type="xs:double" nillable="false" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
 

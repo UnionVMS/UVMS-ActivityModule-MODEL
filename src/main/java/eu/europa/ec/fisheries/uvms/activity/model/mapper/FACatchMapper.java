@@ -73,8 +73,8 @@ public class FACatchMapper {
         return  summaryTableDTO;
     }
 
-    private static Map<String, Long> extractSpeciesMap(List<SpeciesCount> speciesCounts) {
-        Map<String,Long> speciesMap=new HashMap<>();
+    private static Map<String, Double> extractSpeciesMap(List<SpeciesCount> speciesCounts) {
+        Map<String,Double> speciesMap=new HashMap<>();
         for(SpeciesCount speciesCount : speciesCounts){
             speciesMap.put(speciesCount.getSpaciesName(), speciesCount.getCount());
         }
