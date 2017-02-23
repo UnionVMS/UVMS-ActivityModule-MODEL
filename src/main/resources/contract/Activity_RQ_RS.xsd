@@ -19,6 +19,7 @@
 			<xs:enumeration value="GET_FLUX_FA_REPORT" />
 			<xs:enumeration value="GET_FLUX_MDR_ENTITY" />
 			<xs:enumeration value="GET_FISHING_TRIPS" />
+			<xs:enumeration value="GET_FA_CATCH_SUMMARY_REPORT" />
 		</xs:restriction>
 	</xs:simpleType>
 
@@ -83,6 +84,34 @@
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
+
+	<xs:element name="FACatchSummaryReportRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ActivityModuleRequest">
+					<xs:sequence>
+						<xs:element name="listValueFilters" type="ListValueTypeFilter" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="singleValueFilters" type="SingleValueTypeFilter" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="groupCriteria" type="GroupCriteria" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="FACatchSummaryReportResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ActivityModuleRequest">
+					<xs:sequence>
+						<xs:element name="summaryRecord" type="FACatchSummaryRecord" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="total" type="SummaryTable"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
 
 	<xsd:simpleType name="PluginType">
 		<xsd:restriction base="xsd:string">

@@ -32,6 +32,43 @@
         </xs:sequence>
     </xs:complexType>
 
+    <xs:complexType name="GroupCriteriaWithValue">
+        <xs:sequence>
+            <xs:element name="key" type="GroupCriteria" nillable="false" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="value" type="xs:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SummaryTable">
+        <xs:sequence>
+            <xs:element name="fishSizeSummary" type="SummaryFishSize" nillable="false" minOccurs="1" maxOccurs="unbounded"/>
+            <xs:element name="faCatchTypeSummary" type="SummaryFACatchtype" nillable="false" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SummaryFishSize">
+        <xs:sequence>
+            <xs:element name="fishSize" type="FishSizeClassEnum" nillable="false" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="species" type="SpeciesCount" nillable="false" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="fishSizeCount" type="xs:double" nillable="true" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SummaryFACatchtype">
+        <xs:sequence>
+            <xs:element name="catchType" type="FaCatchTypeEnum" nillable="false" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="species" type="SpeciesCount" nillable="false" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="catchTypeCount" type="xs:double" nillable="true" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SpeciesCount">
+        <xs:sequence>
+            <xs:element name="spaciesName" type="xs:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="count" type="xs:double" nillable="false" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
     <xs:complexType name="FishingTripIdWithGeometry">
            <xs:sequence>
                 <xs:element name="tripId" type="xs:string"/>
@@ -39,6 +76,13 @@
                 <xs:element name="geometry" type="xs:string"/>
             </xs:sequence>
 
+    </xs:complexType>
+
+    <xs:complexType name="FACatchSummaryRecord">
+        <xs:sequence>
+            <xs:element name="groups" type="GroupCriteriaWithValue" nillable="false" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="summary" type="SummaryTable" nillable="false" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
     </xs:complexType>
 
     <xs:complexType name="FishingActivitySummary">
@@ -87,6 +131,28 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <xs:simpleType name="GroupCriteria">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DATE_DAY" />
+            <xs:enumeration value="DATE_MONTH" />
+            <xs:enumeration value="DATE_YEAR" />
+            <xs:enumeration value="VESSEL"/>
+            <xs:enumeration value="TERRITORY"/>
+			<xs:enumeration value="FAO_AREA"/>
+			<xs:enumeration value="ICES_STAT_RECTANGLE"/>
+			<xs:enumeration value="EFFORT_ZONE"/>
+			<xs:enumeration value="RFMO"/>
+			<xs:enumeration value="GFCM_GSA"/>
+			<xs:enumeration value="GFCM_STAT_RECTANGLE"/>
+            <xs:enumeration value="FLAG_STATE"/>
+            <xs:enumeration value="GEAR_TYPE"/>
+			<xs:enumeration value="PRESENTATION"/>
+			<xs:enumeration value="CATCH_TYPE"/>
+            <xs:enumeration value="SPECIES"/>
+            <xs:enumeration value="SIZE_CLASS"/>
+        </xs:restriction>
+    </xs:simpleType>
+
     <xs:simpleType name="ActivityFeaturesEnum">
         <xs:restriction base="xs:string">
             <xs:enumeration value="ACTIVITY_ALLOWED" />
@@ -99,6 +165,25 @@
             <xs:enumeration value="MANAGE_ADMIN_CONFIGURATIONS"/>
             <xs:enumeration value="CODE_LISTS_ENABLE_DISABLE_SCHEDULED_UPDATE"/>
             <xs:enumeration value="MDR_SEARCH_CODE_LIST_ITEMS"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="FishSizeClassEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="BMS" />
+            <xs:enumeration value="LSC"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="FaCatchTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DISCARDED" />
+            <xs:enumeration value="DEMINIMIS"/>
+            <xs:enumeration value="ALLOCATED_TO_QUOTA"/>
+            <xs:enumeration value="TAKEN_ON_BOARD"/>
+            <xs:enumeration value="ONBOARD"/>
+            <xs:enumeration value="KEPT_IN_NET"/>
+            <xs:enumeration value="BY_CATCH"/>
         </xs:restriction>
     </xs:simpleType>
 
