@@ -128,6 +128,7 @@
             <xs:enumeration value="FA_REPORT_ID"/>
             <xs:enumeration value="AREA_GEOM"/>
             <xs:enumeration value="ACTIVITY_TYPE"/>
+            <xs:enumeration value="TRIP_ID"/>
         </xs:restriction>
     </xs:simpleType>
 
