@@ -69,9 +69,24 @@
         </xs:sequence>
     </xs:complexType>
 
+    <xs:complexType name="VesselIdentifierType">
+        <xs:sequence>
+            <xs:element name="key" type="VesselIdentifierSchemeIdEnum" nillable="false" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="value" type="xs:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
     <xs:complexType name="FishingTripIdWithGeometry">
            <xs:sequence>
                 <xs:element name="tripId" type="xs:string"/>
+                <xs:element name="firstFishingActivity" type="xs:string"/>
+                <xs:element name="firstFishingActivityDateTime" type="xs:dateTime"/>
+                <xs:element name="lastFishingActivity" type="xs:string"/>
+                <xs:element name="lastFishingActivityDateTime" type="xs:dateTime"/>
+                <xs:element name="vesselIdList" type="VesselIdentifierType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="tripDuration" type="xs:double"/>
+                <xs:element name="noOfCorrections" type="xs:int"/>
+                <xs:element name="flagState" type="xs:string"/>
                 <xs:element name="schemeId" type="xs:string"/>
                 <xs:element name="geometry" type="xs:string"/>
             </xs:sequence>
@@ -173,6 +188,17 @@
         <xs:restriction base="xs:string">
             <xs:enumeration value="BMS" />
             <xs:enumeration value="LSC"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="VesselIdentifierSchemeIdEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="EXT_MARK" />
+            <xs:enumeration value="IRCS"/>
+            <xs:enumeration value="CFR"/>
+            <xs:enumeration value="UVI"/>
+            <xs:enumeration value="ICCAT"/>
+            <xs:enumeration value="GFCM"/>
         </xs:restriction>
     </xs:simpleType>
 
