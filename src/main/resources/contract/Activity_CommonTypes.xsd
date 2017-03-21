@@ -89,6 +89,8 @@
                 <xs:element name="flagState" type="xs:string"/>
                 <xs:element name="schemeId" type="xs:string"/>
                 <xs:element name="geometry" type="xs:string"/>
+                <xs:element name="relativeFirstFaDateTime" type="xs:dateTime"/>
+                <xs:element name="relativeLastFaDateTime" type="xs:dateTime"/>
             </xs:sequence>
 
     </xs:complexType>
