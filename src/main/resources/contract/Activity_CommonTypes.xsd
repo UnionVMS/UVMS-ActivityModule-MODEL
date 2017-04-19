@@ -104,6 +104,7 @@
 
     <xs:complexType name="FishingActivitySummary">
             <xs:sequence>
+                <xs:element name="activityId" type="xs:int"/>
                 <xs:element name="activityType" type="xs:string"/>
                 <xs:element name="geometry" type="xs:string"/>
                 <xs:element name="acceptedDateTime" type="xs:dateTime"/>
@@ -111,11 +112,15 @@
                 <xs:element name="reportType" type="xs:string"/>
                 <xs:element name="purposeCode" type="xs:string"/>
                 <xs:element name="vesselName" type="xs:string"/>
+                <xs:element name="vesselGuid" type="xs:string"/>
+                <xs:element name="tripId" type="xs:string"/>
+                <xs:element name="flagState" type="xs:string"/>
+                <xs:element name="isCorrection" type="xs:boolean"/>
                 <xs:element name="gears" type="xs:string"  minOccurs="0" maxOccurs="unbounded"/>
                 <xs:element name="species" type="xs:string"  minOccurs="0" maxOccurs="unbounded"/>
                 <xs:element name="ports" type="xs:string"  minOccurs="0" maxOccurs="unbounded"/>
                 <xs:element name="areas" type="xs:string"  minOccurs="0" maxOccurs="unbounded"/>
-                <xs:element name="vesselIdentifiers" type="xs:string"  minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="vesselIdentifiers" type="VesselIdentifierType" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
     </xs:complexType>
 
