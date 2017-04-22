@@ -13,6 +13,9 @@
 
 package eu.europa.ec.fisheries.uvms.activity.model.mapper;
 
+import javax.jms.JMSException;
+import javax.jms.TextMessage;
+
 import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMapperException;
 import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMarshallException;
 import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelValidationException;
@@ -21,9 +24,6 @@ import eu.europa.ec.fisheries.uvms.activity.model.schemas.FACatchSummaryReportRe
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.FishingTripResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.jms.JMSException;
-import javax.jms.TextMessage;
 
 public final class ActivityModuleResponseMapper {
 
@@ -52,7 +52,7 @@ public final class ActivityModuleResponseMapper {
                 ActivityFault fault = JAXBMarshaller.unmarshallTextMessage(response, ActivityFault.class);
                 throw new ActivityModelValidationException(fault.getCode() + " : " + fault.getFault());
             } catch (ActivityModelMarshallException e) {
-                LOG.info("Expected Exception"); // Exception received in case if the validation is success
+                LOG.trace("Expected Exception"); // Exception received in case if the validation is success
             }
 
         } catch (JMSException e) {
