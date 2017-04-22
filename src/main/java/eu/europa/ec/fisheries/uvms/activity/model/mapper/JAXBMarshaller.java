@@ -51,8 +51,8 @@ public class JAXBMarshaller {
                 long before = System.currentTimeMillis();
                 jaxbContext = JAXBContext.newInstance(data.getClass());
                 contexts.put(data.getClass().getName(), jaxbContext);
-                LOG.debug("Stored contexts: {}", contexts.size());
-                LOG.debug("JAXBContext creation time: {}", (System.currentTimeMillis() - before));
+                LOG.trace("Stored contexts: {}", contexts.size());
+                LOG.trace("JAXBContext creation time: {}", (System.currentTimeMillis() - before));
             }
             Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -60,7 +60,7 @@ public class JAXBMarshaller {
             marshaller.marshal(data, sw);
             long before = System.currentTimeMillis();
             String marshalled = sw.toString();
-            LOG.debug("StringWriter time: {}", (System.currentTimeMillis() - before));
+            LOG.trace("StringWriter time: {}", (System.currentTimeMillis() - before));
             return marshalled;
         } catch (JAXBException ex) {
             LOG.error("[ Error when marshalling object to string ] {} ", ex.getMessage());
@@ -86,15 +86,15 @@ public class JAXBMarshaller {
                 long before = System.currentTimeMillis();
                 jc = JAXBContext.newInstance(clazz);
                 contexts.put(clazz.getName(), jc);
-                LOG.debug("Stored contexts: {}", contexts.size());
-                LOG.debug("JAXBContext creation time: {}", (System.currentTimeMillis() - before));
+                LOG.trace("Stored contexts: {}", contexts.size());
+                LOG.trace("JAXBContext creation time: {}", (System.currentTimeMillis() - before));
             }
             Unmarshaller unmarshaller = jc.createUnmarshaller();
             StringReader sr = new StringReader(textMessage.getText());
             StreamSource source = new StreamSource(sr);
             long before = System.currentTimeMillis();
             R object = (R) unmarshaller.unmarshal(source);
-            LOG.debug("Unmarshalling time: {}", (System.currentTimeMillis() - before));
+            LOG.trace("Unmarshalling time: {}", (System.currentTimeMillis() - before));
             return object;
         } catch (NullPointerException | JMSException | JAXBException ex) {
             throw new ActivityModelMarshallException("[Error when unmarshalling response in ResponseMapper ]", ex);
@@ -109,15 +109,15 @@ public class JAXBMarshaller {
                 long before = System.currentTimeMillis();
                 jc = JAXBContext.newInstance(clazz);
                 contexts.put(clazz.getName(), jc);
-                LOG.debug("Stored contexts: {}", contexts.size());
-                LOG.debug("JAXBContext creation time: {}", (System.currentTimeMillis() - before));
+                LOG.trace("Stored contexts: {}", contexts.size());
+                LOG.trace("JAXBContext creation time: {}", (System.currentTimeMillis() - before));
             }
             Unmarshaller unmarshaller = jc.createUnmarshaller();
             StringReader sr = new StringReader(textMessage);
             StreamSource source = new StreamSource(sr);
             long before = System.currentTimeMillis();
             R object = (R) unmarshaller.unmarshal(source);
-            LOG.debug("Unmarshalling time: {}", (System.currentTimeMillis() - before));
+            LOG.trace("Unmarshalling time: {}", (System.currentTimeMillis() - before));
             return object;
         } catch (NullPointerException | JAXBException ex) {
             throw new ActivityModelMarshallException("[Error when unmarshalling response in ResponseMapper ]", ex);
