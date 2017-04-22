@@ -8,8 +8,8 @@ without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
 details. You should have received a copy of the GNU General Public License along with the IFDM Suite. If not, see <http://www.gnu.org/licenses/>.
 
  */
-
 package eu.europa.ec.fisheries.uvms.activity.model.mapper;
+
 
 import javax.jms.JMSException;
 import javax.jms.TextMessage;
@@ -27,6 +27,8 @@ import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMarshal
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ **/
 public class JAXBMarshaller {
 
     final static Logger LOG = LoggerFactory.getLogger(JAXBMarshaller.class);
@@ -45,6 +47,11 @@ public class JAXBMarshaller {
     public static <T> String marshallJaxBObjectToString(T data) throws ActivityModelMarshallException {
         try {
             JAXBContext jaxbContext = contexts.get(data.getClass().getName());
+            if (jaxbContext == null) {
+                jaxbContext = JAXBContext.newInstance(data.getClass());
+                contexts.put(data.getClass().getName(), jaxbContext);
+                LOG.trace("Stored contexts: {}", contexts.size());
+            }
             Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             StringWriter sw = new StringWriter();
@@ -70,6 +77,11 @@ public class JAXBMarshaller {
     public static <R> R unmarshallTextMessage(TextMessage textMessage, Class clazz) throws ActivityModelMarshallException {
         try {
             JAXBContext jc = contexts.get(clazz.getName());
+            if (jc == null) {
+                jc = JAXBContext.newInstance(clazz);
+                contexts.put(clazz.getName(), jc);
+                LOG.trace("Stored contexts: {}", contexts.size());
+            }
             Unmarshaller unmarshaller = jc.createUnmarshaller();
             StringReader sr = new StringReader(textMessage.getText());
             StreamSource source = new StreamSource(sr);
@@ -83,6 +95,11 @@ public class JAXBMarshaller {
 
         try {
             JAXBContext jc = contexts.get(clazz.getName());
+            if (jc == null) {
+                jc = JAXBContext.newInstance(clazz);
+                contexts.put(clazz.getName(), jc);
+                LOG.trace("Stored contexts: {}", contexts.size());
+            }
             Unmarshaller unmarshaller = jc.createUnmarshaller();
             StringReader sr = new StringReader(textMessage);
             StreamSource source = new StreamSource(sr);
