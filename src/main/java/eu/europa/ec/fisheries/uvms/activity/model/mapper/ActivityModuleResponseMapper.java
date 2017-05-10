@@ -22,6 +22,7 @@ import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelValidat
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityFault;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.FACatchSummaryReportResponse;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.FishingTripResponse;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.IsUniqueIdResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -66,6 +67,11 @@ public final class ActivityModuleResponseMapper {
         fault.setCode(code.getCode());
         fault.setFault(message);
         return fault;
+    }
+
+    public static IsUniqueIdResponse mapToIsUniqueIdResponseFromResponse(TextMessage response, String correlationId) throws ActivityModelMapperException {
+        validateResponse(response, correlationId);
+        return JAXBMarshaller.unmarshallTextMessage(response, IsUniqueIdResponse.class);
     }
 
     public static FishingTripResponse mapToActivityFishingTripFromResponse(TextMessage response, String correlationId) throws ActivityModelMapperException {
