@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<xs:schema xmlns="http://europa.eu/ec/fisheries/uvms/activity/model/schemas"
-		   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+<xs:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		   xmlns="http://europa.eu/ec/fisheries/uvms/activity/model/schemas"
 		   id="FISH2015_SPATIAL2015"
-		   targetNamespace="http://europa.eu/ec/fisheries/uvms/activity/model/schemas"
-		   version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		   targetNamespace="http://europa.eu/ec/fisheries/uvms/activity/model/schemas" version="1.0">
 
 	<xs:include schemaLocation="Activity_CommonTypes.xsd"/>
 
@@ -20,6 +20,7 @@
 			<xs:enumeration value="GET_FLUX_MDR_ENTITY" />
 			<xs:enumeration value="GET_FISHING_TRIPS" />
 			<xs:enumeration value="GET_FA_CATCH_SUMMARY_REPORT" />
+			<xs:enumeration value="GET_IS_UNIQUE_ID"/>
 		</xs:restriction>
 	</xs:simpleType>
 
@@ -112,7 +113,6 @@
 		</xs:complexType>
 	</xs:element>
 
-
 	<xsd:simpleType name="PluginType">
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="EMAIL"/>
@@ -121,6 +121,40 @@
 			<xsd:enumeration value="OTHER"/>
 			<xsd:enumeration value="NAF"/>
 			<xsd:enumeration value="MANUAL"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xs:element name="IsUniqueIdRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ActivityModuleRequest">
+					<xs:sequence>
+						<xs:element name="activityTableType" type="ActivityTableType" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="identifierId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="identifierSchemeId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+
+	<xs:element name="IsUniqueIdResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ActivityModuleRequest">
+					<xs:sequence>
+						<xs:element name="value" type="xsd:boolean"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xsd:simpleType name="ActivityTableType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="FA_REPORT_DOCUMENT_ENTITY"/>
+			<xsd:enumeration value="FLUX_FA_REPORT_ENTITY"/>
 		</xsd:restriction>
 	</xsd:simpleType>
 
