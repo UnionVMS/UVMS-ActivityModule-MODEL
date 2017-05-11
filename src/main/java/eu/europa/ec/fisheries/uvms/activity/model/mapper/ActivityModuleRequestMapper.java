@@ -12,17 +12,19 @@ details. You should have received a copy of the GNU General Public License along
 
 package eu.europa.ec.fisheries.uvms.activity.model.mapper;
 
-import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMarshallException;
+import java.util.List;
 
+import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMarshallException;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityModuleMethod;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityTableType;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.FACatchSummaryReportRequest;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.FishingTripRequest;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.GroupCriteria;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.IsUniqueIdRequest;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.ListValueTypeFilter;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.PluginType;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.SetFLUXFAReportMessageRequest;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.SingleValueTypeFilter;
-import java.util.List;
 
 /**
  * Created by sanera on 06/06/2016.
@@ -31,6 +33,15 @@ public final class ActivityModuleRequestMapper {
 
     private ActivityModuleRequestMapper(){
 
+    }
+
+    public static String mapIsUniqueIdRequestRequest(ActivityTableType tableType, String identifierId, String identifierSchemeId) throws ActivityModelMarshallException {
+        IsUniqueIdRequest request = new IsUniqueIdRequest();
+        request.setMethod(ActivityModuleMethod.GET_IS_UNIQUE_ID);
+        request.setIdentifierId(identifierId);
+        request.setIdentifierSchemeId(identifierSchemeId);
+        request.setActivityTableType(tableType);
+        return JAXBMarshaller.marshallJaxBObjectToString(request);
     }
 
     public static String mapToSetFLUXFAReportMessageRequest(String fluxFAReportMessage, String username, String pluginType) throws ActivityModelMarshallException {
