@@ -8,27 +8,64 @@ without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
 details. You should have received a copy of the GNU General Public License along with the IFDM Suite. If not, see <http://www.gnu.org/licenses/>.
 
  */
+
+
 package eu.europa.ec.fisheries.uvms.activity.model.mapper;
 
-import eu.europa.ec.fisheries.uvms.activity.model.exception.ModelMarshallException;
+import java.util.List;
+
+import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMarshallException;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityModuleMethod;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.SetFLUXFAReportMessageRequest;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityTableType;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.FACatchSummaryReportRequest;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.FishingTripRequest;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.GroupCriteria;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.IsUniqueIdRequest;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.ListValueTypeFilter;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.PluginType;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.SetFLUXFAReportMessageRequest;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.SingleValueTypeFilter;
 
 /**
  * Created by sanera on 06/06/2016.
  */
-public class ActivityModuleRequestMapper {
+public final class ActivityModuleRequestMapper {
 
-    public ActivityModuleRequestMapper(){
+    private ActivityModuleRequestMapper(){
 
     }
 
-    public static String mapToSetFLUXFAReportMessageRequest(String fluxFAReportMessae, String username, String pluginType) throws ModelMarshallException {
+    public static String mapIsUniqueIdRequestRequest(ActivityTableType tableType, String identifierId, String identifierSchemeId) throws ActivityModelMarshallException {
+        IsUniqueIdRequest request = new IsUniqueIdRequest();
+        request.setMethod(ActivityModuleMethod.GET_IS_UNIQUE_ID);
+        request.setIdentifierId(identifierId);
+        request.setIdentifierSchemeId(identifierSchemeId);
+        request.setActivityTableType(tableType);
+        return JAXBMarshaller.marshallJaxBObjectToString(request);
+    }
+
+    public static String mapToSetFLUXFAReportMessageRequest(String fluxFAReportMessage, String username, String pluginType) throws ActivityModelMarshallException {
         SetFLUXFAReportMessageRequest request = new SetFLUXFAReportMessageRequest();
         request.setMethod(ActivityModuleMethod.GET_FLUX_FA_REPORT);
         request.setPluginType(PluginType.fromValue(pluginType));
-        request.setRequest(fluxFAReportMessae);
+        request.setRequest(fluxFAReportMessage);
+        return JAXBMarshaller.marshallJaxBObjectToString(request);
+    }
+
+    public static String mapToActivityGetFishingTripRequest(List<ListValueTypeFilter> listFilter, List<SingleValueTypeFilter> singleFilters) throws ActivityModelMarshallException {
+        FishingTripRequest request = new FishingTripRequest();
+        request.setMethod(ActivityModuleMethod.GET_FISHING_TRIPS);
+        request.setListValueFilters(listFilter);
+        request.setSingleValueFilters(singleFilters);
+        return JAXBMarshaller.marshallJaxBObjectToString(request);
+    }
+
+    public static String mapToFaCatchSummaryReportRequestRequest(List<ListValueTypeFilter> listFilter, List<SingleValueTypeFilter> singleFilters, List<GroupCriteria> groupCriterias) throws ActivityModelMarshallException {
+        FACatchSummaryReportRequest request = new FACatchSummaryReportRequest();
+        request.setMethod(ActivityModuleMethod.GET_FA_CATCH_SUMMARY_REPORT);
+        request.setListValueFilters(listFilter);
+        request.setSingleValueFilters(singleFilters);
+        request.setGroupCriterias(groupCriterias);
         return JAXBMarshaller.marshallJaxBObjectToString(request);
     }
 }
