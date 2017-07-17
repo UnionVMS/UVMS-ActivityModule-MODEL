@@ -13,18 +13,18 @@
 
 package eu.europa.ec.fisheries.uvms.activity.model.mapper;
 
-import javax.jms.JMSException;
-import javax.jms.TextMessage;
-
 import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMapperException;
 import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMarshallException;
 import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelValidationException;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityFault;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.FACatchSummaryReportResponse;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.FishingTripResponse;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.IsUniqueIdResponse;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.GetNonUniqueIdsResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.jms.JMSException;
+import javax.jms.TextMessage;
 
 public final class ActivityModuleResponseMapper {
 
@@ -69,9 +69,9 @@ public final class ActivityModuleResponseMapper {
         return fault;
     }
 
-    public static IsUniqueIdResponse mapToIsUniqueIdResponseFromResponse(TextMessage response, String correlationId) throws ActivityModelMapperException {
+    public static GetNonUniqueIdsResponse mapToGetUniqueIdResponseFromResponse(TextMessage response, String correlationId) throws ActivityModelMapperException {
         validateResponse(response, correlationId);
-        return JAXBMarshaller.unmarshallTextMessage(response, IsUniqueIdResponse.class);
+        return JAXBMarshaller.unmarshallTextMessage(response, GetNonUniqueIdsResponse.class);
     }
 
     public static FishingTripResponse mapToActivityFishingTripFromResponse(TextMessage response, String correlationId) throws ActivityModelMapperException {
