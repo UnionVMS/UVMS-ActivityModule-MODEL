@@ -29,6 +29,9 @@ public final class ActivityModuleRequestMapper {
     }
 
     public static String mapToGetNonUniqueIdRequest(Map<ActivityTableType, List<IDType>> requestList) throws ActivityModelMarshallException {
+        if(requestList == null || requestList.isEmpty()){
+            return null;
+        }
         GetNonUniqueIdsRequest request = new GetNonUniqueIdsRequest();
         request.setMethod(ActivityModuleMethod.GET_NON_UNIQUE_IDS);
         List<ActivityUniquinessList> uniqList = new ArrayList<>();
@@ -46,7 +49,26 @@ public final class ActivityModuleRequestMapper {
             uniquinessListElement.setIds(idTypes);
             uniqList.add(uniquinessListElement);
         }
+        if(isEmptyGetNonUniqueIdsRequest(request)){
+            return null;
+        }
         return JAXBMarshaller.marshallJaxBObjectToString(request);
+    }
+
+    private static boolean isEmptyGetNonUniqueIdsRequest(GetNonUniqueIdsRequest request) {
+        boolean isEmpty = true;
+        List<ActivityUniquinessList> activityUniquinessLists = request.getActivityUniquinessLists();
+        if(activityUniquinessLists == null || activityUniquinessLists.isEmpty()){
+            return isEmpty;
+        }
+        for(ActivityUniquinessList actUnReq : activityUniquinessLists){
+            List<ActivityIDType> ids = actUnReq.getIds();
+            if(ids != null && !ids.isEmpty()){
+                isEmpty = false;
+                break;
+            }
+        }
+        return isEmpty;
     }
 
     public static String mapToSetFLUXFAReportMessageRequest(String fluxFAReportMessage, String username, String pluginType) throws ActivityModelMarshallException {
