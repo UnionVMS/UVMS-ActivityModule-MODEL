@@ -95,4 +95,11 @@ public final class ActivityModuleRequestMapper {
         request.setGroupCriterias(groupCriterias);
         return JAXBMarshaller.marshallJaxBObjectToString(request);
     }
+
+    public static String mapToGetFishingActivitiesForTripRequest(List<FishingActivityForTripIds> fishingActivityForTripIds) throws ActivityModelMarshallException {
+        GetFishingActivitiesForTripRequest request = new GetFishingActivitiesForTripRequest();
+        request.setMethod(ActivityModuleMethod.GET_FISHING_ACTIVITY_FOR_TRIPS);
+        request.setFaAndTripIds(fishingActivityForTripIds);
+        return JAXBMarshaller.marshallJaxBObjectToString(request);
+    }
 }
