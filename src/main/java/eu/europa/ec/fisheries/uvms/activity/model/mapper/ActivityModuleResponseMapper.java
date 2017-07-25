@@ -16,10 +16,7 @@ package eu.europa.ec.fisheries.uvms.activity.model.mapper;
 import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMapperException;
 import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMarshallException;
 import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelValidationException;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityFault;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.FACatchSummaryReportResponse;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.FishingTripResponse;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.GetNonUniqueIdsResponse;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,35 +28,6 @@ public final class ActivityModuleResponseMapper {
     final static Logger LOG = LoggerFactory.getLogger(ActivityModuleResponseMapper.class);
 
     private ActivityModuleResponseMapper() {
-    }
-
-    private static void validateResponse(TextMessage response, String correlationId) throws ActivityModelValidationException {
-
-        try {
-            if (response == null) {
-                throw new ActivityModelValidationException("Error when validating response in ResponseMapper: Response is Null");
-            }
-
-            if (response.getJMSCorrelationID() == null) {
-                throw new ActivityModelValidationException("No correlationId in response (Null) . Expected was: " + correlationId);
-            }
-
-            if (!correlationId.equalsIgnoreCase(response.getJMSCorrelationID())) {
-                throw new ActivityModelValidationException("Wrong correlationId in response. Expected was: " + correlationId + " But actual was: " + response.getJMSCorrelationID());
-            }
-
-            //the following code is catching the exception in purpose. DO NOT MODIFY it!
-            try{
-                ActivityFault fault = JAXBMarshaller.unmarshallTextMessage(response, ActivityFault.class);
-                throw new ActivityModelValidationException(fault.getCode() + " : " + fault.getFault());
-            } catch (ActivityModelMarshallException e) {
-                LOG.trace("Expected Exception"); // Exception received in case if the validation is success
-            }
-
-        } catch (JMSException e) {
-            LOG.error("JMS exception during validation ", e);
-            throw new ActivityModelValidationException("JMS exception during validation " + e.getMessage());
-        }
     }
 
     public static ActivityFault createFaultMessage(FaultCode code, String message) {
@@ -84,5 +52,43 @@ public final class ActivityModuleResponseMapper {
         validateResponse(response, correlationId);
         FACatchSummaryReportResponse summaryReportResponse = JAXBMarshaller.unmarshallTextMessage(response, FACatchSummaryReportResponse.class);
         return summaryReportResponse;
+    }
+
+    public static GetFishingActivitiesForTripResponse mapToGetFishingActivitiesForTripResponse(TextMessage response, String jmsCorrelationId) throws ActivityModelMapperException {
+        validateResponse(response, jmsCorrelationId);
+        return JAXBMarshaller.unmarshallTextMessage(response, GetFishingActivitiesForTripResponse.class);
+    }
+
+    private static void validateResponse(TextMessage response, String correlationId) throws ActivityModelValidationException {
+
+        try {
+            if (response == null) {
+                throw new ActivityModelValidationException("Error when validating response in ResponseMapper: Response is Null");
+            }
+
+            if (response.getJMSCorrelationID() == null) {
+                throw new ActivityModelValidationException("No correlationId in response (Null) . Expected was: " + correlationId);
+            }
+
+            if (!correlationId.equalsIgnoreCase(response.getJMSCorrelationID())) {
+                throw new ActivityModelValidationException("Wrong correlationId in response. Expected was: " + correlationId + " But actual was: " + response.getJMSCorrelationID());
+            }
+
+            //the following code is catching the exception in purpose. DO NOT MODIFY it!
+            throwIfUserFault(response);
+
+        } catch (JMSException e) {
+            LOG.error("JMS exception during validation ", e);
+            throw new ActivityModelValidationException("JMS exception during validation " + e.getMessage());
+        }
+    }
+
+    private static void throwIfUserFault(TextMessage response) throws ActivityModelValidationException {
+        try{
+            ActivityFault fault = JAXBMarshaller.unmarshallTextMessage(response, ActivityFault.class);
+            throw new ActivityModelValidationException(fault.getCode() + " : " + fault.getFault());
+        } catch (ActivityModelMarshallException e) {
+            LOG.trace("Expected Exception"); // Exception received in case if the validation is success
+        }
     }
 }

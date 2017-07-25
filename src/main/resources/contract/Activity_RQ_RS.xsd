@@ -21,6 +21,7 @@
 			<xs:enumeration value="GET_FISHING_TRIPS" />
 			<xs:enumeration value="GET_FA_CATCH_SUMMARY_REPORT" />
 			<xs:enumeration value="GET_NON_UNIQUE_IDS"/>
+			<xs:enumeration value="GET_FISHING_ACTIVITY_FOR_TRIPS"/>
 		</xs:restriction>
 	</xs:simpleType>
 
@@ -148,6 +149,30 @@
 		</xs:complexType>
 	</xs:element>
 
+	<xs:element name="GetFishingActivitiesForTripRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ActivityModuleRequest">
+					<xs:sequence>
+						<xs:element name="faAndTripIds" type="FishingActivityForTripIds" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetFishingActivitiesForTripResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ActivityModuleRequest">
+					<xs:sequence>
+						<xs:element name="faWithIdentifiers" type="FaIdsListWithTripIdMap" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
 	<xsd:simpleType name="ActivityTableType">
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="FLUX_REPORT_DOCUMENT_ENTITY"/>
@@ -159,6 +184,31 @@
 		<xs:sequence>
 			<xs:element name="value" type="xsd:string" minOccurs="1" maxOccurs="1"/>
 			<xs:element name="identifierSchemeId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FishingActivityForTripIds">
+		<xs:sequence>
+			<xs:element name="fishActTypeCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="tripId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="tripSchemeId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="fluxRepDocPurposeCodes" type="xsd:string" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FaIdsListWithTripIdMap">
+		<xs:sequence>
+			<xs:element name="tripId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="tripSchemeId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="faIdentifierList" type="FishingActivityWithIdentifiers" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FishingActivityWithIdentifiers">
+		<xs:sequence>
+			<xs:element name="faIdentifierId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="faIdentifierSchemeId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="faType" type="xsd:string" minOccurs="1" maxOccurs="1"/>
 		</xs:sequence>
 	</xs:complexType>
 
