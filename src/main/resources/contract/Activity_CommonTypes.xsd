@@ -121,10 +121,10 @@
                 <xs:element name="ports" type="xs:string"  minOccurs="0" maxOccurs="unbounded"/>
                 <xs:element name="areas" type="xs:string"  minOccurs="0" maxOccurs="unbounded"/>
                 <xs:element name="vesselIdentifiers" type="VesselIdentifierType" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element name="occurence" minOccurs="0" maxOccurs="1" type="xs:dateTime"/>
-                <xs:element name="landingReferencedID" minOccurs="0" maxOccurs="1" type="xs:string"/>
-                <xs:element name="landingState" minOccurs="0" maxOccurs="1" type="xs:string"/>
-                <xs:element name="vesselContactParty" type="VesselContactPartyType" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="occurence" minOccurs="0" type="xs:dateTime"/>
+                <xs:element name="landingReferencedID" minOccurs="0" type="xs:string"/>
+                <xs:element name="landingState" minOccurs="0" type="xs:string"/>
+                <xs:element name="vesselContactParty" type="VesselContactPartyType" minOccurs="0"/>
             </xs:sequence>
     </xs:complexType>
 
@@ -238,14 +238,14 @@
     <xs:complexType name="VesselContactPartyType">
         <xs:sequence>
             <xs:element name="role" type="xs:string"/>
-            <xs:element name="title" type="xs:string"/>
-            <xs:element name="givenName" type="xs:string"/>
-            <xs:element name="middleName" type="xs:string"/>
-            <xs:element name="familyName" type="xs:string"/>
-            <xs:element name="familyNamePrefix" type="xs:string"/>
-            <xs:element name="nameSuffix" type="xs:string"/>
-            <xs:element name="gender" type="xs:string"/>
-            <xs:element name="alias" type="xs:string"/>
+            <xs:element name="title" minOccurs="0" type="xs:string"/>
+            <xs:element name="givenName" minOccurs="0" type="xs:string"/>
+            <xs:element name="middleName" minOccurs="0" type="xs:string"/>
+            <xs:element name="familyName" minOccurs="0" type="xs:string"/>
+            <xs:element name="familyNamePrefix" minOccurs="0" type="xs:string"/>
+            <xs:element name="nameSuffix" minOccurs="0" type="xs:string"/>
+            <xs:element name="gender" minOccurs="0" type="xs:string"/>
+            <xs:element name="alias" minOccurs="0" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 
