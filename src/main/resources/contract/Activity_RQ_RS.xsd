@@ -122,6 +122,7 @@
 			<xsd:enumeration value="OTHER"/>
 			<xsd:enumeration value="NAF"/>
 			<xsd:enumeration value="MANUAL"/>
+			<xsd:enumeration value="BELGIAN_ACTIVITY"/>
 		</xsd:restriction>
 	</xsd:simpleType>
 
