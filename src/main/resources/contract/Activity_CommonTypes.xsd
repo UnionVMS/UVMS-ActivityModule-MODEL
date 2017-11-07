@@ -156,6 +156,7 @@
             <xs:enumeration value="ACTIVITY_TYPE"/>
             <xs:enumeration value="TRIP_ID"/>
             <xs:enumeration value="CONTACT_ROLE_CODE"/>
+            <xs:enumeration value="FISHING_TRIP_SCHEME_ID"/>
         </xs:restriction>
     </xs:simpleType>
 

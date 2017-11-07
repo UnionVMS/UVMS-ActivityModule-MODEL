@@ -81,6 +81,7 @@
 					<xs:sequence>
 						<xs:element name="fishingTripIdList" type="FishingTripIdWithGeometry" minOccurs="0" maxOccurs="unbounded"/>
 						<xs:element name="fishingActivityList" type="FishingActivitySummary" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="totalCountOfRecords" type="xs:integer"/>
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
