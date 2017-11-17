@@ -121,6 +121,10 @@
                 <xs:element name="ports" type="xs:string"  minOccurs="0" maxOccurs="unbounded"/>
                 <xs:element name="areas" type="xs:string"  minOccurs="0" maxOccurs="unbounded"/>
                 <xs:element name="vesselIdentifiers" type="VesselIdentifierType" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="occurence" minOccurs="0" type="xs:dateTime"/>
+                <xs:element name="landingReferencedID" minOccurs="0" type="xs:string"/>
+                <xs:element name="landingState" minOccurs="0" type="xs:string"/>
+                <xs:element name="vesselContactParty" type="VesselContactPartyType" minOccurs="0"/>
             </xs:sequence>
     </xs:complexType>
 
@@ -151,6 +155,8 @@
             <xs:enumeration value="AREA_GEOM"/>
             <xs:enumeration value="ACTIVITY_TYPE"/>
             <xs:enumeration value="TRIP_ID"/>
+            <xs:enumeration value="CONTACT_ROLE_CODE"/>
+            <xs:enumeration value="FISHING_TRIP_SCHEME_ID"/>
         </xs:restriction>
     </xs:simpleType>
 
@@ -230,6 +236,18 @@
         </xs:complexType>
     </xs:element>
 
-
+    <xs:complexType name="VesselContactPartyType">
+        <xs:sequence>
+            <xs:element name="role" type="xs:string"/>
+            <xs:element name="title" minOccurs="0" type="xs:string"/>
+            <xs:element name="givenName" minOccurs="0" type="xs:string"/>
+            <xs:element name="middleName" minOccurs="0" type="xs:string"/>
+            <xs:element name="familyName" minOccurs="0" type="xs:string"/>
+            <xs:element name="familyNamePrefix" minOccurs="0" type="xs:string"/>
+            <xs:element name="nameSuffix" minOccurs="0" type="xs:string"/>
+            <xs:element name="gender" minOccurs="0" type="xs:string"/>
+            <xs:element name="alias" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
 
 </xs:schema>

@@ -13,24 +13,50 @@
 
 package eu.europa.ec.fisheries.uvms.activity.model.mapper;
 
-import javax.jms.JMSException;
-import javax.jms.TextMessage;
-
 import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMapperException;
 import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMarshallException;
 import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelValidationException;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityFault;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.FACatchSummaryReportResponse;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.FishingTripResponse;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.IsUniqueIdResponse;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.jms.JMSException;
+import javax.jms.TextMessage;
 
 public final class ActivityModuleResponseMapper {
 
     final static Logger LOG = LoggerFactory.getLogger(ActivityModuleResponseMapper.class);
 
     private ActivityModuleResponseMapper() {
+    }
+
+    public static ActivityFault createFaultMessage(FaultCode code, String message) {
+        ActivityFault fault = new ActivityFault();
+        fault.setCode(code.getCode());
+        fault.setFault(message);
+        return fault;
+    }
+
+    public static GetNonUniqueIdsResponse mapToGetUniqueIdResponseFromResponse(TextMessage response, String correlationId) throws ActivityModelMapperException {
+        validateResponse(response, correlationId);
+        return JAXBMarshaller.unmarshallTextMessage(response, GetNonUniqueIdsResponse.class);
+    }
+
+    public static FishingTripResponse mapToActivityFishingTripFromResponse(TextMessage response, String correlationId) throws ActivityModelMapperException {
+        validateResponse(response, correlationId);
+        FishingTripResponse fishingTripResponse = JAXBMarshaller.unmarshallTextMessage(response, FishingTripResponse.class);
+        return fishingTripResponse;
+    }
+
+    public static FACatchSummaryReportResponse mapToFaCatchSummaryResponseFromResponse(TextMessage response, String correlationId) throws ActivityModelMapperException {
+        validateResponse(response, correlationId);
+        FACatchSummaryReportResponse summaryReportResponse = JAXBMarshaller.unmarshallTextMessage(response, FACatchSummaryReportResponse.class);
+        return summaryReportResponse;
+    }
+
+    public static GetFishingActivitiesForTripResponse mapToGetFishingActivitiesForTripResponse(TextMessage response, String jmsCorrelationId) throws ActivityModelMapperException {
+        validateResponse(response, jmsCorrelationId);
+        return JAXBMarshaller.unmarshallTextMessage(response, GetFishingActivitiesForTripResponse.class);
     }
 
     private static void validateResponse(TextMessage response, String correlationId) throws ActivityModelValidationException {
@@ -49,12 +75,7 @@ public final class ActivityModuleResponseMapper {
             }
 
             //the following code is catching the exception in purpose. DO NOT MODIFY it!
-            try{
-                ActivityFault fault = JAXBMarshaller.unmarshallTextMessage(response, ActivityFault.class);
-                throw new ActivityModelValidationException(fault.getCode() + " : " + fault.getFault());
-            } catch (ActivityModelMarshallException e) {
-                LOG.trace("Expected Exception"); // Exception received in case if the validation is success
-            }
+            throwIfUserFault(response);
 
         } catch (JMSException e) {
             LOG.error("JMS exception during validation ", e);
@@ -62,27 +83,12 @@ public final class ActivityModuleResponseMapper {
         }
     }
 
-    public static ActivityFault createFaultMessage(FaultCode code, String message) {
-        ActivityFault fault = new ActivityFault();
-        fault.setCode(code.getCode());
-        fault.setFault(message);
-        return fault;
-    }
-
-    public static IsUniqueIdResponse mapToIsUniqueIdResponseFromResponse(TextMessage response, String correlationId) throws ActivityModelMapperException {
-        validateResponse(response, correlationId);
-        return JAXBMarshaller.unmarshallTextMessage(response, IsUniqueIdResponse.class);
-    }
-
-    public static FishingTripResponse mapToActivityFishingTripFromResponse(TextMessage response, String correlationId) throws ActivityModelMapperException {
-        validateResponse(response, correlationId);
-        FishingTripResponse fishingTripResponse = JAXBMarshaller.unmarshallTextMessage(response, FishingTripResponse.class);
-        return fishingTripResponse;
-    }
-
-    public static FACatchSummaryReportResponse mapToFaCatchSummaryResponseFromResponse(TextMessage response, String correlationId) throws ActivityModelMapperException {
-        validateResponse(response, correlationId);
-        FACatchSummaryReportResponse summaryReportResponse = JAXBMarshaller.unmarshallTextMessage(response, FACatchSummaryReportResponse.class);
-        return summaryReportResponse;
+    private static void throwIfUserFault(TextMessage response) throws ActivityModelValidationException {
+        try{
+            ActivityFault fault = JAXBMarshaller.unmarshallTextMessage(response, ActivityFault.class);
+            throw new ActivityModelValidationException(fault.getCode() + " : " + fault.getFault());
+        } catch (ActivityModelMarshallException e) {
+            LOG.trace("Expected Exception"); // Exception received in case if the validation is success
+        }
     }
 }

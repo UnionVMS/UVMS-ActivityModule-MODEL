@@ -5,7 +5,7 @@
     <artifactId>activity-model</artifactId>
     <name>activity-model</name>
     <packaging>ejb</packaging>
-    <version>0.5.12-SNAPSHOT</version>
+    <version>1.0.2-SNAPSHOT</version>
     <description>This module shall have interfaces, XSD, and DTOs</description>
 
     <properties>
@@ -18,7 +18,7 @@
         <sl4j.version>1.7.12</sl4j.version>
         <logback.version>1.1.2</logback.version>
         <logback.core.version>1.1.2</logback.core.version>
-		<maven.release.plugin.version>2.5.2</maven.release.plugin.version>
+		<maven.release.plugin.version>2.5.3</maven.release.plugin.version>
         <maven.scm.provider.version>2.1.1</maven.scm.provider.version>
 
         <scm.connection>scm:git:https://github.com/UnionVMS/UVMS-ActivityModule-MODEL.git</scm.connection>
@@ -99,12 +99,6 @@
             <version>${logback.core.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.vividsolutions</groupId>
-            <artifactId>jts</artifactId>
-            <version>1.13</version>
-        </dependency>
-
     </dependencies>
 
     <distributionManagement>
@@ -123,7 +117,7 @@
 
 	<scm>
         <connection>${scm.connection}</connection>
-	  <tag>HEAD</tag>
+	  <tag>activity-model-0.5.13</tag>
   </scm>
 
     <profiles>
@@ -249,15 +243,11 @@
                 <version>${maven.release.plugin.version}</version>
                 <dependencies>
                     <dependency>
-                        <groupId>com.google.code.maven-scm-provider-svnjava</groupId>
-                        <artifactId>maven-scm-provider-svnjava</artifactId>
-                        <version>${maven.scm.provider.version}</version>
+                        <groupId>org.apache.maven.scm</groupId>
+                        <artifactId>maven-scm-provider-gitexe</artifactId>
+                        <version>1.9.5</version>
                     </dependency>
                 </dependencies>
-                <configuration>
-                    <tagNameFormat>@{project.artifactId}-@{project.version}</tagNameFormat>
-                    <autoVersionSubmodules>true</autoVersionSubmodules>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

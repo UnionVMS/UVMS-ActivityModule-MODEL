@@ -9,22 +9,15 @@ details. You should have received a copy of the GNU General Public License along
 
  */
 
-
 package eu.europa.ec.fisheries.uvms.activity.model.mapper;
 
-import java.util.List;
-
 import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMarshallException;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityModuleMethod;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityTableType;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.FACatchSummaryReportRequest;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.FishingTripRequest;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.GroupCriteria;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.IsUniqueIdRequest;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.ListValueTypeFilter;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.PluginType;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.SetFLUXFAReportMessageRequest;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.SingleValueTypeFilter;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.*;
+import un.unece.uncefact.data.standard.unqualifieddatatype._20.IDType;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by sanera on 06/06/2016.
@@ -35,13 +28,47 @@ public final class ActivityModuleRequestMapper {
 
     }
 
-    public static String mapIsUniqueIdRequestRequest(ActivityTableType tableType, String identifierId, String identifierSchemeId) throws ActivityModelMarshallException {
-        IsUniqueIdRequest request = new IsUniqueIdRequest();
-        request.setMethod(ActivityModuleMethod.GET_IS_UNIQUE_ID);
-        request.setIdentifierId(identifierId);
-        request.setIdentifierSchemeId(identifierSchemeId);
-        request.setActivityTableType(tableType);
+    public static String mapToGetNonUniqueIdRequest(Map<ActivityTableType, List<IDType>> requestList) throws ActivityModelMarshallException {
+        if(requestList == null || requestList.isEmpty()){
+            return null;
+        }
+        GetNonUniqueIdsRequest request = new GetNonUniqueIdsRequest();
+        request.setMethod(ActivityModuleMethod.GET_NON_UNIQUE_IDS);
+        List<ActivityUniquinessList> uniqList = new ArrayList<>();
+        request.setActivityUniquinessLists(uniqList);
+        for(Map.Entry<ActivityTableType, List<IDType>> mapEntry : requestList.entrySet()){
+            ActivityUniquinessList uniquinessListElement = new ActivityUniquinessList();
+            uniquinessListElement.setActivityTableType(mapEntry.getKey());
+            List<ActivityIDType> idTypes = new ArrayList<>();
+            for(IDType idType : mapEntry.getValue()){
+                ActivityIDType actIdType = new ActivityIDType();
+                actIdType.setIdentifierSchemeId(idType.getSchemeID());
+                actIdType.setValue(idType.getValue());
+                idTypes.add(actIdType);
+            }
+            uniquinessListElement.setIds(idTypes);
+            uniqList.add(uniquinessListElement);
+        }
+        if(isEmptyGetNonUniqueIdsRequest(request)){
+            return null;
+        }
         return JAXBMarshaller.marshallJaxBObjectToString(request);
+    }
+
+    private static boolean isEmptyGetNonUniqueIdsRequest(GetNonUniqueIdsRequest request) {
+        boolean isEmpty = true;
+        List<ActivityUniquinessList> activityUniquinessLists = request.getActivityUniquinessLists();
+        if(activityUniquinessLists == null || activityUniquinessLists.isEmpty()){
+            return isEmpty;
+        }
+        for(ActivityUniquinessList actUnReq : activityUniquinessLists){
+            List<ActivityIDType> ids = actUnReq.getIds();
+            if(ids != null && !ids.isEmpty()){
+                isEmpty = false;
+                break;
+            }
+        }
+        return isEmpty;
     }
 
     public static String mapToSetFLUXFAReportMessageRequest(String fluxFAReportMessage, String username, String pluginType) throws ActivityModelMarshallException {
@@ -66,6 +93,13 @@ public final class ActivityModuleRequestMapper {
         request.setListValueFilters(listFilter);
         request.setSingleValueFilters(singleFilters);
         request.setGroupCriterias(groupCriterias);
+        return JAXBMarshaller.marshallJaxBObjectToString(request);
+    }
+
+    public static String mapToGetFishingActivitiesForTripRequest(List<FishingActivityForTripIds> fishingActivityForTripIds) throws ActivityModelMarshallException {
+        GetFishingActivitiesForTripRequest request = new GetFishingActivitiesForTripRequest();
+        request.setMethod(ActivityModuleMethod.GET_FISHING_ACTIVITY_FOR_TRIPS);
+        request.setFaAndTripIds(fishingActivityForTripIds);
         return JAXBMarshaller.marshallJaxBObjectToString(request);
     }
 }
