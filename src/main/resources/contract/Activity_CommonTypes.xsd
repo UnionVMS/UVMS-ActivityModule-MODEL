@@ -165,6 +165,7 @@
             <xs:enumeration value="DATE_DAY" />
             <xs:enumeration value="DATE_MONTH" />
             <xs:enumeration value="DATE_YEAR" />
+            <xs:enumeration value="DATE" />
             <xs:enumeration value="VESSEL"/>
             <xs:enumeration value="TERRITORY"/>
 			<xs:enumeration value="FAO_AREA"/>
