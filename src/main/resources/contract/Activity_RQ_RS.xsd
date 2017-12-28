@@ -16,7 +16,7 @@
 
 	<xs:simpleType name="ActivityModuleMethod">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="GET_MAP_TO_SUBSCRIPTION_REQUEST" />
+			<xs:enumeration value="MAP_TO_SUBSCRIPTION_REQUEST" />
 			<xs:enumeration value="GET_FLUX_FA_REPORT" />
 			<xs:enumeration value="GET_FLUX_MDR_ENTITY" />
 			<xs:enumeration value="GET_FISHING_TRIPS" />
@@ -44,7 +44,7 @@
                 <xs:extension base="ActivityModuleRequest">
                     <xs:sequence>
                         <xs:element name="request" type="xs:string" />
-                        <xs:element name="messageType" type="MessageType" default="FLUXFaQueryMessage" />
+                        <xs:element name="messageType" type="MessageType"/>
                     </xs:sequence>
                 </xs:extension>
             </xs:complexContent>
