@@ -134,8 +134,8 @@ public final class ActivityModuleRequestMapper {
         ActivityModuleRequest mapToSubscriptionRequest = new MapToSubscriptionRequest();
         mapToSubscriptionRequest.setMethod(ActivityModuleMethod.MAP_TO_SUBSCRIPTION_REQUEST);
         ((MapToSubscriptionRequest)mapToSubscriptionRequest).setMessageType(MessageType.FLUX_FA_REPORT_MESSAGE);
-        String faQueryAsString = JAXBMarshaller.marshallJaxBObjectToString(fluxfaReportMessage);
-        ((MapToSubscriptionRequest)mapToSubscriptionRequest).setRequest(faQueryAsString);
+        String faReportAsString = JAXBMarshaller.marshallJaxBObjectToString(fluxfaReportMessage);
+        ((MapToSubscriptionRequest)mapToSubscriptionRequest).setRequest(faReportAsString);
         return JAXBMarshaller.marshallJaxBObjectToString(mapToSubscriptionRequest);
     }
 }
