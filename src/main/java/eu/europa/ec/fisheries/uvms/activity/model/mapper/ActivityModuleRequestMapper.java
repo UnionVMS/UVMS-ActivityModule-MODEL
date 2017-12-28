@@ -118,11 +118,11 @@ public final class ActivityModuleRequestMapper {
         return JAXBMarshaller.marshallJaxBObjectToString(request);
     }
 
-    public static String mapToSubscriptionRequest(String activtyMessage, MessageType messageType) throws ActivityModelMarshallException {
+    public static String mapToSubscriptionRequest(String activityMessage, MessageType messageType) throws ActivityModelMarshallException {
 
         MapToSubscriptionRequest mapToSubscriptionRequest = new MapToSubscriptionRequest();
         mapToSubscriptionRequest.setMethod(ActivityModuleMethod.MAP_TO_SUBSCRIPTION_REQUEST);
-        mapToSubscriptionRequest.setRequest(activtyMessage);
+        mapToSubscriptionRequest.setRequest(activityMessage);
         switch (messageType){
             case FLUX_FA_REPORT_MESSAGE:
                 mapToSubscriptionRequest.setMessageType(MessageType.FLUX_FA_QUERY_MESSAGE);
