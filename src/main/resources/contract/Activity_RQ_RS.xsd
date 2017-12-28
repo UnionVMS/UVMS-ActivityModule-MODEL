@@ -16,6 +16,7 @@
 
 	<xs:simpleType name="ActivityModuleMethod">
 		<xs:restriction base="xs:string">
+			<xs:enumeration value="GET_MAP_TO_SUBSCRIPTION_REQUEST" />
 			<xs:enumeration value="GET_FLUX_FA_REPORT" />
 			<xs:enumeration value="GET_FLUX_MDR_ENTITY" />
 			<xs:enumeration value="GET_FISHING_TRIPS" />
@@ -36,6 +37,19 @@
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
+
+    <xs:element name="MapToSubscriptionRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ActivityModuleRequest">
+                    <xs:sequence>
+                        <xs:element name="request" type="xs:string" />
+                        <xs:element name="messageType" type="MessageType" default="FLUXFaQueryMessage" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
 
 	<xs:element name="SetFLUXMDRSyncMessageActivityRequest">
 		<xs:complexType>
@@ -115,7 +129,15 @@
 		</xs:complexType>
 	</xs:element>
 
-	<xsd:simpleType name="PluginType">
+    <xs:simpleType name="MessageType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="FLUXFaQueryMessage"/>
+            <xs:enumeration value="FLUXFaReportMessage"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xsd:simpleType name="PluginType">
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="EMAIL"/>
 			<xsd:enumeration value="SATELLITE_RECEIVER"/>
