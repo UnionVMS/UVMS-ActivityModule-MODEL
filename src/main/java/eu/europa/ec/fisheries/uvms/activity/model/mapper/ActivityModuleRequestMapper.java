@@ -33,7 +33,8 @@ import eu.europa.ec.fisheries.uvms.activity.model.schemas.MessageType;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.PluginType;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.SetFLUXFAReportMessageRequest;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.SingleValueTypeFilter;
-import un.unece.uncefact.data.standard.reusableaggregatebusinessinformationentity._20.FAQuery;
+import un.unece.uncefact.data.standard.fluxfaquerymessage._3.FLUXFAQueryMessage;
+import un.unece.uncefact.data.standard.fluxfareportmessage._3.FLUXFAReportMessage;
 import un.unece.uncefact.data.standard.unqualifieddatatype._20.IDType;
 
 /**
@@ -120,11 +121,20 @@ public final class ActivityModuleRequestMapper {
         return JAXBMarshaller.marshallJaxBObjectToString(request);
     }
 
-    public static String mapToSubscriptionRequest(FAQuery faQuery) throws ActivityModelMarshallException {
+    public static String mapToSubscriptionRequest(FLUXFAQueryMessage fluxfaQueryMessage) throws ActivityModelMarshallException {
         ActivityModuleRequest mapToSubscriptionRequest = new MapToSubscriptionRequest();
         mapToSubscriptionRequest.setMethod(ActivityModuleMethod.MAP_TO_SUBSCRIPTION_REQUEST);
         ((MapToSubscriptionRequest)mapToSubscriptionRequest).setMessageType(MessageType.FLUX_FA_QUERY_MESSAGE);
-        String faQueryAsString = JAXBMarshaller.marshallJaxBObjectToString(faQuery);
+        String faQueryAsString = JAXBMarshaller.marshallJaxBObjectToString(fluxfaQueryMessage);
+        ((MapToSubscriptionRequest)mapToSubscriptionRequest).setRequest(faQueryAsString);
+        return JAXBMarshaller.marshallJaxBObjectToString(mapToSubscriptionRequest);
+    }
+
+    public static String mapToSubscriptionRequest(FLUXFAReportMessage fluxfaReportMessage) throws ActivityModelMarshallException {
+        ActivityModuleRequest mapToSubscriptionRequest = new MapToSubscriptionRequest();
+        mapToSubscriptionRequest.setMethod(ActivityModuleMethod.MAP_TO_SUBSCRIPTION_REQUEST);
+        ((MapToSubscriptionRequest)mapToSubscriptionRequest).setMessageType(MessageType.FLUX_FA_REPORT_MESSAGE);
+        String faQueryAsString = JAXBMarshaller.marshallJaxBObjectToString(fluxfaReportMessage);
         ((MapToSubscriptionRequest)mapToSubscriptionRequest).setRequest(faQueryAsString);
         return JAXBMarshaller.marshallJaxBObjectToString(mapToSubscriptionRequest);
     }
