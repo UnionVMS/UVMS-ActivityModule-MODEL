@@ -30,6 +30,7 @@
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="MAP_TO_SUBSCRIPTION_REQUEST" />
 			<xs:enumeration value="GET_FLUX_FA_REPORT" />
+			<xs:enumeration value="GET_FLUX_FA_QUERY" />
 			<xs:enumeration value="GET_FLUX_MDR_ENTITY" />
 			<xs:enumeration value="GET_FISHING_TRIPS" />
 			<xs:enumeration value="GET_FA_CATCH_SUMMARY_REPORT" />

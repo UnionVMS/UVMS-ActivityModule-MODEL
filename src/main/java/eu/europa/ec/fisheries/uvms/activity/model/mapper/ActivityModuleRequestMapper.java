@@ -119,7 +119,6 @@ public final class ActivityModuleRequestMapper {
     }
 
     public static String mapToSubscriptionRequest(String activityMessage, MessageType messageType) throws ActivityModelMarshallException {
-
         MapToSubscriptionRequest mapToSubscriptionRequest = new MapToSubscriptionRequest();
         mapToSubscriptionRequest.setMethod(ActivityModuleMethod.MAP_TO_SUBSCRIPTION_REQUEST);
         mapToSubscriptionRequest.setRequest(activityMessage);
