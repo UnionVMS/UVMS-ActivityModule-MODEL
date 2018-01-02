@@ -11,10 +11,6 @@ details. You should have received a copy of the GNU General Public License along
 
 package eu.europa.ec.fisheries.uvms.activity.model.mapper;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMarshallException;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityIDType;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityModuleMethod;
@@ -30,8 +26,11 @@ import eu.europa.ec.fisheries.uvms.activity.model.schemas.ListValueTypeFilter;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.MapToSubscriptionRequest;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.MessageType;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.PluginType;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.SetFLUXFAReportMessageRequest;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.SetFLUXFAReportOrQueryMessageRequest;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.SingleValueTypeFilter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import un.unece.uncefact.data.standard.unqualifieddatatype._20.IDType;
 
 /**
@@ -86,9 +85,16 @@ public final class ActivityModuleRequestMapper {
         return isEmpty;
     }
 
-    public static String mapToSetFLUXFAReportMessageRequest(String fluxFAReportMessage, String username, String pluginType) throws ActivityModelMarshallException {
-        SetFLUXFAReportMessageRequest request = new SetFLUXFAReportMessageRequest();
-        request.setMethod(ActivityModuleMethod.GET_FLUX_FA_REPORT);
+    public static String mapToSetFLUXFAReportOrQueryMessageRequest(String fluxFAReportMessage, String username, String pluginType, MessageType messageType) throws ActivityModelMarshallException {
+        SetFLUXFAReportOrQueryMessageRequest request = new SetFLUXFAReportOrQueryMessageRequest();
+        switch (messageType){
+            case FLUX_FA_REPORT_MESSAGE:
+                request.setMethod(ActivityModuleMethod.GET_FLUX_FA_REPORT);
+                break;
+            case FLUX_FA_QUERY_MESSAGE:
+                request.setMethod(ActivityModuleMethod.GET_FLUX_FA_QUERY);
+                break;
+        }
         request.setPluginType(PluginType.fromValue(pluginType));
         request.setRequest(fluxFAReportMessage);
         return JAXBMarshaller.marshallJaxBObjectToString(request);

@@ -39,7 +39,7 @@
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:element name="SetFLUXFAReportMessageRequest">
+	<xs:element name="SetFLUXFAReportOrQueryMessageRequest">
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="ActivityModuleRequest">
