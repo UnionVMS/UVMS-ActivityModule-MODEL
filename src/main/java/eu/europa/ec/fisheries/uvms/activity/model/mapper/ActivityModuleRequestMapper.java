@@ -124,10 +124,10 @@ public final class ActivityModuleRequestMapper {
         mapToSubscriptionRequest.setRequest(activityMessage);
         switch (messageType){
             case FLUX_FA_REPORT_MESSAGE:
-                mapToSubscriptionRequest.setMessageType(MessageType.FLUX_FA_QUERY_MESSAGE);
+                mapToSubscriptionRequest.setMessageType(MessageType.FLUX_FA_REPORT_MESSAGE);
                 break;
             case FLUX_FA_QUERY_MESSAGE:
-                mapToSubscriptionRequest.setMessageType(MessageType.FLUX_FA_REPORT_MESSAGE);
+                mapToSubscriptionRequest.setMessageType(MessageType.FLUX_FA_QUERY_MESSAGE);
                 break;
         }
         return JAXBMarshaller.marshallJaxBObjectToString(mapToSubscriptionRequest);
