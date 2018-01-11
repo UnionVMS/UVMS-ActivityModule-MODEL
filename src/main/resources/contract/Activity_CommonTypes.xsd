@@ -222,6 +222,8 @@
             <xs:enumeration value="ONBOARD"/>
             <xs:enumeration value="KEPT_IN_NET"/>
             <xs:enumeration value="BY_CATCH"/>
+            <xs:enumeration value="LOADED"/>
+            <xs:enumeration value="UNLOADED"/>
         </xs:restriction>
     </xs:simpleType>
 
