@@ -69,6 +69,33 @@ public final class ActivityModuleRequestMapper {
         return JAXBMarshaller.marshallJaxBObjectToString(request);
     }
 
+    public static GetNonUniqueIdsRequest mapToGetNonUniqueIdRequestObject(Map<ActivityTableType, List<IDType>> requestList) throws ActivityModelMarshallException {
+        if(requestList == null || requestList.isEmpty()){
+            return null;
+        }
+        GetNonUniqueIdsRequest request = new GetNonUniqueIdsRequest();
+        request.setMethod(ActivityModuleMethod.GET_NON_UNIQUE_IDS);
+        List<ActivityUniquinessList> uniqList = new ArrayList<>();
+        request.setActivityUniquinessLists(uniqList);
+        for(Map.Entry<ActivityTableType, List<IDType>> mapEntry : requestList.entrySet()){
+            ActivityUniquinessList uniquinessListElement = new ActivityUniquinessList();
+            uniquinessListElement.setActivityTableType(mapEntry.getKey());
+            List<ActivityIDType> idTypes = new ArrayList<>();
+            for(IDType idType : mapEntry.getValue()){
+                ActivityIDType actIdType = new ActivityIDType();
+                actIdType.setIdentifierSchemeId(idType.getSchemeID());
+                actIdType.setValue(idType.getValue());
+                idTypes.add(actIdType);
+            }
+            uniquinessListElement.setIds(idTypes);
+            uniqList.add(uniquinessListElement);
+        }
+        if(isEmptyGetNonUniqueIdsRequest(request)){
+            return null;
+        }
+        return request;
+    }
+
     private static boolean isEmptyGetNonUniqueIdsRequest(GetNonUniqueIdsRequest request) {
         boolean isEmpty = true;
         List<ActivityUniquinessList> activityUniquinessLists = request.getActivityUniquinessLists();
