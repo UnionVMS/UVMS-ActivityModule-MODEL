@@ -45,6 +45,7 @@
 				<xs:extension base="ActivityModuleRequest">
 					<xs:sequence>
 						<xs:element name="request" type="xs:string" />
+						<xs:element name="requestType" type="SyncAsyncRequestType" />
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
@@ -148,6 +149,13 @@
             <xs:enumeration value="FLUXFaReportMessage"/>
         </xs:restriction>
     </xs:simpleType>
+
+	<xs:simpleType name="SyncAsyncRequestType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SYNC"/>
+			<xs:enumeration value="ASYNC"/>
+		</xs:restriction>
+	</xs:simpleType>
 
 
     <xsd:simpleType name="PluginType">

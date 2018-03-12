@@ -28,6 +28,7 @@ import eu.europa.ec.fisheries.uvms.activity.model.schemas.MessageType;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.PluginType;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.SetFLUXFAReportOrQueryMessageRequest;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.SingleValueTypeFilter;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.SyncAsyncRequestType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -112,8 +113,9 @@ public final class ActivityModuleRequestMapper {
         return isEmpty;
     }
 
-    public static String mapToSetFLUXFAReportOrQueryMessageRequest(String fluxFAReportMessage, String username, String pluginType, MessageType messageType) throws ActivityModelMarshallException {
+    public static String mapToSetFLUXFAReportOrQueryMessageRequest(String fluxFAReportMessage, String username, String pluginType, MessageType messageType, SyncAsyncRequestType syncAsyncType) throws ActivityModelMarshallException {
         SetFLUXFAReportOrQueryMessageRequest request = new SetFLUXFAReportOrQueryMessageRequest();
+        request.setRequestType(syncAsyncType);
         switch (messageType){
             case FLUX_FA_REPORT_MESSAGE:
                 request.setMethod(ActivityModuleMethod.GET_FLUX_FA_REPORT);
