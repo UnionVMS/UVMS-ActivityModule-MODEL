@@ -106,6 +106,12 @@
             <version>${logback.core.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>net.codesup.util</groupId>
+            <artifactId>jaxb2-rich-contract-plugin</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
     </dependencies>
 
     <distributionManagement>
@@ -186,11 +192,10 @@
                             <args>
                                 <arg>-XtoString</arg>
                                 <arg>-Xsetters</arg>
-                                <arg>-Xvalue-constructor</arg>
-                                <arg>-Xsetters-mode=direct</arg>
-                                <arg>-Xannotate</arg>
                                 <arg>-Xequals</arg>
-                                <arg>-XhashCode</arg>  
+                                <arg>-Xvalue-constructor</arg>
+                                <arg>-XhashCode</arg>
+                                <arg>-Xfluent-builder</arg>
                             </args>
 
                             <plugins>
@@ -213,6 +218,11 @@
                                     <groupId>org.jvnet.jaxb2_commons</groupId>
                                     <artifactId>jaxb2-annotate-plugin-test-annox-annotations</artifactId>
                                     <version>1.0.0</version>
+                                </plugin>
+                                <plugin>
+                                    <groupId>net.codesup.util</groupId>
+                                    <artifactId>jaxb2-rich-contract-plugin</artifactId>
+                                    <version>1.8.0</version>
                                 </plugin>
                             </plugins>
 
