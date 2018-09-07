@@ -52,7 +52,7 @@ This document and the information contained herein is provided on an "AS IS" bas
       <xsd:enumeration value="3">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">
-            <ccts:Name>Cost of discontinuation of fixed transportMeans</ccts:Name>
+            <ccts:Name>Cost of discontinuation of fixed asset</ccts:Name>
             <ccts:Description>The cost of end lifetime is a cost of discontinuation of fixed asset.</ccts:Description>
           </xsd:documentation>
         </xsd:annotation>
@@ -60,7 +60,7 @@ This document and the information contained herein is provided on an "AS IS" bas
       <xsd:enumeration value="4">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">
-            <ccts:Name>Cost of stake in the rubbish of fixed transportMeans</ccts:Name>
+            <ccts:Name>Cost of stake in the rubbish of fixed asset</ccts:Name>
             <ccts:Description>The cost of end lifetime is a cost of stake in the rubbish of fixed asset.</ccts:Description>
           </xsd:documentation>
         </xsd:annotation>
