@@ -45,8 +45,7 @@ This document and the information contained herein is provided on an "AS IS" bas
         <xsd:annotation>
           <xsd:documentation xml:lang="en">
             <ccts:Name>Amortization at constant rate</ccts:Name>
-            <ccts:Description>The amortization is calculated according to the life cycle of the fixed 
-              asset.</ccts:Description>
+            <ccts:Description>The amortization is calculated according to the life cycle of the fixed asset.</ccts:Description>
           </xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
