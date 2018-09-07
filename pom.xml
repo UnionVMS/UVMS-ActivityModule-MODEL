@@ -185,7 +185,7 @@
 
                         <configuration>
                             <schemaLanguage>XMLSCHEMA</schemaLanguage>
-                            <forceRegenerate>true</forceRegenerate>
+                            <forceRegenerate>false</forceRegenerate>
                             <!-- Default to the schemaDirectory -->
                             <bindingDirectory>${project.basedir}/src/main/resources</bindingDirectory>
                             <bindingIncludes>
@@ -206,6 +206,8 @@
                                 <arg>-Xsetters</arg>
                                 <arg>-Xequals</arg>
                                 <arg>-Xvalue-constructor</arg>
+                                <arg>-Xsetters-mode=direct</arg>
+                                <arg>-Xannotate</arg>
                                 <arg>-XhashCode</arg>
                                 <arg>-Xfluent-builder</arg>
                             </args>
