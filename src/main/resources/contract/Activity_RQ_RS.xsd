@@ -12,6 +12,7 @@
   ~  */
   -->
 <xs:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+           xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:20"
 		   xmlns:xs="http://www.w3.org/2001/XMLSchema"
 		   xmlns="http://europa.eu/ec/fisheries/uvms/activity/model/schemas"
 		   id="FISH2015_SPATIAL2015"
@@ -46,7 +47,9 @@
 					<xs:sequence>
 						<xs:element name="request" type="xs:string" />
 						<xs:element name="requestType" type="SyncAsyncRequestType" />
-					</xs:sequence>
+						<xsd:element name="fluxReportDocumentIDS" maxOccurs="unbounded" minOccurs="0" nillable="true" type="udt:IDType"/>
+                        <xsd:element name="fluxEnvProperties" minOccurs="0" type="FluxEnvProperties"/>
+                    </xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
@@ -263,5 +266,20 @@
 			<xs:element name="ids" type="ActivityIDType" minOccurs="1" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
+
+    <xs:complexType name="FluxEnvProperties">
+        <xs:sequence>
+            <xsd:element name="username" minOccurs="0" type="xsd:string"/>
+            <xsd:element name="senderOrReceiver" minOccurs="0" type="xsd:string"/>
+            <xsd:element name="refGuid" minOccurs="0" type="xsd:string"/>
+            <xsd:element name="todt" minOccurs="0" type="xsd:string"/>
+            <xsd:element name="df" minOccurs="0" type="xsd:string"/>
+            <xsd:element name="date" minOccurs="0" type="xsd:dateTime"/>
+            <xsd:element name="to" minOccurs="0" type="xsd:integer"/>
+            <xsd:element name="destination" minOccurs="0" type="xsd:string" />
+            <xsd:element name="onValue" minOccurs="0" type="xsd:string" />
+            <xsd:element name="recipient" minOccurs="0" type="xsd:string" />
+        </xs:sequence>
+    </xs:complexType>
 
 </xs:schema>
