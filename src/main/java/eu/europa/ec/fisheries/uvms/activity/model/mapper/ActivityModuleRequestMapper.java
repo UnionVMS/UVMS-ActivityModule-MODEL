@@ -115,11 +115,11 @@ public final class ActivityModuleRequestMapper {
         return isEmpty;
     }
 
-    public static String mapToSetFLUXFAReportOrQueryMessageRequest(String fluxFAReportMessage, String pluginType, MessageType messageType, SyncAsyncRequestType syncAsyncType, FluxEnvProperties fluxEnvProperties, List<IDType> fluxReportDocumentIds) throws ActivityModelMarshallException {
+    public static String mapToSetFLUXFAReportOrQueryMessageRequest(String fluxFAReportMessage, String pluginType, MessageType messageType, SyncAsyncRequestType syncAsyncType, FluxEnvProperties fluxEnvProperties, String exchangeLogGuid) throws ActivityModelMarshallException {
         SetFLUXFAReportOrQueryMessageRequest request = new SetFLUXFAReportOrQueryMessageRequest();
         request.setRequestType(syncAsyncType);
         request.setFluxEnvProperties(fluxEnvProperties);
-        request.setFluxReportDocumentIDs(fluxReportDocumentIds);
+        request.setExchangeLogGuid(exchangeLogGuid);
         if (messageType == MessageType.FLUX_FA_REPORT_MESSAGE) {
             request.setMethod(ActivityModuleMethod.GET_FLUX_FA_REPORT);
         } else if (messageType == MessageType.FLUX_FA_QUERY_MESSAGE) {

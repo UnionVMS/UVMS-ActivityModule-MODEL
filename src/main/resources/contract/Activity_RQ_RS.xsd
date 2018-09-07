@@ -47,7 +47,7 @@
 					<xs:sequence>
 						<xs:element name="request" type="xs:string" />
 						<xs:element name="requestType" type="SyncAsyncRequestType" />
-						<xsd:element name="fluxReportDocumentIDS" maxOccurs="unbounded" minOccurs="0" nillable="true" type="udt:IDType"/>
+						<xsd:element name="exchangeLogGuid" minOccurs="0" type="xs:string"/>
                         <xsd:element name="fluxEnvProperties" minOccurs="0" type="FluxEnvProperties"/>
                     </xs:sequence>
 				</xs:extension>
