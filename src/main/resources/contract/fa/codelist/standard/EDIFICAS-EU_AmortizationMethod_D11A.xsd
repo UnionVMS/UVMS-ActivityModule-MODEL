@@ -45,7 +45,8 @@ This document and the information contained herein is provided on an "AS IS" bas
         <xsd:annotation>
           <xsd:documentation xml:lang="en">
             <ccts:Name>Amortization at constant rate</ccts:Name>
-            <ccts:Description>The amortization is calculated according to the life cycle of the fixed transportMeans.</ccts:Description>
+            <ccts:Description>The amortization is calculated according to the life cycle of the fixed 
+              Means.</ccts:Description>
           </xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
@@ -156,7 +157,7 @@ This document and the information contained herein is provided on an "AS IS" bas
       <xsd:enumeration value="300">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">
-            <ccts:Name>Accelerated amortization (Acquired and made fixed transportMeans between 4-12-2008 and 31-12-2009)</ccts:Name>
+            <ccts:Name>Accelerated amortization (Acquired and made fixed asset between 4-12-2008 and 31-12-2009)</ccts:Name>
             <ccts:Description>The amortization is calculated according to the French regulations.</ccts:Description>
           </xsd:documentation>
         </xsd:annotation>
@@ -164,7 +165,7 @@ This document and the information contained herein is provided on an "AS IS" bas
       <xsd:enumeration value="301">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">
-            <ccts:Name>Accelerated amortization (Acquired and made fixed transportMeans since 1-1-2010)</ccts:Name>
+            <ccts:Name>Accelerated amortization (Acquired and made fixed asset since 1-1-2010)</ccts:Name>
             <ccts:Description>The amortization is calculated according to the French regulations.</ccts:Description>
           </xsd:documentation>
         </xsd:annotation>
