@@ -77,7 +77,7 @@ This document and the information contained herein is provided on an "AS IS" bas
         <xsd:annotation>
           <xsd:documentation xml:lang="en">
             <ccts:Name>Bank book transfer (credit)</ccts:Name>
-            <ccts:Description>Current value of an transportMeans, moved from one account to another, as it appears on the balance sheet (credit).</ccts:Description>
+            <ccts:Description>Current value of an asset, moved from one account to another, as it appears on the balance sheet (credit).</ccts:Description>
           </xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
@@ -85,7 +85,7 @@ This document and the information contained herein is provided on an "AS IS" bas
         <xsd:annotation>
           <xsd:documentation xml:lang="en">
             <ccts:Name>Bank book transfer (debit)</ccts:Name>
-            <ccts:Description>Current value of an transportMeans, moved from one account to another, as it appears on the balance sheet (debit).</ccts:Description>
+            <ccts:Description>Current value of an asset, moved from one account to another, as it appears on the balance sheet (debit).</ccts:Description>
           </xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
