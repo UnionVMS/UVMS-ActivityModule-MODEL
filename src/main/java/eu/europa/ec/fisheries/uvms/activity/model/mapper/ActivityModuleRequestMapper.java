@@ -23,7 +23,6 @@ import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityUniquinessList
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.FACatchSummaryReportRequest;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.FishingActivityForTripIds;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.FishingTripRequest;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.FluxEnvProperties;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.GetFishingActivitiesForTripRequest;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.GetNonUniqueIdsRequest;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.GroupCriteria;
@@ -115,10 +114,9 @@ public final class ActivityModuleRequestMapper {
         return isEmpty;
     }
 
-    public static String mapToSetFLUXFAReportOrQueryMessageRequest(String fluxFAReportMessage, String pluginType, MessageType messageType, SyncAsyncRequestType syncAsyncType, FluxEnvProperties fluxEnvProperties, String exchangeLogGuid) throws ActivityModelMarshallException {
+    public static String mapToSetFLUXFAReportOrQueryMessageRequest(String fluxFAReportMessage, String pluginType, MessageType messageType, SyncAsyncRequestType syncAsyncType, String exchangeLogGuid) throws ActivityModelMarshallException {
         SetFLUXFAReportOrQueryMessageRequest request = new SetFLUXFAReportOrQueryMessageRequest();
         request.setRequestType(syncAsyncType);
-        request.setFluxEnvProperties(fluxEnvProperties);
         request.setExchangeLogGuid(exchangeLogGuid);
         if (messageType == MessageType.FLUX_FA_REPORT_MESSAGE) {
             request.setMethod(ActivityModuleMethod.GET_FLUX_FA_REPORT);
