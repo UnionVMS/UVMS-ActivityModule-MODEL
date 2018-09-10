@@ -11,6 +11,10 @@ details. You should have received a copy of the GNU General Public License along
 
 package eu.europa.ec.fisheries.uvms.activity.model.mapper;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMarshallException;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityIDType;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityModuleMethod;
@@ -19,6 +23,7 @@ import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityUniquinessList
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.FACatchSummaryReportRequest;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.FishingActivityForTripIds;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.FishingTripRequest;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.FluxEnvProperties;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.GetFishingActivitiesForTripRequest;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.GetNonUniqueIdsRequest;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.GroupCriteria;
@@ -29,9 +34,6 @@ import eu.europa.ec.fisheries.uvms.activity.model.schemas.PluginType;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.SetFLUXFAReportOrQueryMessageRequest;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.SingleValueTypeFilter;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.SyncAsyncRequestType;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import un.unece.uncefact.data.standard.unqualifieddatatype._20.IDType;
 
 /**
@@ -113,16 +115,15 @@ public final class ActivityModuleRequestMapper {
         return isEmpty;
     }
 
-    public static String mapToSetFLUXFAReportOrQueryMessageRequest(String fluxFAReportMessage, String username, String pluginType, MessageType messageType, SyncAsyncRequestType syncAsyncType) throws ActivityModelMarshallException {
+    public static String mapToSetFLUXFAReportOrQueryMessageRequest(String fluxFAReportMessage, String pluginType, MessageType messageType, SyncAsyncRequestType syncAsyncType, FluxEnvProperties fluxEnvProperties, String exchangeLogGuid) throws ActivityModelMarshallException {
         SetFLUXFAReportOrQueryMessageRequest request = new SetFLUXFAReportOrQueryMessageRequest();
         request.setRequestType(syncAsyncType);
-        switch (messageType){
-            case FLUX_FA_REPORT_MESSAGE:
-                request.setMethod(ActivityModuleMethod.GET_FLUX_FA_REPORT);
-                break;
-            case FLUX_FA_QUERY_MESSAGE:
-                request.setMethod(ActivityModuleMethod.GET_FLUX_FA_QUERY);
-                break;
+        request.setFluxEnvProperties(fluxEnvProperties);
+        request.setExchangeLogGuid(exchangeLogGuid);
+        if (messageType == MessageType.FLUX_FA_REPORT_MESSAGE) {
+            request.setMethod(ActivityModuleMethod.GET_FLUX_FA_REPORT);
+        } else if (messageType == MessageType.FLUX_FA_QUERY_MESSAGE) {
+            request.setMethod(ActivityModuleMethod.GET_FLUX_FA_QUERY);
         }
         request.setPluginType(PluginType.fromValue(pluginType));
         request.setRequest(fluxFAReportMessage);
