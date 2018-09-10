@@ -48,7 +48,6 @@
 						<xs:element name="request" type="xs:string" />
 						<xs:element name="requestType" type="SyncAsyncRequestType" />
 						<xsd:element name="exchangeLogGuid" minOccurs="0" type="xs:string"/>
-                        <xsd:element name="fluxEnvProperties" minOccurs="0" type="FluxEnvProperties"/>
                     </xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
@@ -266,20 +265,5 @@
 			<xs:element name="ids" type="ActivityIDType" minOccurs="1" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
-
-    <xs:complexType name="FluxEnvProperties">
-        <xs:sequence>
-            <xsd:element name="username" minOccurs="0" type="xsd:string"/>
-            <xsd:element name="senderOrReceiver" minOccurs="0" type="xsd:string"/>
-            <xsd:element name="refGuid" minOccurs="0" type="xsd:string"/>
-            <xsd:element name="todt" minOccurs="0" type="xsd:string"/>
-            <xsd:element name="df" minOccurs="0" type="xsd:string"/>
-            <xsd:element name="date" minOccurs="0" type="xsd:dateTime"/>
-            <xsd:element name="to" minOccurs="0" type="xsd:integer"/>
-            <xsd:element name="destination" minOccurs="0" type="xsd:string" />
-            <xsd:element name="onValue" minOccurs="0" type="xsd:string" />
-            <xsd:element name="recipient" minOccurs="0" type="xsd:string" />
-        </xs:sequence>
-    </xs:complexType>
 
 </xs:schema>
