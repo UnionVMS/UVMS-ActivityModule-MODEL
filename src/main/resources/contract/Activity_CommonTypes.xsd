@@ -102,6 +102,7 @@
     <xs:complexType name="FishingActivitySummary">
             <xs:sequence>
                 <xs:element name="activityId" type="xs:int"/>
+                <xs:element name="faReportID" type="xs:int"/>
                 <xs:element name="activityType" type="xs:string"/>
                 <xs:element name="geometry" type="xs:string"/>
                 <xs:element name="acceptedDateTime" type="xs:dateTime"/>
@@ -149,6 +150,7 @@
             <xs:enumeration value="MASTER"/>
             <xs:enumeration value="OCCURRENCE"/>
             <xs:enumeration value="FA_REPORT_ID"/>
+            <xs:enumeration value="FA_STATUS"/>
             <xs:enumeration value="AREA_GEOM"/>
             <xs:enumeration value="ACTIVITY_TYPE"/>
             <xs:enumeration value="TRIP_ID"/>
