@@ -6,7 +6,7 @@
 		<groupId>fish.focus.uvms.maven</groupId>
 		<artifactId>uvms-pom</artifactId>
 		<relativePath />
-		<version>1.14</version>
+		<version>1.18</version>
 	</parent>
     
     <groupId>eu.europa.ec.fisheries.uvms.activity</groupId>
@@ -23,10 +23,12 @@
         <jaxb2.version>0.9.4</jaxb2.version>
         <mapstruct.version>1.1.0.Final</mapstruct.version>
 		<jackson.version>2.6.0</jackson.version>
+        <jackson.annotations.version>2.7.1</jackson.annotations.version>
+        <apache.commons.version>3.7</apache.commons.version>
         <sl4j.version>1.7.25</sl4j.version>
         <logback.version>1.2.3</logback.version>
         <logback.core.version>1.2.3</logback.core.version>
-
+        <jaxb.version>2.3.0</jaxb.version>
         <scm.connection>scm:git:https://github.com/UnionVMS/UVMS-ActivityModule-MODEL.git</scm.connection>
     </properties>
 
@@ -49,13 +51,13 @@
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
-            <version>2.3.0</version>
+            <version>${jaxb.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-core</artifactId>
-            <version>2.3.0</version>
+            <version>${jaxb.version}</version>
         </dependency>
 
         <dependency>
@@ -79,19 +81,19 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>2.7.1</version>
+            <version>${jackson.annotations.version}</version>
         </dependency>
 		
 		<dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.7</version>
+            <version>${apache.commons.version}</version>
         </dependency>
 
         <dependency>
@@ -133,11 +135,10 @@
         </snapshotRepository>
     </distributionManagement>
 
-
 	<scm>
       <connection>${scm.connection}</connection>
 	  <tag>HEAD</tag>
-  </scm>
+    </scm>
 
     <profiles>
         <profile>
@@ -154,7 +155,6 @@
                        <url>https://webgate.ec.europa.eu/CITnet/nexus/content/repositories/mare-snapshots/</url>
                    </snapshotRepository>
                </distributionManagement>
-
             <properties>
                 <scm.connection>scm:git:https://emserveje@webgate.ec.europa.eu/CITnet/stash/scm/unionvms/uvms-activity-model.git</scm.connection>
             </properties>
@@ -176,7 +176,6 @@
                                 </goals>
                             </execution>
                         </executions>
-
                         <configuration>
                             <schemaLanguage>XMLSCHEMA</schemaLanguage>
                             <forceRegenerate>true</forceRegenerate>
@@ -232,9 +231,7 @@
                                     <version>1.8.0</version>
                                 </plugin>
                             </plugins>
-
                         </configuration>
-
                     </plugin>
                 </plugins>
             </build>
