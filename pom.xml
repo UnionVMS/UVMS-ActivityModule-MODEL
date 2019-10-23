@@ -191,7 +191,7 @@
                             </bindingExcludes>
                             <schemaDirectory>src/main/resources</schemaDirectory>
                             <schemaIncludes>
-                                <include>contract/fa/data/standard/*.xsd</include>
+                                <include>contract/slim/*.xsd</include>
                                 <include>contract/*.xsd</include>
                             </schemaIncludes>
                             <extension>true</extension>
