@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Simplified schema ReusableAggregateBusinessInformationEntity_20p0.xsd - Only for use within FLUXFAQueryMessage_3p0.xsd, FLUXFAQueryResponseMessage_3p1.xsd, FLUXFAReportMessage_3p1.xsd and FLUXResponseMessage_6p0.xsd -->
-<xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:20" version="20.0" xmlns:qdt="urn:un:unece:uncefact:data:Standard:QualifiedDataType:20" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:20" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:20" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:20" version="20.0" xmlns:qdt="urn:un:unece:uncefact:data:Standard:QualifiedDataType:20" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:20" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:20" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"  jaxb:version="2.1">
   <xsd:import namespace="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:20" schemaLocation="UnqualifiedDataType_20p0.xsd" />
   <xsd:import namespace="urn:un:unece:uncefact:data:Standard:QualifiedDataType:20" schemaLocation="QualifiedDataType_20p0.xsd" />
+  <xsd:element name="AAPProcess" type="ram:AAPProcessType" />
   <xsd:complexType name="AAPProcessType">
     <xsd:sequence>
       <xsd:element maxOccurs="unbounded" minOccurs="1" name="TypeCode" type="udt:CodeType" />
@@ -11,6 +13,7 @@
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="ResultAAPProduct" type="ram:AAPProductType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="AAPProduct" type="ram:AAPProductType" />
   <xsd:complexType name="AAPProductType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="0" name="SpeciesCode" type="udt:CodeType" />
@@ -28,11 +31,13 @@
       <xsd:element maxOccurs="1" minOccurs="0" name="OriginFishingActivity" type="ram:FishingActivityType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="AAPStock" type="ram:AAPStockType" />
   <xsd:complexType name="AAPStockType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="1" name="ID" type="udt:IDType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="AuthorizationStatus" type="ram:AuthorizationStatusType" />
   <xsd:complexType name="AuthorizationStatusType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="1" name="ConditionCode" type="udt:CodeType" />
@@ -40,6 +45,7 @@
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="Description" type="udt:TextType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="ConstructionEvent" type="ram:ConstructionEventType" />
   <xsd:complexType name="ConstructionEventType">
     <xsd:sequence>
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="Description" type="udt:TextType" />
@@ -47,6 +53,7 @@
       <xsd:element maxOccurs="1" minOccurs="0" name="RelatedConstructionLocation" type="ram:ConstructionLocationType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="ConstructionLocation" type="ram:ConstructionLocationType" />
   <xsd:complexType name="ConstructionLocationType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="0" name="CountryID" type="udt:IDType" />
@@ -59,6 +66,7 @@
       <xsd:element maxOccurs="1" minOccurs="0" name="PhysicalStructuredAddress" type="ram:StructuredAddressType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="ContactParty" type="ram:ContactPartyType" />
   <xsd:complexType name="ContactPartyType">
     <xsd:sequence>
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="ID" type="udt:IDType" />
@@ -76,6 +84,7 @@
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="SpecifiedUniversalCommunication" type="ram:UniversalCommunicationType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="ContactPerson" type="ram:ContactPersonType" />
   <xsd:complexType name="ContactPersonType">
     <xsd:sequence>
       <xsd:element minOccurs="0" name="Title" type="udt:TextType" />
@@ -95,6 +104,7 @@
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="SpecifiedUniversalCommunication" type="ram:UniversalCommunicationType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="DelimitedPeriod" type="ram:DelimitedPeriodType" />
   <xsd:complexType name="DelimitedPeriodType">
     <xsd:sequence>
       <xsd:element minOccurs="0" name="StartDateTime" type="udt:DateTimeType" />
@@ -102,6 +112,7 @@
       <xsd:element minOccurs="0" name="DurationMeasure" type="udt:MeasureType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="FAQueryParameter" type="ram:FAQueryParameterType" />
   <xsd:complexType name="FAQueryParameterType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="1" name="TypeCode" type="udt:CodeType" />
@@ -110,6 +121,7 @@
       <xsd:element maxOccurs="1" minOccurs="0" name="ValueID" type="udt:IDType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="FAQuery" type="ram:FAQueryType" />
   <xsd:complexType name="FAQueryType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="1" name="ID" type="udt:IDType" />
@@ -120,17 +132,20 @@
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="SimpleFAQueryParameter" type="ram:FAQueryParameterType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="FLUXParty" type="ram:FLUXPartyType" />
   <xsd:complexType name="FLUXPartyType">
     <xsd:sequence>
       <xsd:element maxOccurs="unbounded" minOccurs="1" name="ID" type="udt:IDType" />
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="Name" type="udt:TextType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="EmailCommunication" type="ram:EmailCommunicationType" />
   <xsd:complexType name="EmailCommunicationType">
     <xsd:sequence>
       <xsd:element minOccurs="0" name="URIID" type="udt:IDType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="FACatch" type="ram:FACatchType" />
   <xsd:complexType name="FACatchType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="1" name="SpeciesCode" type="udt:CodeType" />
@@ -150,6 +165,7 @@
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="DestinationFLUXLocation" type="ram:FLUXLocationType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="FAReportDocument" type="ram:FAReportDocumentType" />
   <xsd:complexType name="FAReportDocumentType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="0" name="TypeCode" type="udt:CodeType" />
@@ -161,7 +177,13 @@
       <xsd:element maxOccurs="1" minOccurs="0" name="SpecifiedVesselTransportMeans" type="ram:VesselTransportMeansType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="FishingActivity" type="ram:FishingActivityType" />
   <xsd:complexType name="FishingActivityType">
+<!--   <xsd:annotation>
+    <xsd:appinfo>
+      <jaxb:class name="FishingActivity" />
+    </xsd:appinfo>
+  </xsd:annotation> -->
     <xsd:sequence>
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="ID" type="udt:IDType" />
       <xsd:element maxOccurs="1" minOccurs="1" name="TypeCode" type="udt:CodeType" />
@@ -186,6 +208,7 @@
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="RelatedVesselTransportMeans" type="ram:VesselTransportMeansType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="FishingCategory" type="ram:FishingCategoryType" />
   <xsd:complexType name="FishingCategoryType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="0" name="TypeCode" type="udt:CodeType" />
@@ -197,6 +220,7 @@
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="AuthorizedFishingGear" type="ram:FishingGearType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="FishingGear" type="ram:FishingGearType" />
   <xsd:complexType name="FishingGearType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="0" name="TypeCode" type="udt:CodeType" />
@@ -205,6 +229,7 @@
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="ApplicableGearCharacteristic" type="ram:GearCharacteristicType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="FishingTrip" type="ram:FishingTripType" />
   <xsd:complexType name="FishingTripType">
     <xsd:sequence>
       <xsd:element maxOccurs="unbounded" minOccurs="1" name="ID" type="udt:IDType" />
@@ -212,6 +237,7 @@
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="SpecifiedDelimitedPeriod" type="ram:DelimitedPeriodType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="FLAPDocument" type="ram:FLAPDocumentType" />
   <xsd:complexType name="FLAPDocumentType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="0" name="ID" type="udt:IDType" />
@@ -236,6 +262,7 @@
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="SpecifiedAuthorizationStatus" type="ram:AuthorizationStatusType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="FLAPRequestDocument" type="ram:FLAPRequestDocumentType" />
   <xsd:complexType name="FLAPRequestDocumentType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="0" name="ID" type="udt:IDType" />
@@ -247,6 +274,7 @@
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="RelatedValidationResultDocument" type="ram:ValidationResultDocumentType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="FLUXBinaryFile" type="ram:FLUXBinaryFileType" />
   <xsd:complexType name="FLUXBinaryFileType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="0" name="Title" type="udt:TextType" />
@@ -257,6 +285,7 @@
       <xsd:element maxOccurs="1" minOccurs="0" name="Name" type="udt:TextType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="FLUXCharacteristic" type="ram:FLUXCharacteristicType" />
   <xsd:complexType name="FLUXCharacteristicType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="0" name="TypeCode" type="udt:CodeType" />
@@ -271,6 +300,7 @@
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="RelatedFLAPDocument" type="ram:FLAPDocumentType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="FLUXGeographicalCoordinate" type="ram:FLUXGeographicalCoordinateType" />
   <xsd:complexType name="FLUXGeographicalCoordinateType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="1" name="LongitudeMeasure" type="udt:MeasureType" />
@@ -279,6 +309,7 @@
       <xsd:element maxOccurs="1" minOccurs="0" name="SystemID" type="udt:IDType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="FLUXLocation" type="ram:FLUXLocationType" />
   <xsd:complexType name="FLUXLocationType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="0" name="TypeCode" type="udt:CodeType" />
@@ -296,6 +327,7 @@
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="ApplicableFLUXCharacteristic" type="ram:FLUXCharacteristicType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="FLUXPicture" type="ram:FLUXPictureType" />
   <xsd:complexType name="FLUXPictureType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="0" name="ID" type="udt:IDType" />
@@ -306,6 +338,7 @@
       <xsd:element maxOccurs="1" minOccurs="0" name="DigitalImageBinaryObject" type="udt:BinaryObjectType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="FLUXReportDocument" type="ram:FLUXReportDocumentType" />
   <xsd:complexType name="FLUXReportDocumentType">
     <xsd:sequence>
       <xsd:element maxOccurs="unbounded" minOccurs="1" name="ID" type="udt:IDType" />
@@ -317,6 +350,7 @@
       <xsd:element maxOccurs="1" minOccurs="0" name="OwnerFLUXParty" type="ram:FLUXPartyType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="FLUXResponseDocument" type="ram:FLUXResponseDocumentType" />
   <xsd:complexType name="FLUXResponseDocumentType">
     <xsd:sequence>
       <xsd:element maxOccurs="unbounded" minOccurs="1" name="ID" type="udt:IDType" />
@@ -330,6 +364,7 @@
       <xsd:element maxOccurs="1" minOccurs="0" name="RespondentFLUXParty" type="ram:FLUXPartyType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="GearCharacteristic" type="ram:GearCharacteristicType" />
   <xsd:complexType name="GearCharacteristicType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="0" name="TypeCode" type="udt:CodeType" />
@@ -343,6 +378,7 @@
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="SpecifiedFLUXLocation" type="ram:FLUXLocationType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="GearProblem" type="ram:GearProblemType" />
   <xsd:complexType name="GearProblemType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="0" name="TypeCode" type="udt:CodeType" />
@@ -352,6 +388,7 @@
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="RelatedFishingGear" type="ram:FishingGearType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="RegistrationEvent" type="ram:RegistrationEventType" />
   <xsd:complexType name="RegistrationEventType">
     <xsd:sequence>
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="Description" type="udt:TextType" />
@@ -359,6 +396,7 @@
       <xsd:element maxOccurs="1" minOccurs="0" name="RelatedRegistrationLocation" type="ram:RegistrationLocationType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="RegistrationLocation" type="ram:RegistrationLocationType" />
   <xsd:complexType name="RegistrationLocationType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="0" name="CountryID" type="udt:IDType" />
@@ -370,6 +408,7 @@
       <xsd:element maxOccurs="1" minOccurs="0" name="PhysicalStructuredAddress" type="ram:StructuredAddressType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="SalesBatch" type="ram:SalesBatchType" />
   <xsd:complexType name="SalesBatchType">
     <xsd:sequence>
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="ID" type="udt:IDType" />
@@ -377,17 +416,20 @@
       <xsd:element maxOccurs="1" minOccurs="0" name="TotalSalesPrice" type="ram:SalesPriceType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="SalesPrice" type="ram:SalesPriceType" />
   <xsd:complexType name="SalesPriceType">
     <xsd:sequence>
       <xsd:element maxOccurs="unbounded" minOccurs="1" name="ChargeAmount" type="udt:AmountType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="SizeDistribution" type="ram:SizeDistributionType" />
   <xsd:complexType name="SizeDistributionType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="0" name="CategoryCode" type="udt:CodeType" />
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="ClassCode" type="udt:CodeType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="SpecifiedDirectPosition" type="ram:SpecifiedDirectPositionType" />
   <xsd:complexType name="SpecifiedDirectPositionType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="0" name="Name" type="udt:TextType" />
@@ -397,6 +439,7 @@
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="CountNumeric" type="udt:NumericType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="SpecifiedLinearRing" type="ram:SpecifiedLinearRingType" />
   <xsd:complexType name="SpecifiedLinearRingType">
     <xsd:sequence>
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="Coordinate" type="udt:TextType" />
@@ -404,6 +447,7 @@
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="SpecifiedFLUXGeographicalCoordinate" type="ram:FLUXGeographicalCoordinateType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="SpecifiedPeriod" type="ram:SpecifiedPeriodType" />
   <xsd:complexType name="SpecifiedPeriodType">
     <xsd:sequence>
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="DurationMeasure" type="udt:MeasureType" />
@@ -422,12 +466,14 @@
       <xsd:element minOccurs="0" name="PurposeCode" type="udt:CodeType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="SpecifiedPolygon" type="ram:SpecifiedPolygonType" />
   <xsd:complexType name="SpecifiedPolygonType">
     <xsd:sequence>
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="InteriorSpecifiedLinearRing" type="ram:SpecifiedLinearRingType" />
       <xsd:element maxOccurs="1" minOccurs="1" name="ExteriorSpecifiedLinearRing" type="ram:SpecifiedLinearRingType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="SpecifiedPreference" type="ram:SpecifiedPreferenceType" />
   <xsd:complexType name="SpecifiedPreferenceType">
     <xsd:sequence>
       <xsd:element minOccurs="0" name="PriorityRankingNumeric" type="udt:NumericType" />
@@ -436,6 +482,7 @@
       <xsd:element minOccurs="0" name="AvailableSpecifiedPeriod" type="ram:SpecifiedPeriodType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="StructuredAddress" type="ram:StructuredAddressType" />
   <xsd:complexType name="StructuredAddressType">
     <xsd:sequence>
       <xsd:element minOccurs="0" name="ID" type="udt:IDType" />
@@ -457,6 +504,7 @@
       <xsd:element maxOccurs="1" minOccurs="0" name="PostalArea" type="udt:TextType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="TargetedQuota" type="ram:TargetedQuotaType" />
   <xsd:complexType name="TargetedQuotaType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="1" name="TypeCode" type="udt:CodeType" />
@@ -465,6 +513,7 @@
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="SpecifiedQuantity" type="udt:QuantityType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="TelecommunicationCommunication" type="ram:TelecommunicationCommunicationType" />
   <xsd:complexType name="TelecommunicationCommunicationType">
     <xsd:sequence>
       <xsd:element minOccurs="0" name="LocalNumber" type="udt:TextType" />
@@ -478,6 +527,7 @@
       <xsd:element minOccurs="0" name="UsageSpecifiedPreference" type="ram:SpecifiedPreferenceType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="UniversalCommunication" type="ram:UniversalCommunicationType" />
   <xsd:complexType name="UniversalCommunicationType">
     <xsd:sequence>
       <xsd:element minOccurs="0" name="URIID" type="udt:IDType" />
@@ -493,6 +543,7 @@
       <xsd:element minOccurs="0" name="UsageSpecifiedPreference" type="ram:SpecifiedPreferenceType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="ValidationQualityAnalysis" type="ram:ValidationQualityAnalysisType" />
   <xsd:complexType name="ValidationQualityAnalysisType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="0" name="LevelCode" type="udt:CodeType" />
@@ -503,6 +554,7 @@
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="ReferencedItem" type="udt:TextType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="ValidationResultDocument" type="ram:ValidationResultDocumentType" />
   <xsd:complexType name="ValidationResultDocumentType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="0" name="ValidatorID" type="udt:IDType" />
@@ -510,6 +562,7 @@
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="RelatedValidationQualityAnalysis" type="ram:ValidationQualityAnalysisType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="VesselAdministrativeCharacteristic" type="ram:VesselAdministrativeCharacteristicType" />
   <xsd:complexType name="VesselAdministrativeCharacteristicType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="1" name="TypeCode" type="udt:CodeType" />
@@ -523,11 +576,13 @@
       <xsd:element maxOccurs="1" minOccurs="0" name="ValueFLUXBinaryFile" type="ram:FLUXBinaryFileType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="VesselCountry" type="ram:VesselCountryType" />
   <xsd:complexType name="VesselCountryType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="1" name="ID" type="udt:IDType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="VesselCrew" type="ram:VesselCrewType" />
   <xsd:complexType name="VesselCrewType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="0" name="TypeCode" type="udt:CodeType" />
@@ -538,12 +593,14 @@
       <xsd:element maxOccurs="1" minOccurs="0" name="AboveDeckSizeQuantity" type="udt:QuantityType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="VesselDimension" type="ram:VesselDimensionType" />
   <xsd:complexType name="VesselDimensionType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="1" name="TypeCode" type="udt:CodeType" />
       <xsd:element maxOccurs="1" minOccurs="1" name="ValueMeasure" type="udt:MeasureType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="VesselEngine" type="ram:VesselEngineType" />
   <xsd:complexType name="VesselEngineType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="0" name="SerialNumberID" type="udt:IDType" />
@@ -558,6 +615,7 @@
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="IllustrateFLUXPicture" type="ram:FLUXPictureType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="VesselEquipmentCharacteristic" type="ram:VesselEquipmentCharacteristicType" />
   <xsd:complexType name="VesselEquipmentCharacteristicType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="1" name="TypeCode" type="udt:CodeType" />
@@ -571,6 +629,7 @@
       <xsd:element maxOccurs="1" minOccurs="0" name="ValueFLUXBinaryFile" type="ram:FLUXBinaryFileType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="VesselGeographicalCoordinate" type="ram:VesselGeographicalCoordinateType" />
   <xsd:complexType name="VesselGeographicalCoordinateType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="0" name="AltitudeMeasure" type="udt:MeasureType" />
@@ -579,6 +638,7 @@
       <xsd:element maxOccurs="1" minOccurs="0" name="SystemID" type="udt:IDType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="VesselPositionEvent" type="ram:VesselPositionEventType" />
   <xsd:complexType name="VesselPositionEventType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="1" name="ObtainedOccurrenceDateTime" type="udt:DateTimeType" />
@@ -589,6 +649,7 @@
       <xsd:element maxOccurs="1" minOccurs="1" name="SpecifiedVesselGeographicalCoordinate" type="ram:VesselGeographicalCoordinateType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="VesselStorageCharacteristic" type="ram:VesselStorageCharacteristicType" />
   <xsd:complexType name="VesselStorageCharacteristicType">
     <xsd:sequence>
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="TypeCode" type="udt:CodeType" />
@@ -599,6 +660,7 @@
       <xsd:element maxOccurs="1" minOccurs="0" name="ID" type="udt:IDType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="VesselTechnicalCharacteristic" type="ram:VesselTechnicalCharacteristicType" />
   <xsd:complexType name="VesselTechnicalCharacteristicType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="0" name="TypeCode" type="udt:CodeType" />
@@ -612,6 +674,7 @@
       <xsd:element maxOccurs="1" minOccurs="0" name="ValueFLUXBinaryFile" type="ram:FLUXBinaryFileType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="VesselTransportCharter" type="ram:VesselTransportCharterType" />
   <xsd:complexType name="VesselTransportCharterType">
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="1" name="TypeCode" type="udt:CodeType" />
@@ -619,6 +682,7 @@
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="SpecifiedContactParty" type="ram:ContactPartyType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="VesselTransportMeans" type="ram:VesselTransportMeansType" />
   <xsd:complexType name="VesselTransportMeansType">
     <xsd:sequence>
       <xsd:element maxOccurs="unbounded" minOccurs="1" name="ID" type="udt:IDType" />
@@ -648,6 +712,7 @@
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="GrantedFLAPDocument" type="ram:FLAPDocumentType" />
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="WebsiteCommunication" type="ram:WebsiteCommunicationType" />
   <xsd:complexType name="WebsiteCommunicationType">
     <xsd:sequence>
       <xsd:element minOccurs="0" name="WebsiteURIID" type="udt:IDType" />
