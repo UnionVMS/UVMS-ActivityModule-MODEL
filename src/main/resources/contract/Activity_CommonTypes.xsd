@@ -133,6 +133,7 @@
             <xs:enumeration value="OWNER"/>
             <xs:enumeration value="PERIOD_START"/>
             <xs:enumeration value="PERIOD_END"/>
+            <xs:enumeration value="PERIOD_END_TRIP"/>
             <xs:enumeration value="VESSEL_IDENTIFIRE"/>
             <xs:enumeration value="VESSEL_NAME"/>
             <xs:enumeration value="VESSEL"/>
@@ -156,6 +157,17 @@
             <xs:enumeration value="TRIP_ID"/>
             <xs:enumeration value="CONTACT_ROLE_CODE"/>
             <xs:enumeration value="FISHING_TRIP_SCHEME_ID"/>
+            <xs:enumeration value="FLAG_STATE"/>
+            <xs:enumeration value="EXT_MARK"/>
+            <xs:enumeration value="IRCS"/>
+            <xs:enumeration value="CFR"/>
+            <xs:enumeration value="UVI"/>
+            <xs:enumeration value="ICCAT"/>
+            <xs:enumeration value="GFCM"/>
+            <xs:enumeration value="FIRST_FISHING_ACTIVITY"/>
+            <xs:enumeration value="LAST_FISHING_ACTIVITY"/>
+            <xs:enumeration value="TRIP_DURATION"/>
+            <xs:enumeration value="NUMBER_OF_CORRECTIONS"/>
         </xs:restriction>
     </xs:simpleType>
 
