@@ -233,7 +233,7 @@
             <xs:enumeration value="DISCARDED" />
             <xs:enumeration value="DEMINIMIS"/>
             <xs:enumeration value="ALLOCATED_TO_QUOTA"/>
-            <xs:enumeration value="TAKEN_ON_BOARD"/>
+            <xs:enumeration value="TAKEN_ONBOARD"/>
             <xs:enumeration value="ONBOARD"/>
             <xs:enumeration value="KEPT_IN_NET"/>
             <xs:enumeration value="BY_CATCH"/>
