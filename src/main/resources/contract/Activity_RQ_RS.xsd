@@ -37,6 +37,7 @@
 			<xs:enumeration value="GET_FA_CATCH_SUMMARY_REPORT" />
 			<xs:enumeration value="GET_NON_UNIQUE_IDS"/>
 			<xs:enumeration value="GET_FISHING_ACTIVITY_FOR_TRIPS"/>
+			<xs:enumeration value="CREATE_AND_SEND_FA_QUERY"/>
 		</xs:restriction>
 	</xs:simpleType>
 
@@ -139,6 +140,25 @@
 					<xs:sequence>
 						<xs:element name="summaryRecord" type="FACatchSummaryRecord" minOccurs="0" maxOccurs="unbounded"/>
 						<xs:element name="total" type="SummaryTable"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="CreateAndSendFAQueryRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ActivityModuleRequest">
+					<xs:sequence>
+						<xs:element name="vesselId" type="xs:string"/>
+						<xs:element name="vesselSchemeId" type="xs:string"/>
+						<xs:element name="consolidated" type="xs:boolean"/>
+						<xs:element name="startDate" type="xs:string"/>
+						<xs:element name="endDate" type="xs:string"/>
+						<xs:element name="organisation" type="xs:string"/>
+						<xs:element name="endpoint" type="xs:string"/>
+						<xs:element name="channel" type="xs:string"/>
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
