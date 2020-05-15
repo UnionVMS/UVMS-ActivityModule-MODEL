@@ -40,6 +40,9 @@
 			<xs:enumeration value="GET_FISHING_ACTIVITY_FOR_TRIPS"/>
 			<xs:enumeration value="CREATE_AND_SEND_FA_QUERY_FOR_VESSEL"/>
 			<xs:enumeration value="CREATE_AND_SEND_FA_QUERY_FOR_TRIP"/>
+			<xs:enumeration value="FORWARD_MULTIPLE_FA_REPORTS"/>
+			<xs:enumeration value="FORWARD_FA_REPORT_WITH_LOGBOOK"/>
+			<xs:enumeration value="FORWARD_FA_REPORT_FROM_POSITION"/>
 		</xs:restriction>
 	</xs:simpleType>
 
@@ -209,6 +212,58 @@
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
+
+	<xsd:complexType name="ForwardFAReportBaseRequest">
+		<xsd:complexContent>
+			<xsd:extension base="ActivityModuleRequest">
+				<xsd:sequence>
+					<xsd:element name="newReportIds" type="xsd:boolean"/>
+					<xs:element name="receiver" type="xs:string"/>
+					<xs:element name="dataflow" type="xs:string"/>
+					<xs:element name="consolidated" type="xs:boolean"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:element name="ForwardMultipleFAReportsRequest">
+		<xs:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="ForwardFAReportBaseRequest">
+					<xsd:sequence>
+						<xsd:element name="reportIds" type="FluxReportIdentifier" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xs:complexType>
+	</xsd:element>
+
+	<xsd:element name="ForwardFAReportWithLogbookRequest">
+		<xs:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="ForwardFAReportBaseRequest">
+					<xsd:sequence>
+						<xsd:element name="tripIds" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xs:complexType>
+	</xsd:element>
+
+	<xsd:element name="ForwardFAReportFromPositionRequest">
+		<xs:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="ForwardFAReportBaseRequest">
+					<xsd:sequence>
+						<xsd:element name="startDate" type="xsd:date"/>
+						<xsd:element name="endDate" type="xsd:date"/>
+						<xsd:element name="assetHistoryGuid" type="xsd:string"/>
+						<xsd:element name="logbook" type="xsd:boolean"/>
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xs:complexType>
+	</xsd:element>
 
     <xs:simpleType name="MessageType">
         <xs:restriction base="xs:string">
