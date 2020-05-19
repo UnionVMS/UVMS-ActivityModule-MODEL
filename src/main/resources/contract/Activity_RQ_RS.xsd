@@ -151,8 +151,7 @@
 			<xs:complexContent>
 				<xs:extension base="ActivityModuleRequest">
 					<xs:sequence>
-						<xs:element name="vesselId" type="xs:string"/>
-						<xs:element name="vesselSchemeId" type="xs:string"/>
+						<xs:element name="vesselIdentifiers" type="VesselIdentifierType" minOccurs="0" maxOccurs="unbounded"/>
 						<xs:element name="consolidated" type="xs:boolean"/>
 						<xs:element name="startDate" type="xs:dateTime"/>
 						<xs:element name="endDate" type="xs:dateTime"/>
