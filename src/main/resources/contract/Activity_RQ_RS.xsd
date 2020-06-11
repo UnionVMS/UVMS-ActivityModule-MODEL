@@ -37,7 +37,8 @@
 			<xs:enumeration value="GET_FA_CATCH_SUMMARY_REPORT" />
 			<xs:enumeration value="GET_NON_UNIQUE_IDS"/>
 			<xs:enumeration value="GET_FISHING_ACTIVITY_FOR_TRIPS"/>
-			<xs:enumeration value="CREATE_AND_SEND_FA_QUERY"/>
+			<xs:enumeration value="CREATE_AND_SEND_FA_QUERY_FOR_VESSEL"/>
+			<xs:enumeration value="CREATE_AND_SEND_FA_QUERY_FOR_TRIP"/>
 		</xs:restriction>
 	</xs:simpleType>
 
@@ -146,7 +147,7 @@
 		</xs:complexType>
 	</xs:element>
 
-	<xs:element name="CreateAndSendFAQueryRequest">
+	<xs:element name="CreateAndSendFAQueryForVesselRequest">
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="ActivityModuleRequest">
@@ -155,6 +156,21 @@
 						<xs:element name="consolidated" type="xs:boolean"/>
 						<xs:element name="startDate" type="xs:dateTime"/>
 						<xs:element name="endDate" type="xs:dateTime"/>
+						<xs:element name="receiver" type="xs:string"/>
+						<xs:element name="dataflow" type="xs:string"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="CreateAndSendFAQueryForTripRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ActivityModuleRequest">
+					<xs:sequence>
+						<xs:element name="tripId" type="xs:string"/>
+						<xs:element name="consolidated" type="xs:boolean"/>
 						<xs:element name="receiver" type="xs:string"/>
 						<xs:element name="dataflow" type="xs:string"/>
 					</xs:sequence>
