@@ -13,15 +13,20 @@
 
 package eu.europa.ec.fisheries.uvms.activity.model.mapper;
 
+import javax.jms.JMSException;
+import javax.jms.TextMessage;
+
 import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMapperException;
 import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMarshallException;
 import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelValidationException;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.*;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityFault;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.CreateAndSendFAQueryResponse;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.FACatchSummaryReportResponse;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.FishingTripResponse;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.GetFishingActivitiesForTripResponse;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.GetNonUniqueIdsResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.jms.JMSException;
-import javax.jms.TextMessage;
 
 public final class ActivityModuleResponseMapper {
 
@@ -57,6 +62,12 @@ public final class ActivityModuleResponseMapper {
     public static GetFishingActivitiesForTripResponse mapToGetFishingActivitiesForTripResponse(TextMessage response, String jmsCorrelationId) throws ActivityModelMapperException {
         validateResponse(response, jmsCorrelationId);
         return JAXBMarshaller.unmarshallTextMessage(response, GetFishingActivitiesForTripResponse.class);
+    }
+
+    public static String mapToCreateAndSendFAQueryResponse(String messageId) throws ActivityModelMarshallException {
+        CreateAndSendFAQueryResponse response = new CreateAndSendFAQueryResponse();
+        response.setMessageId(messageId);
+        return JAXBMarshaller.marshallJaxBObjectToString(response);
     }
 
     private static void validateResponse(TextMessage response, String correlationId) throws ActivityModelValidationException {

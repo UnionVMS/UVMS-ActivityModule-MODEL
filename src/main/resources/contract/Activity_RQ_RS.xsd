@@ -179,6 +179,18 @@
 		</xs:complexType>
 	</xs:element>
 
+	<xs:element name="CreateAndSendFAQueryResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ActivityModuleRequest">
+					<xs:sequence>
+						<xs:element name="messageId" type="xs:string"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
     <xs:simpleType name="MessageType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="FLUXFaQueryMessage"/>
