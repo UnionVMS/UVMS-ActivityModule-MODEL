@@ -141,6 +141,14 @@ public final class ActivityModuleRequestMapper {
         request.setSingleValueFilters(singleFilters);
         return JAXBMarshaller.marshallJaxBObjectToString(request);
     }
+    
+    public static String mapToActivityGetFishingTripRequestReporting(List<ListValueTypeFilter> listFilter, List<SingleValueTypeFilter> singleFilters) throws ActivityModelMarshallException {
+    	FishingTripRequest request = new FishingTripRequest();
+    	request.setMethod(ActivityModuleMethod.GET_FISHING_TRIPS_RPT);
+    	request.setListValueFilters(listFilter);
+    	request.setSingleValueFilters(singleFilters);
+    	return JAXBMarshaller.marshallJaxBObjectToString(request);
+    }
 
     public static String mapToFaCatchSummaryReportRequestRequest(List<ListValueTypeFilter> listFilter, List<SingleValueTypeFilter> singleFilters, List<GroupCriteria> groupCriterias) throws ActivityModelMarshallException {
         FACatchSummaryReportRequest request = new FACatchSummaryReportRequest();

@@ -35,6 +35,7 @@
 			<xs:enumeration value="GET_FLUX_FA_QUERY" />
 			<xs:enumeration value="GET_FLUX_MDR_ENTITY" />
 			<xs:enumeration value="GET_FISHING_TRIPS" />
+			<xs:enumeration value="GET_FISHING_TRIPS_RPT" />
 			<xs:enumeration value="GET_FA_CATCH_SUMMARY_REPORT" />
 			<xs:enumeration value="GET_NON_UNIQUE_IDS"/>
 			<xs:enumeration value="GET_FISHING_ACTIVITY_FOR_TRIPS"/>
