@@ -265,4 +265,24 @@
         </xs:sequence>
     </xs:complexType>
 
+    <xs:complexType name="ActivityAreas">
+        <xs:sequence>
+            <xs:element name="area" type="Area" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Area">
+        <xs:sequence>
+            <xs:element name="areaType" type="xs:string"/>
+            <xs:element name="remoteId" type="xs:string"/>
+            <xs:element name="name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="FluxReportIdentifier">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="schemeId" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
 </xs:schema>
