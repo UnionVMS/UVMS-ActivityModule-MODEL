@@ -13,6 +13,7 @@
   -->
 <xs:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
            xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:20"
+		   xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:20"
 		   xmlns:xs="http://www.w3.org/2001/XMLSchema"
 		   xmlns="http://europa.eu/ec/fisheries/uvms/activity/model/schemas"
 		   id="FISH2015_SPATIAL2015"
@@ -41,6 +42,24 @@
 			<xs:enumeration value="CREATE_AND_SEND_FA_QUERY_FOR_TRIP"/>
 		</xs:restriction>
 	</xs:simpleType>
+
+	<xsd:element name="ForwardReportToSubscriptionRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="faReports" type="ReportToSubscription" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xsd:element>
+
+	<xs:complexType  name="ReportToSubscription">
+		<xs:sequence>
+			<xs:element name="fluxFaReportMessageIds" type="FluxReportIdentifier" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="fishingActivities" type="ram:FishingActivityType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="faReportType" type="xs:string"/>
+			<xs:element name="activityAreas" type="ActivityAreas" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="assetHistoryGuids" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
 
 	<xs:element name="SetFLUXFAReportOrQueryMessageRequest">
 		<xs:complexType>

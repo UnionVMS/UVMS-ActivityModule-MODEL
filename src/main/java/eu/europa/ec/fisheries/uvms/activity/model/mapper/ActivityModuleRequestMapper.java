@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMarshallException;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityAreas;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityIDType;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityModuleMethod;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityTableType;
@@ -23,6 +24,8 @@ import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityUniquinessList
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.FACatchSummaryReportRequest;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.FishingActivityForTripIds;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.FishingTripRequest;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.FluxReportIdentifier;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.ForwardReportToSubscriptionRequest;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.GetFishingActivitiesForTripRequest;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.GetNonUniqueIdsRequest;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.GroupCriteria;
@@ -30,9 +33,12 @@ import eu.europa.ec.fisheries.uvms.activity.model.schemas.ListValueTypeFilter;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.MapToSubscriptionRequest;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.MessageType;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.PluginType;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.ReportToSubscription;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.SetFLUXFAReportOrQueryMessageRequest;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.SingleValueTypeFilter;
 import eu.europa.ec.fisheries.uvms.activity.model.schemas.SyncAsyncRequestType;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.VesselIdentifierType;
+import un.unece.uncefact.data.standard.reusableaggregatebusinessinformationentity._20.FishingActivity;
 import un.unece.uncefact.data.standard.unqualifieddatatype._20.IDType;
 
 /**
@@ -165,5 +171,11 @@ public final class ActivityModuleRequestMapper {
                 break;
         }
         return JAXBMarshaller.marshallJaxBObjectToString(mapToSubscriptionRequest);
+    }
+
+    public static String mapToForwardReportToSubscriptionRequest(List<ReportToSubscription> faReports) throws ActivityModelMarshallException {
+        ForwardReportToSubscriptionRequest request = new ForwardReportToSubscriptionRequest();
+        request.setFaReports(faReports);
+        return JAXBMarshaller.marshallJaxBObjectToString(request);
     }
 }
