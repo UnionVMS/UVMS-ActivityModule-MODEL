@@ -43,6 +43,7 @@
 			<xs:enumeration value="FORWARD_MULTIPLE_FA_REPORTS"/>
 			<xs:enumeration value="FORWARD_FA_REPORT_WITH_LOGBOOK"/>
 			<xs:enumeration value="FORWARD_FA_REPORT_FROM_POSITION"/>
+			<xs:enumeration value="FIND_ATTACHMENTS_FOR_GUID_AND_QUERY_PERIOD"/>
 		</xs:restriction>
 	</xs:simpleType>
 
@@ -386,4 +387,47 @@
 		</xs:sequence>
 	</xs:complexType>
 
+	<xs:element name="GetAttachmentsForGuidAndQueryPeriodRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ActivityModuleRequest">
+					<xs:sequence>
+						<xs:element name="query" type="GetAttachmentsForGuidAndQueryPeriod" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="GetAttachmentsForGuidAndQueryPeriod">
+		<xs:sequence>
+			<xs:element name="guid" type="xsd:string"/>
+			<xs:element name="startDate" type="xs:date"/>
+			<xs:element name="endDate" type="xs:date"/>
+			<xs:element name="pdf" type="xs:boolean"/>
+			<xs:element name="xml" type="xs:boolean"/>
+			<xs:element name="consolidated" type="xs:boolean"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="GetAttachmentsForGuidAndQueryPeriodResponse">
+		<xs:sequence>
+			<xs:element name="responseList" type="AttachmentResponseObject" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AttachmentResponseObject">
+		<xs:sequence>
+			<xs:element name="tripId" type="xsd:string"/>
+			<xs:element name="type" type="AttachmentType"/>
+			<xs:element name="content" type="xsd:string"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xsd:simpleType name="AttachmentType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="PDF"/>
+			<xsd:enumeration value="XML"/>
+		</xsd:restriction>
+	</xsd:simpleType>
 </xs:schema>
