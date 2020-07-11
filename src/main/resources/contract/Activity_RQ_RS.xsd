@@ -404,17 +404,20 @@
 			<xs:element name="guid" type="xsd:string"/>
 			<xs:element name="startDate" type="xs:date"/>
 			<xs:element name="endDate" type="xs:date"/>
+			<xs:element name="logbook" type="xs:boolean"/>
 			<xs:element name="pdf" type="xs:boolean"/>
 			<xs:element name="xml" type="xs:boolean"/>
 			<xs:element name="consolidated" type="xs:boolean"/>
 		</xs:sequence>
 	</xs:complexType>
 
-	<xs:complexType name="GetAttachmentsForGuidAndQueryPeriodResponse">
-		<xs:sequence>
-			<xs:element name="responseList" type="AttachmentResponseObject" maxOccurs="unbounded"/>
-		</xs:sequence>
-	</xs:complexType>
+	<xs:element name="GetAttachmentsForGuidAndQueryPeriodResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="responseList" type="AttachmentResponseObject" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
 
 	<xs:complexType name="AttachmentResponseObject">
 		<xs:sequence>
