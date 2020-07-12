@@ -218,10 +218,12 @@
 		<xsd:complexContent>
 			<xsd:extension base="ActivityModuleRequest">
 				<xsd:sequence>
+					<xsd:element name="executionId" type="xsd:long" />
 					<xsd:element name="newReportIds" type="xsd:boolean"/>
-					<xs:element name="receiver" type="xs:string"/>
-					<xs:element name="dataflow" type="xs:string"/>
-					<xs:element name="consolidated" type="xs:boolean"/>
+					<xsd:element name="receiver" type="xsd:string" minOccurs="0" />
+					<xsd:element name="dataflow" type="xsd:string" minOccurs="0" />
+					<xsd:element name="consolidated" type="xsd:boolean"/>
+					<xsd:element name="emailConfig" type="EmailConfigForReportGeneration" minOccurs="0" />
 				</xsd:sequence>
 			</xsd:extension>
 		</xsd:complexContent>
@@ -264,6 +266,17 @@
 				</xsd:extension>
 			</xsd:complexContent>
 		</xs:complexType>
+	</xsd:element>
+
+	<xsd:element name="ActivityReportGenerationResults">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="executionId" type="xsd:long" />
+				<xsd:element name="messageId" type="xsd:string" minOccurs="0" />
+				<xsd:element name="assetGuid" type="xsd:string" />
+				<xsd:element name="responseList" type="AttachmentResponseObject" minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
 	</xsd:element>
 
     <xs:simpleType name="MessageType">
@@ -408,6 +421,14 @@
 			<xs:element name="pdf" type="xs:boolean"/>
 			<xs:element name="xml" type="xs:boolean"/>
 			<xs:element name="consolidated" type="xs:boolean"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="EmailConfigForReportGeneration">
+		<xs:sequence>
+			<xs:element name="guid" type="xsd:string"/>
+			<xs:element name="pdf" type="xs:boolean"/>
+			<xs:element name="xml" type="xs:boolean"/>
 		</xs:sequence>
 	</xs:complexType>
 
