@@ -224,6 +224,7 @@
 					<xsd:element name="dataflow" type="xsd:string" minOccurs="0" />
 					<xsd:element name="consolidated" type="xsd:boolean"/>
 					<xsd:element name="emailConfig" type="EmailConfigForReportGeneration" minOccurs="0" />
+					<xs:element name="vesselIdentifiers" type="VesselIdentifierSchemeIdEnum" minOccurs="0" maxOccurs="unbounded"/>
 				</xsd:sequence>
 			</xsd:extension>
 		</xsd:complexContent>
