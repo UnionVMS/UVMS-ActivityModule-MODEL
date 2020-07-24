@@ -79,7 +79,7 @@ public class JAXBMarshaller {
      * @throws
      * eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMarshallException
      */
-    public static <R> R unmarshallTextMessage(TextMessage textMessage, Class clazz) throws ActivityModelMarshallException {
+    public static <R> R unmarshallTextMessage(TextMessage textMessage, Class<R> clazz) throws ActivityModelMarshallException {
         try {
             JAXBContext jc = contexts.get(clazz.getName());
             if (jc == null) {
@@ -101,7 +101,7 @@ public class JAXBMarshaller {
         }
     }
 
-    public static <R> R unmarshallTextMessage(String textMessage, Class clazz) throws ActivityModelMarshallException {
+    public static <R> R unmarshallTextMessage(String textMessage, Class<R> clazz) throws ActivityModelMarshallException {
         try {
             JAXBContext jc = contexts.get(clazz.getName());
             if (jc == null) {
