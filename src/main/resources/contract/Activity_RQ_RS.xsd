@@ -44,6 +44,7 @@
 			<xs:enumeration value="FORWARD_FA_REPORT_WITH_LOGBOOK"/>
 			<xs:enumeration value="FORWARD_FA_REPORT_FROM_POSITION"/>
 			<xs:enumeration value="FIND_ATTACHMENTS_FOR_GUID_AND_QUERY_PERIOD"/>
+			<xs:enumeration value="FIND_MOVEMENT_GUIDS_BY_REPORT_IDS_AND_ASSET_GUID"/>
 		</xs:restriction>
 	</xs:simpleType>
 
@@ -306,6 +307,27 @@
 			<xsd:enumeration value="BELGIAN_ACTIVITY"/>
 		</xsd:restriction>
 	</xsd:simpleType>
+
+	<xs:element name="FindMovementGuidsByReportIdsAndAssetGuidRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ActivityModuleRequest">
+					<xs:sequence>
+						<xs:element name="reportIds" type="xs:string" maxOccurs="unbounded"/>
+						<xs:element name="assetGuid" type="xs:string" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="FindMovementGuidsByReportIdsAndAssetGuidResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="movementGuids" type="xsd:string" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
 
 	<xs:element name="GetNonUniqueIdsRequest">
 		<xs:complexType>
