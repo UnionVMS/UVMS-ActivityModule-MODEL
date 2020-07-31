@@ -89,8 +89,7 @@ public final class ActivityModuleResponseMapper {
             throwIfUserFault(response);
 
         } catch (JMSException e) {
-            LOG.error("JMS exception during validation ", e);
-            throw new ActivityModelValidationException("JMS exception during validation " + e.getMessage());
+            throw new ActivityModelValidationException("JMS exception during validation " + e.getMessage(),e);
         }
     }
 
@@ -99,7 +98,7 @@ public final class ActivityModuleResponseMapper {
             ActivityFault fault = JAXBMarshaller.unmarshallTextMessage(response, ActivityFault.class);
             throw new ActivityModelValidationException(fault.getCode() + " : " + fault.getFault());
         } catch (ActivityModelMarshallException e) {
-            LOG.trace("Expected Exception"); // Exception received in case if the validation is success
+            LOG.trace("Expected Exception",e); // Exception received in case if the validation is success
         }
     }
 }

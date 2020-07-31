@@ -63,7 +63,6 @@ public class JAXBMarshaller {
             LOG.trace("StringWriter time: {}", (System.currentTimeMillis() - before));
             return marshalled;
         } catch (JAXBException ex) {
-            LOG.error("[ Error when marshalling object to string ] {} ", ex.getMessage());
             throw new ActivityModelMarshallException("[ Error when marshalling Object to String ]", ex);
         }
     }
@@ -97,7 +96,7 @@ public class JAXBMarshaller {
             LOG.trace("Unmarshalling time: {}", (System.currentTimeMillis() - before));
             return object;
         } catch (NullPointerException | JMSException | JAXBException ex) {
-            throw new ActivityModelMarshallException("[Error when unmarshalling response in ResponseMapper ]", ex);
+            throw new ActivityModelMarshallException("Error when unmarshalling response in ResponseMapper", ex);
         }
     }
 
@@ -119,7 +118,7 @@ public class JAXBMarshaller {
             LOG.trace("Unmarshalling time: {}", (System.currentTimeMillis() - before));
             return object;
         } catch (NullPointerException | JAXBException ex) {
-            throw new ActivityModelMarshallException("[Error when unmarshalling response in ResponseMapper ]", ex);
+            throw new ActivityModelMarshallException("Error when unmarshalling response in ResponseMapper", ex);
         }
     }
 

@@ -22,4 +22,7 @@ public class ActivityModelValidationException extends ActivityModelMapperExcepti
     public ActivityModelValidationException(String message) {
         super(message);
     }
+    public ActivityModelValidationException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }
