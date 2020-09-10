@@ -63,6 +63,7 @@
 			<xs:element name="faReportType" type="xs:string"/>
 			<xs:element name="activityAreas" type="ActivityAreas" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="assetHistoryGuids" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="activitiesWktList" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 
