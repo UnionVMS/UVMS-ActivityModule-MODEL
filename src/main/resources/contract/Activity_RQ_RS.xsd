@@ -1,5 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ /*
+  ~ Developed by the European Commission - Directorate General for Maritime Affairs and Fisheries © European Union, 2015-2016.
+  ~
+  ~ This file is part of the Integrated Fisheries Data Management (IFDM) Suite. The IFDM Suite is free software: you can redistribute it
+  ~ and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of
+  ~ the License, or any later version. The IFDM Suite is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  ~ without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+  ~ details. You should have received a copy of the GNU General Public License along with the IFDM Suite. If not, see <http://www.gnu.org/licenses/>.
+  ~
+  ~  */
+  -->
 <xs:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+           xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:20"
 		   xmlns:xs="http://www.w3.org/2001/XMLSchema"
 		   xmlns="http://europa.eu/ec/fisheries/uvms/activity/model/schemas"
 		   id="FISH2015_SPATIAL2015"
@@ -16,25 +29,43 @@
 
 	<xs:simpleType name="ActivityModuleMethod">
 		<xs:restriction base="xs:string">
+			<xs:enumeration value="MAP_TO_SUBSCRIPTION_REQUEST" />
 			<xs:enumeration value="GET_FLUX_FA_REPORT" />
+			<xs:enumeration value="GET_FLUX_FA_QUERY" />
 			<xs:enumeration value="GET_FLUX_MDR_ENTITY" />
 			<xs:enumeration value="GET_FISHING_TRIPS" />
 			<xs:enumeration value="GET_FA_CATCH_SUMMARY_REPORT" />
-			<xs:enumeration value="GET_IS_UNIQUE_ID"/>
+			<xs:enumeration value="GET_NON_UNIQUE_IDS"/>
+			<xs:enumeration value="GET_FISHING_ACTIVITY_FOR_TRIPS"/>
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:element name="SetFLUXFAReportMessageRequest">
+	<xs:element name="SetFLUXFAReportOrQueryMessageRequest">
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="ActivityModuleRequest">
 					<xs:sequence>
 						<xs:element name="request" type="xs:string" />
-					</xs:sequence>
+						<xs:element name="requestType" type="SyncAsyncRequestType" />
+						<xsd:element name="exchangeLogGuid" minOccurs="0" type="xs:string"/>
+                    </xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
+
+    <xs:element name="MapToSubscriptionRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ActivityModuleRequest">
+                    <xs:sequence>
+                        <xs:element name="request" type="xs:string" />
+                        <xs:element name="messageType" type="MessageType"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
 
 	<xs:element name="SetFLUXMDRSyncMessageActivityRequest">
 		<xs:complexType>
@@ -80,6 +111,7 @@
 					<xs:sequence>
 						<xs:element name="fishingTripIdList" type="FishingTripIdWithGeometry" minOccurs="0" maxOccurs="unbounded"/>
 						<xs:element name="fishingActivityList" type="FishingActivitySummary" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="totalCountOfRecords" type="xs:integer"/>
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
@@ -113,7 +145,22 @@
 		</xs:complexType>
 	</xs:element>
 
-	<xsd:simpleType name="PluginType">
+    <xs:simpleType name="MessageType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="FLUXFaQueryMessage"/>
+            <xs:enumeration value="FLUXFaReportMessage"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+	<xs:simpleType name="SyncAsyncRequestType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SYNC"/>
+			<xs:enumeration value="ASYNC"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+
+    <xsd:simpleType name="PluginType">
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="EMAIL"/>
 			<xsd:enumeration value="SATELLITE_RECEIVER"/>
@@ -121,30 +168,52 @@
 			<xsd:enumeration value="OTHER"/>
 			<xsd:enumeration value="NAF"/>
 			<xsd:enumeration value="MANUAL"/>
+			<xsd:enumeration value="BELGIAN_ACTIVITY"/>
 		</xsd:restriction>
 	</xsd:simpleType>
 
-	<xs:element name="IsUniqueIdRequest">
+	<xs:element name="GetNonUniqueIdsRequest">
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="ActivityModuleRequest">
 					<xs:sequence>
-						<xs:element name="activityTableType" type="ActivityTableType" minOccurs="1" maxOccurs="1"/>
-						<xs:element name="identifierId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-						<xs:element name="identifierSchemeId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="activityUniquinessList" type="ActivityUniquinessList" minOccurs="1" maxOccurs="unbounded"/>
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
 
-
-	<xs:element name="IsUniqueIdResponse">
+	<xs:element name="GetNonUniqueIdsResponse">
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="ActivityModuleRequest">
 					<xs:sequence>
-						<xs:element name="value" type="xsd:boolean"/>
+						<xs:element name="activityUniquinessList" type="ActivityUniquinessList" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetFishingActivitiesForTripRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ActivityModuleRequest">
+					<xs:sequence>
+						<xs:element name="faAndTripIds" type="FishingActivityForTripIds" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetFishingActivitiesForTripResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ActivityModuleRequest">
+					<xs:sequence>
+						<xs:element name="faWithIdentifiers" type="FaIdsListWithTripIdMap" minOccurs="1" maxOccurs="unbounded"/>
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
@@ -153,9 +222,48 @@
 
 	<xsd:simpleType name="ActivityTableType">
 		<xsd:restriction base="xsd:string">
-			<xsd:enumeration value="FA_REPORT_DOCUMENT_ENTITY"/>
-			<xsd:enumeration value="FLUX_FA_REPORT_ENTITY"/>
+			<xsd:enumeration value="FLUX_REPORT_DOCUMENT_ENTITY"/>
+			<xsd:enumeration value="RELATED_FLUX_REPORT_DOCUMENT_ENTITY"/>
 		</xsd:restriction>
 	</xsd:simpleType>
+
+	<xs:complexType name="ActivityIDType">
+		<xs:sequence>
+			<xs:element name="value" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="identifierSchemeId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FishingActivityForTripIds">
+		<xs:sequence>
+			<xs:element name="fishActTypeCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="tripId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="tripSchemeId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="fluxRepDocPurposeCodes" type="xsd:string" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FaIdsListWithTripIdMap">
+		<xs:sequence>
+			<xs:element name="tripId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="tripSchemeId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="faIdentifierList" type="FishingActivityWithIdentifiers" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FishingActivityWithIdentifiers">
+		<xs:sequence>
+			<xs:element name="faIdentifierId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="faIdentifierSchemeId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="faType" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ActivityUniquinessList">
+		<xs:sequence>
+			<xs:element name="activityTableType" type="ActivityTableType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ids" type="ActivityIDType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
 
 </xs:schema>
