@@ -178,7 +178,7 @@
                         </executions>
                         <configuration>
                             <schemaLanguage>XMLSCHEMA</schemaLanguage>
-                            <forceRegenerate>true</forceRegenerate>
+                            <forceRegenerate>false</forceRegenerate>
                             <!-- Default to the schemaDirectory -->
                             <bindingDirectory>${project.basedir}/src/main/resources</bindingDirectory>
                             <bindingIncludes>
