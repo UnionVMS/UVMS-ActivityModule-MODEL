@@ -11,12 +11,9 @@
   ~
   ~  */
   -->
-
 <xs:schema xmlns="http://europa.eu/ec/fisheries/uvms/activity/model/schemas"
            id="FISH2015_SPATIAL2015" targetNamespace="http://europa.eu/ec/fisheries/uvms/activity/model/schemas"
            version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
-
 
     <xs:complexType name="ListValueTypeFilter">
         <xs:sequence>
@@ -105,6 +102,7 @@
     <xs:complexType name="FishingActivitySummary">
             <xs:sequence>
                 <xs:element name="activityId" type="xs:int"/>
+                <xs:element name="faReportID" type="xs:int"/>
                 <xs:element name="activityType" type="xs:string"/>
                 <xs:element name="geometry" type="xs:string"/>
                 <xs:element name="acceptedDateTime" type="xs:dateTime"/>
@@ -121,6 +119,10 @@
                 <xs:element name="ports" type="xs:string"  minOccurs="0" maxOccurs="unbounded"/>
                 <xs:element name="areas" type="xs:string"  minOccurs="0" maxOccurs="unbounded"/>
                 <xs:element name="vesselIdentifiers" type="VesselIdentifierType" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="occurence" minOccurs="0" type="xs:dateTime"/>
+                <xs:element name="landingReferencedID" minOccurs="0" type="xs:string"/>
+                <xs:element name="landingState" minOccurs="0" type="xs:string"/>
+                <xs:element name="vesselContactParty" type="VesselContactPartyType" minOccurs="0"/>
             </xs:sequence>
     </xs:complexType>
 
@@ -148,9 +150,12 @@
             <xs:enumeration value="MASTER"/>
             <xs:enumeration value="OCCURRENCE"/>
             <xs:enumeration value="FA_REPORT_ID"/>
+            <xs:enumeration value="FA_STATUS"/>
             <xs:enumeration value="AREA_GEOM"/>
             <xs:enumeration value="ACTIVITY_TYPE"/>
             <xs:enumeration value="TRIP_ID"/>
+            <xs:enumeration value="CONTACT_ROLE_CODE"/>
+            <xs:enumeration value="FISHING_TRIP_SCHEME_ID"/>
         </xs:restriction>
     </xs:simpleType>
 
@@ -159,6 +164,7 @@
             <xs:enumeration value="DATE_DAY" />
             <xs:enumeration value="DATE_MONTH" />
             <xs:enumeration value="DATE_YEAR" />
+            <xs:enumeration value="DATE" />
             <xs:enumeration value="VESSEL"/>
             <xs:enumeration value="TERRITORY"/>
 			<xs:enumeration value="FAO_AREA"/>
@@ -188,6 +194,7 @@
             <xs:enumeration value="MANAGE_ADMIN_CONFIGURATIONS"/>
             <xs:enumeration value="CODE_LISTS_ENABLE_DISABLE_SCHEDULED_UPDATE"/>
             <xs:enumeration value="MDR_SEARCH_CODE_LIST_ITEMS"/>
+            <xs:enumeration value="SEND_UPDATE_TRIP_REQUEST"/>
         </xs:restriction>
     </xs:simpleType>
 
@@ -218,6 +225,8 @@
             <xs:enumeration value="ONBOARD"/>
             <xs:enumeration value="KEPT_IN_NET"/>
             <xs:enumeration value="BY_CATCH"/>
+            <xs:enumeration value="LOADED"/>
+            <xs:enumeration value="UNLOADED"/>
         </xs:restriction>
     </xs:simpleType>
 
@@ -230,6 +239,18 @@
         </xs:complexType>
     </xs:element>
 
-
+    <xs:complexType name="VesselContactPartyType">
+        <xs:sequence>
+            <xs:element name="role" type="xs:string"/>
+            <xs:element name="title" minOccurs="0" type="xs:string"/>
+            <xs:element name="givenName" minOccurs="0" type="xs:string"/>
+            <xs:element name="middleName" minOccurs="0" type="xs:string"/>
+            <xs:element name="familyName" minOccurs="0" type="xs:string"/>
+            <xs:element name="familyNamePrefix" minOccurs="0" type="xs:string"/>
+            <xs:element name="nameSuffix" minOccurs="0" type="xs:string"/>
+            <xs:element name="gender" minOccurs="0" type="xs:string"/>
+            <xs:element name="alias" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
 
 </xs:schema>

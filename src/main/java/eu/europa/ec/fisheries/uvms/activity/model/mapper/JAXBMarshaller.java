@@ -102,7 +102,6 @@ public class JAXBMarshaller {
     }
 
     public static <R> R unmarshallTextMessage(String textMessage, Class clazz) throws ActivityModelMarshallException {
-
         try {
             JAXBContext jc = contexts.get(clazz.getName());
             if (jc == null) {
