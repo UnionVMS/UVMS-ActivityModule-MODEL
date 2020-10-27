@@ -120,7 +120,7 @@ public final class ActivityModuleRequestMapper {
         return isEmpty;
     }
 
-    public static String mapToSetFLUXFAReportOrQueryMessageRequest(String fluxFAReportMessage, String pluginType, MessageType messageType, SyncAsyncRequestType syncAsyncType, String exchangeLogGuid) throws ActivityModelMarshallException {
+    public static String mapToSetFLUXFAReportOrQueryMessageRequest(String fluxFAReportMessage, String pluginType, MessageType messageType, SyncAsyncRequestType syncAsyncType, String exchangeLogGuid, String permissionData) throws ActivityModelMarshallException {
         SetFLUXFAReportOrQueryMessageRequest request = new SetFLUXFAReportOrQueryMessageRequest();
         request.setRequestType(syncAsyncType);
         request.setExchangeLogGuid(exchangeLogGuid);
@@ -131,6 +131,7 @@ public final class ActivityModuleRequestMapper {
         }
         request.setPluginType(PluginType.fromValue(pluginType));
         request.setRequest(fluxFAReportMessage);
+        request.setPermissionData(permissionData);
         return JAXBMarshaller.marshallJaxBObjectToString(request);
     }
 
