@@ -25,7 +25,6 @@
 		<xs:sequence>
 			<xs:element name="method" type="ActivityModuleMethod" minOccurs="1" />
 			<xs:element name="pluginType" type="PluginType" default="FLUX" />
-			<xs:element name="permissionData" type="xs:string" default="" minOccurs="0" maxOccurs="1"/>
 		</xs:sequence>
 	</xs:complexType>
 
@@ -76,7 +75,8 @@
 						<xs:element name="request" type="xs:string" />
 						<xs:element name="requestType" type="SyncAsyncRequestType" />
 						<xsd:element name="exchangeLogGuid" minOccurs="0" type="xs:string"/>
-                    </xs:sequence>
+						<xs:element name="permissionData" type="xs:string" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
