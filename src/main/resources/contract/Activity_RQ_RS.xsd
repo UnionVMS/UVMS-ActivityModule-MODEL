@@ -56,6 +56,26 @@
 		</xs:complexType>
 	</xsd:element>
 
+	<xsd:element name="ForwardQueryToSubscriptionRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="queryToSubscription" type="QueryToSubscription" minOccurs="0" maxOccurs="1"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xsd:element>
+
+	<xs:complexType  name="QueryToSubscription">
+		<xs:sequence>
+			<xs:element name="startDate" type="xsd:string" minOccurs="0" />
+			<xs:element name="endDate" type="xsd:string" minOccurs="0" />
+			<xs:element name="tripID" type="xs:string"/>
+			<xs:element name="vesselId" type="xs:string" minOccurs="0" />
+			<xs:element name="schemeId" type="xs:string" minOccurs="0" />
+			<xs:element name="consolidated" type="xs:string" minOccurs="0" />
+			<xs:element name="assetHistGuids" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
 	<xs:complexType  name="ReportToSubscription">
 		<xs:sequence>
 			<xs:element name="fluxFaReportMessageIds" type="FluxReportIdentifier" minOccurs="0" maxOccurs="unbounded"/>
@@ -76,6 +96,8 @@
 						<xs:element name="requestType" type="SyncAsyncRequestType" />
 						<xsd:element name="exchangeLogGuid" minOccurs="0" type="xs:string"/>
 						<xs:element name="permissionData" type="xs:string" minOccurs="0" maxOccurs="1"/>
+						<xs:element name="isPermitted" type="xs:boolean" minOccurs="0"/>
+						<xs:element name="isEmptyReport" type="xs:boolean" minOccurs="0"/>
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>

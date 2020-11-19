@@ -11,35 +11,13 @@ details. You should have received a copy of the GNU General Public License along
 
 package eu.europa.ec.fisheries.uvms.activity.model.mapper;
 
+import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMarshallException;
+import eu.europa.ec.fisheries.uvms.activity.model.schemas.*;
+import un.unece.uncefact.data.standard.unqualifieddatatype._20.IDType;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import eu.europa.ec.fisheries.uvms.activity.model.exception.ActivityModelMarshallException;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityAreas;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityIDType;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityModuleMethod;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityTableType;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.ActivityUniquinessList;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.FACatchSummaryReportRequest;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.FishingActivityForTripIds;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.FishingTripRequest;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.FluxReportIdentifier;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.ForwardReportToSubscriptionRequest;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.GetFishingActivitiesForTripRequest;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.GetNonUniqueIdsRequest;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.GroupCriteria;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.ListValueTypeFilter;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.MapToSubscriptionRequest;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.MessageType;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.PluginType;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.ReportToSubscription;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.SetFLUXFAReportOrQueryMessageRequest;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.SingleValueTypeFilter;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.SyncAsyncRequestType;
-import eu.europa.ec.fisheries.uvms.activity.model.schemas.VesselIdentifierType;
-import un.unece.uncefact.data.standard.reusableaggregatebusinessinformationentity._20.FishingActivity;
-import un.unece.uncefact.data.standard.unqualifieddatatype._20.IDType;
 
 /**
  * Created by sanera on 06/06/2016.
@@ -163,14 +141,7 @@ public final class ActivityModuleRequestMapper {
         MapToSubscriptionRequest mapToSubscriptionRequest = new MapToSubscriptionRequest();
         mapToSubscriptionRequest.setMethod(ActivityModuleMethod.MAP_TO_SUBSCRIPTION_REQUEST);
         mapToSubscriptionRequest.setRequest(activityMessage);
-        switch (messageType){
-            case FLUX_FA_REPORT_MESSAGE:
-                mapToSubscriptionRequest.setMessageType(MessageType.FLUX_FA_REPORT_MESSAGE);
-                break;
-            case FLUX_FA_QUERY_MESSAGE:
-                mapToSubscriptionRequest.setMessageType(MessageType.FLUX_FA_QUERY_MESSAGE);
-                break;
-        }
+        mapToSubscriptionRequest.setMessageType(messageType);
         return JAXBMarshaller.marshallJaxBObjectToString(mapToSubscriptionRequest);
     }
 
@@ -178,5 +149,11 @@ public final class ActivityModuleRequestMapper {
         ForwardReportToSubscriptionRequest request = new ForwardReportToSubscriptionRequest();
         request.setFaReports(faReports);
         return JAXBMarshaller.marshallJaxBObjectToString(request);
+    }
+
+    public static String mapToForwardReportToSubscriptionRequest(List<ReportToSubscription> faReports, MessageType messageType) throws ActivityModelMarshallException {
+        ForwardReportToSubscriptionRequest request = new ForwardReportToSubscriptionRequest();
+        request.setFaReports(faReports);
+        return mapToSubscriptionRequest(JAXBMarshaller.marshallJaxBObjectToString(request), messageType);
     }
 }
