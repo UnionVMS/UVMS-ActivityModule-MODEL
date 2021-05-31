@@ -20,7 +20,8 @@
 		   targetNamespace="http://europa.eu/ec/fisheries/uvms/activity/model/schemas" version="1.0">
 
 	<xs:include schemaLocation="Activity_CommonTypes.xsd"/>
-
+	<xsd:import namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:20" schemaLocation="slim/ReusableAggregateBusinessInformationEntity_20p0.xsd" />
+	
 	<xs:complexType name="ActivityModuleRequest" abstract="true">
 		<xs:sequence>
 			<xs:element name="method" type="ActivityModuleMethod" minOccurs="1" />
