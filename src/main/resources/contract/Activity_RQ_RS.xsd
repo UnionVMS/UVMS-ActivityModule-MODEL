@@ -207,6 +207,7 @@
 						<xs:element name="endDate" type="xs:dateTime"/>
 						<xs:element name="receiver" type="xs:string"/>
 						<xs:element name="dataflow" type="xs:string"/>
+						<xs:element name="manual" type="xs:boolean"/>
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>

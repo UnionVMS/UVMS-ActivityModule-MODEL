@@ -129,6 +129,7 @@
       <xsd:element maxOccurs="1" minOccurs="1" name="TypeCode" type="udt:CodeType" />
       <xsd:element maxOccurs="1" minOccurs="0" name="SpecifiedDelimitedPeriod" type="ram:DelimitedPeriodType" />
       <xsd:element maxOccurs="1" minOccurs="0" name="SubmitterFLUXParty" type="ram:FLUXPartyType" />
+      <xsd:element maxOccurs="1" minOccurs="0"  name="manual" type="xsd:boolean" />
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="SimpleFAQueryParameter" type="ram:FAQueryParameterType" />
     </xsd:sequence>
   </xsd:complexType>
