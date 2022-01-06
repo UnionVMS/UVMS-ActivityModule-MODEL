@@ -26,9 +26,6 @@
 		<jackson.version>2.6.0</jackson.version>
         <jackson.annotations.version>2.7.1</jackson.annotations.version>
         <apache.commons.version>3.7</apache.commons.version>
-        <sl4j.version>1.7.25</sl4j.version>
-        <logback.version>1.2.3</logback.version>
-        <logback.core.version>1.2.3</logback.core.version>
         <jaxb.version>2.3.0</jaxb.version>
         <scm.connection>scm:git:https://github.com/UnionVMS/UVMS-ActivityModule-MODEL.git</scm.connection>
         <uvms.commons.version>${uvms.commonsLibrary.version}</uvms.commons.version>
@@ -107,20 +104,8 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>${sl4j.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>${logback.core.version}</version>
-        </dependency>
         <dependency>
             <groupId>eu.europa.ec.fisheries.uvms.commons</groupId>
             <artifactId>uvms-commons-xml</artifactId>
@@ -247,9 +232,8 @@
         <profile>
             <id>enforce-jdk-version</id>
             <activation>
-                <!-- To disable profile, define property -Dfocus-pom.enforce.jdk.version.disabled=true -->
                 <property>
-                    <name>!focus-pom.enforce.jdk.version.disabled</name>
+                    <name>focus-pom.enforce.jdk.version.enabled</name>
                 </property>
             </activation>
             <build>
